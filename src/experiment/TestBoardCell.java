@@ -27,4 +27,7 @@ public class TestBoardCell{
 	public boolean getOccupation() {
 		return occupied;
 	}
+	public Set<TestBoardCell> getAdjList(){
+		return null;
+	}
 }
