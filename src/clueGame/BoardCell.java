@@ -14,6 +14,7 @@ public class BoardCell{
 	Set<BoardCell> adjList;
 	private boolean room;
 	private boolean occupied;
+	//huge constructor?
 	public BoardCell(int row, int col, char init, DoorDirection doorD, boolean roomLbl, boolean roomCen, boolean room, boolean occupied) {
 		this.row=row;
 		this.column = col;
