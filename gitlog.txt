@@ -1,0 +1,23 @@
+commit bbb0ce269b390457904ba8900acd5ae29e86d852
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Fri Oct 6 20:46:42 2023 -0600
+
+    added tests for calcTarget
+
+commit c2a41a30ae483792cbdf1e65a85b63b134bcaf44
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 13:28:39 2023 -0600
+
+    tests added for testing adjacency
+
+commit 8373191e2d77307de43988026b13ec880214c590
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 11:55:56 2023 -0600
+
+    added first functionality for the TeadBoardCell class
+
+commit b512633704252457172a9682d47dfd9e887a9b42
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 11:37:13 2023 -0600
+
+    initial commit

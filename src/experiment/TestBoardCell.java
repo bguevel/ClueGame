@@ -3,11 +3,12 @@ package experiment;
 import java.util.Set;
 
 public class TestBoardCell{
-	private int row;
-	private int column;
+	public int row;
+	public int column;
 	private Set<TestBoardCell> adjList;
 	private boolean room;
 	private boolean occupied;
+	
 	
 	public TestBoardCell(int row, int col) {
 		this.row = row;
@@ -19,7 +20,7 @@ public class TestBoardCell{
 	}
 	
 	public void setRoom(boolean b){
-		room=b;
+		room = b;
 	}
 	
 	public boolean isRoom() {
@@ -35,6 +36,6 @@ public class TestBoardCell{
 	}
 	
 	public Set<TestBoardCell> getAdjList(){
-		return null;
+		return adjList;
 	}
 }
