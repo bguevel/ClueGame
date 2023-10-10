@@ -14,10 +14,17 @@ public class BoardCell{
 	Set<BoardCell> adjList;
 	private boolean room;
 	private boolean occupied;
-	public BoardCell(int row, int col) {
+	public BoardCell(int row, int col, char init, DoorDirection doorD, boolean roomLbl, boolean roomCen, boolean room, boolean occupied) {
 		this.row=row;
 		this.column = col;
 		adjList = new HashSet<BoardCell>();
+		this.initial=init;
+		this.doorDirection=doorD;
+		this.roomLabel=roomLbl;
+		this.roomCenter=roomCen;
+		this.room=room;
+		this.occupied=occupied;
+		
 	}
 	public void addAdj(BoardCell cell) {
 		adjList.add(cell);
