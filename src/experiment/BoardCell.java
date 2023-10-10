@@ -3,18 +3,23 @@ package experiment;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TestBoardCell{
-	public int row;
-	public int column;
-	private Set<TestBoardCell> adjList;
+public class BoardCell{
+	int row;
+	int column;
+	char initial;
+	DoorDirection doorDirection;
+	boolean roomLabel;
+	boolean roomCenter;
+	char secretPassage;
+	Set<BoardCell> adjList;
 	private boolean room;
 	private boolean occupied;
-	public TestBoardCell(int row, int col) {
+	public BoardCell(int row, int col) {
 		this.row=row;
 		this.column = col;
-		adjList = new HashSet<TestBoardCell>();
+		adjList = new HashSet<BoardCell>();
 	}
-	public void addAdjacency(TestBoardCell cell) {
+	public void addAdj(BoardCell cell) {
 		adjList.add(cell);
 	}
 	public void setRoom(boolean b){
@@ -29,12 +34,7 @@ public class TestBoardCell{
 	public boolean getOccupation() {
 		return occupied;
 	}
-	public Set<TestBoardCell> getAdjList(){
+	public Set<BoardCell> getAdjList(){
 		return adjList;
 	}
-	@Override
-	public String toString() {
-		return "TestBoardCell [row=" + row + ", column=" + column + "]";
-	}
-	
 }
