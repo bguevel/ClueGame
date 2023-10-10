@@ -1,4 +1,4 @@
-package experiment;
+package clueGame;
 
 public class BadConfigFormatException extends Exception{
 	String file;
