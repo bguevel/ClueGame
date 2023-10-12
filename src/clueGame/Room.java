@@ -1,20 +1,25 @@
 package clueGame;
 
 public class Room{
-
-	public Object getName() {
+	private String name;
+	private BoardCell centerCell;
+	private BoardCell labelCell;
+	public Room(String n) {
+		this.name = n;
+	}
+	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	public BoardCell getLabelCell() {
 		// TODO Auto-generated method stub
-		return null;
+		return labelCell;
 	}
 
 	public BoardCell getCenterCell() {
 		// TODO Auto-generated method stub
-		return null;
+		return centerCell;
 	}
 	
 }

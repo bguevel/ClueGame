@@ -1,10 +1,23 @@
 package clueGame;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Map;
+import java.util.Scanner;
+
 public class Board{
-    /*
-    * variable and methods used for singleton pattern
-    */
+	private String layoutConfigFile;
+	private String setUpConfigFile;
+	private BoardCell[][] grid;
+	private int numRows;
+	private int numColumns;
+	Map<Character, Room> roomMap;
     private static Board theInstance = new Board();
+	public void setConfigFiles(String string, String string2) {
+		this.layoutConfigFile = string;
+		this.setUpConfigFile = string2;
+		
+	}
     // constructor is private to ensure only one can be created
     private Board() {
            super() ;
@@ -19,10 +32,6 @@ public class Board{
     public void initialize()
     {
     }
-	public void setConfigFiles(String string, String string2) {
-		// TODO Auto-generated method stub
-		
-	}
 	public BoardCell getCell(int i, int j) {
 		// TODO Auto-generated method stub
 		return null;
@@ -44,11 +53,28 @@ public class Board{
 		return null;
 	}
 	public void loadSetupConfig() {
-		// TODO Auto-generated method stub
-		
+		FileReader file;
+		String temp;
+		String[] arr;
+		try {
+			file = new FileReader(setUpConfigFile);
+			Scanner reader = new Scanner(file);
+			while(reader.hasNext()) {
+				temp = reader.nextLine();
+				if(temp.charAt(0)=='/') {
+					continue;
+				}
+				arr = temp.split(", ");
+				Character temp2 = arr[3].charAt(0);
+				this.roomMap.put(temp2, new Room(arr[1]));
+				
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	public void loadLayoutConfig() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }
