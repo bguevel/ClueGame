@@ -15,11 +15,7 @@ public class Board{
 	private int numColumns;
 	Map<Character, Room> roomMap;
     private static Board theInstance = new Board();
-	public void setConfigFiles(String string, String string2) {
-		this.layoutConfigFile = string;
-		this.setUpConfigFile = string2;
-		
-	}
+    
     // constructor is private to ensure only one can be created
     private Board() {
            super() ;
@@ -31,8 +27,19 @@ public class Board{
     /*
      * initialize the board (since we are using singleton pattern)
      */
-    public void initialize() // should the exceptions be dealt with in initialize? , also does it call both load functions?
-    {
+    public void initialize() { // should the exceptions be dealt with in initialize? , also does it call both load functions?
+    	try {
+    		loadSetupConfig();
+    		loadLayoutConfig();
+    	}catch(BadConfigFormatException error){
+    		System.out.println("Setup Failed");
+    	}
+    }
+    
+    public void setConfigFiles(String string, String string2) {
+    	this.layoutConfigFile = string;
+    	this.setUpConfigFile = string2;
+    	
     }
 	public BoardCell getCell(int i, int j) {
 		// TODO Auto-generated method stub
