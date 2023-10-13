@@ -14,18 +14,15 @@ public class BoardCell{
 	Set<BoardCell> adjList;
 	private boolean room;
 	private boolean occupied;
-	//huge constructor?
-	public BoardCell(int row, int col, char init, DoorDirection doorD, boolean roomLbl, boolean roomCen, boolean room, boolean occupied) {
+	private boolean door;
+	public BoardCell(int row, int col, char init) {
 		this.row=row;
 		this.column = col;
 		adjList = new HashSet<BoardCell>();
 		this.initial=init;
-		this.doorDirection=doorD;
-		this.roomLabel=roomLbl;
-		this.roomCenter=roomCen;
-		this.room=room;
-		this.occupied=occupied;
-		
+	}
+	public void setDoorDirection(DoorDirection direction) {
+		this.doorDirection=direction;
 	}
 	public void addAdj(BoardCell cell) {
 		adjList.add(cell);
@@ -45,25 +42,32 @@ public class BoardCell{
 	public Set<BoardCell> getAdjList(){
 		return adjList;
 	}
-	public Object getDoorDirection() {
-		// TODO Auto-generated method stub
-		return null;
+	public DoorDirection getDoorDirection() {
+		return doorDirection;
 	}
 	public boolean isDoorway() {
-		// TODO Auto-generated method stub
-		return false;
+		return door;
 	}
 	public boolean isLabel() {
-		// TODO Auto-generated method stub
-		return false;
+		return roomLabel;
 	}
 	public boolean isRoomCenter() {
-		// TODO Auto-generated method stub
-		return false;
+		return roomCenter;
 	}
 	public char getSecretPassage() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.secretPassage;
+	}
+	public void setRoomLabel(boolean roomLabel) {
+		this.roomLabel = roomLabel;
+	}
+	public void setRoomCenter(boolean roomCenter) {
+		this.roomCenter = roomCenter;
+	}
+	public void setSecretPassage(char c) {
+		this.secretPassage=c;
+	}
+	public void setDoor(boolean door) {
+		this.door = door;
 	}
 
 }
