@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+
+import experiment.TestBoardCell;
 
 public class Board{
 	private String layoutConfigFile;
@@ -19,6 +22,7 @@ public class Board{
     // constructor is private to ensure only one can be created
     private Board() {
            super() ;
+           
     }
     // this method returns the only Board
     public static Board getInstance() {
@@ -41,17 +45,17 @@ public class Board{
     	this.setUpConfigFile = string2;
     	
     }
-	public BoardCell getCell(int i, int j) {
+	public BoardCell getCell(int row, int col) {
 		// TODO Auto-generated method stub
-		return null;
+		return grid[row][col];
 	}
 	public int getNumRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return numRows;
 	}
 	public int getNumColumns() {
 		// TODO Auto-generated method stub
-		return 0;
+		return numColumns;
 	}
 	public Room getRoom(char c) {
 		// TODO Auto-generated method stub
@@ -59,7 +63,7 @@ public class Board{
 	}
 	public Room getRoom(BoardCell cell) {
 		// TODO Auto-generated method stub
-		return null;
+		return roomMap.get(cell.getInitial());
 	}
 	public void loadSetupConfig() throws BadConfigFormatException {
 		FileReader file;
@@ -79,7 +83,7 @@ public class Board{
 			if(temp.charAt(0)=='/') { // to avoid reading in comments in the file
 				continue;
 			}
-			arr = temp.split(","); // takes the temp string that was the whole line and splits it based off of commas
+			arr = temp.split(", "); // takes the temp string that was the whole line and splits it based off of commas
 			if(arr.length!=3) { // if the length isn't 3 then there must be some info missing in that line
 				throw new BadConfigFormatException(this.setUpConfigFile);
 			}
@@ -138,8 +142,8 @@ public class Board{
 			arr = temp.split(","); // splits the string along the commas
 			for(int c=0; c<numColumns; c++) {
 				temp2 = arr[c].charAt(0); // the character that is stored in that column number 
-				tempCell = new BoardCell(r, c, temp2);
-				grid[r][c]=tempCell;
+				grid[r][c] = new BoardCell(r, c, temp2);
+				tempCell = grid[r][c];
 				if(arr[c].length()>1) {
 					if(temp2=='W') {
 						tempCell.setDoor(true); // lets the cell know its a door
@@ -175,4 +179,17 @@ public class Board{
 			}
 		}
 	}
+	
+	public Set<BoardCell> getAdjList(int row, int col) {
+		return grid[row][col].getAdjList();
+	}
+	
+	public void calcTargets(BoardCell strtCell, int pathLen) {
+		
+	}
+	public Set<BoardCell> getTargets() {
+		return null;
+	}
+	
+	
 }

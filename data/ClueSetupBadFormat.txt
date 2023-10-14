@@ -1,0 +1,13 @@
+// Rooms and room cards
+Room, Marquez, M
+Room, CTLM, C
+Room, Brown, B
+Room, Kafadar, K
+Room, Alderson, A
+Rom, Green Center, G
+Room, Hill Hall, H
+Room, Jackson, J
+Room, Spruce, S
+// other spaces
+Space, Unused, X
+Space, Walkway, W

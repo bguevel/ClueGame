@@ -32,7 +32,7 @@ public class FileInitTests {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");
+		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
 		// Initialize will load BOTH config files
 		board.initialize();
 	}
@@ -100,7 +100,7 @@ public class FileInitTests {
 	public void testRooms() {
 		// just test a standard room location
 		BoardCell cell = board.getCell( 2, 3);
-		Room room = board.getRoom( cell ) ;
+		Room room = board.getRoom(cell) ;
 		assertTrue( room != null );
 		assertEquals( room.getName(), "CTLM" ) ;
 		assertFalse( cell.isLabel() );

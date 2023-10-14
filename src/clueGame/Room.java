@@ -4,6 +4,7 @@ public class Room{
 	private String name;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
+	
 	public Room(String n) {
 		this.name = n;
 	}
