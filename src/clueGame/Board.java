@@ -70,7 +70,6 @@ public class Board{
 		String temp;
 		String[] arr;
 		Scanner reader = null;
-		Room tempRoom = null;
 		this.roomMap = new HashMap<Character, Room>();
 		try {
 			file = new FileReader(this.setUpConfigFile); // creating a filereader object with the setup file
@@ -83,22 +82,25 @@ public class Board{
 			if(temp.charAt(0)=='/') { // to avoid reading in comments in the file
 				continue;
 			}
+			
 			arr = temp.split(", "); // takes the temp string that was the whole line and splits it based off of commas
 			if(arr.length!=3) { // if the length isn't 3 then there must be some info missing in that line
 				throw new BadConfigFormatException(this.setUpConfigFile);
 			}
-			if(arr[0]=="space") { // we don't want spaces in our room map
-				continue;
-			}
-			if(arr[0]!="Room") { // if what we are reading in isn't called a room then there is some bad format
-				throw new BadConfigFormatException(this.setUpConfigFile);
+		
+			if(!(arr[0].equals("Room"))) { // if what we are reading in isn't called a room then there is some bad format
+				if(!(arr[0].equals("Space"))) {					
+					throw new BadConfigFormatException(this.setUpConfigFile);
+				}
 			}
 			Character temp2 = arr[2].charAt(0); // this is the char we care about to make the rooms
-			tempRoom = new Room(arr[1]);
-			tempRoom.setName(arr[0]); // sets the name of the room to be the first thing in the array
-			this.roomMap.put(temp2, tempRoom); //adds the room to the map
+//			tempRoom = new Room(arr[1]);
+//			tempRoom.setName(arr[0]); // sets the name of the room to be the first thing in the array
+			String roomName = arr[1];
+			this.roomMap.put(temp2, new Room(roomName)); //adds the room to the map
 			
 		}
+		reader.close();
 	}
 	public void loadLayoutConfig() throws BadConfigFormatException {
 		FileReader file;
@@ -112,8 +114,8 @@ public class Board{
 		int columns=0;
 		int prevCol =0;
 		try {
-			file = new FileReader(this.layoutConfigFile); //tries opening the files
-			reader = new Scanner(this.layoutConfigFile);
+			file = new FileReader(this.layoutConfigFile); // creating a filereader object with the setup file
+			reader = new Scanner(file); // passing the scanner the filereader obj
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -134,6 +136,7 @@ public class Board{
 			columns=0;
 			rows++; // upadtes row by row
 		}
+		
 		this.numColumns = prevCol; // if there is no bad config exception any column number should work
 		this.numRows = rows; 
 		this.grid = new BoardCell[this.numRows][this.numColumns];
