@@ -95,7 +95,7 @@ public class FileInitTests {
 		Assert.assertEquals(16, numDoors);
 	}
 
-	// Test a few room cells to ensure the room initial is correct.
+	// Test a few room cells to ensure the room initial is correct. rooms are yellow on the planning spreadsheet
 	@Test
 	public void testRooms() {
 		// just test a standard room location

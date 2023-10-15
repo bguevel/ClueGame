@@ -1,0 +1,89 @@
+commit f6dc918302d00286f98c2167b51367697f9e0484
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 18:40:45 2023 -0600
+
+    Refactored
+
+commit a78d3cc4a5c8cc289622d749d16c81e552635068
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 17:22:21 2023 -0600
+
+    All tests passing
+
+commit 1fec074e88ade9b60177fbda2c78d98a7d6767ef
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 16:15:59 2023 -0600
+
+    ExceptionTests and ExceptionTest306 passing
+
+commit 4dcf2640b15578e9e80764724dfa18166956245f
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Fri Oct 13 16:41:01 2023 -0600
+
+    finished initialize method
+
+commit 8e4949361ae3de5458bf4d80673df1ef5035c385
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 12 23:10:16 2023 -0600
+
+    Very close to getting things running just need to figure some stuff out with initialize
+
+commit 1e74f6c4cb259c01191331c78d1fab6a10798d60
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 12 13:49:10 2023 -0600
+
+    LoadSetUpConfig done
+
+commit fc690fd7f35ccd1328ed63804e4ac4cb7779108b
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 13:31:25 2023 -0600
+
+    tests added ready just about for the submit
+
+commit d4af3684472f1b63150605d08cb62a1728006f33
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 01:04:04 2023 -0600
+
+     cmt
+
+commit 706ef1431ef4f1a4efdfe192594efcb83b9bbdfd
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 01:01:46 2023 -0600
+
+    stub methods added for all the stuff needed seemingly
+
+commit decf7b3fe864e24f39b628038448b8e1e7d40f3e
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 00:47:04 2023 -0600
+
+    maybe all that has to be done with the exception class
+
+commit e54fecdf6df6e11010cb94fdd7802aa727aecd7e
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 00:39:42 2023 -0600
+
+    maybe the correct version of the constructor
+
+commit 2128e985bd39ff38b63e19c1a512b51592f63b0f
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 00:31:35 2023 -0600
+
+    got the tests working and started working on the next assignment
+
+commit c2a41a30ae483792cbdf1e65a85b63b134bcaf44
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 13:28:39 2023 -0600
+
+    tests added for testing adjacency
+
+commit 8373191e2d77307de43988026b13ec880214c590
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 11:55:56 2023 -0600
+
+    added first functionality for the TeadBoardCell class
+
+commit b512633704252457172a9682d47dfd9e887a9b42
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 11:37:13 2023 -0600
+
+    initial commit

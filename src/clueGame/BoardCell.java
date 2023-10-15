@@ -34,7 +34,7 @@ public class BoardCell{
 	public boolean isRoom() {
 		return room;
 	}
-	public void setOccupation(boolean b) {
+	public void setOccupied(boolean b) {
 		occupied = b;
 	}
 	public boolean getOccupation() {
