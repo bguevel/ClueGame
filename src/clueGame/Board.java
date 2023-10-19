@@ -275,9 +275,9 @@ public class Board{
 		visited.add(strtCell);
 		findAllTargets(strtCell, pathLen);
 	}
-	public void findAllTargets(BoardCell strtCell, int pathLen){ // algo from previous test files
+	public void findAllTargets(BoardCell strtCell, int pathLen){ // also from previous test files
 		for(BoardCell cell:strtCell.getAdjList()) {
-			if(visited.contains(cell) || cell.getOccupation()) {
+			if(visited.contains(cell) || cell.getOccupation() && !cell.isRoomCenter()) {
 				continue;
 			}
 			visited.add(cell);
