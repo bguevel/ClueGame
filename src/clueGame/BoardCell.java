@@ -73,5 +73,9 @@ public class BoardCell{
 	public char getInitial() {
 		return initial;
 	}
+	@Override
+	public String toString() {
+		return "BoardCell: " + row + ", " + column;
+	}
 
 }
