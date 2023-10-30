@@ -233,12 +233,38 @@ public class Board{
 			}
 		}
 	}
+	
+	public void calcTargets(BoardCell strtCell, int pathLen) { // need to instantiate the arraylists
+		visited = new HashSet<BoardCell>();
+		targets = new HashSet<BoardCell>();
+		visited.clear();
+		targets.clear();
+		visited.add(strtCell);
+		findAllTargets(strtCell, pathLen);
+	}
+	
+	public void findAllTargets(BoardCell strtCell, int pathLen){ // also from previous test files
+		for(BoardCell cell:strtCell.getAdjList()) {
+			if(visited.contains(cell) || cell.getOccupation() && !cell.isRoomCenter()) {
+				continue;
+			}
+			visited.add(cell);
+			if(pathLen == 1 || cell.isRoomCenter()) { //changed this to room center instead of room. Should this be isroom or isroomcenter? if a tile is a room center should i also make it know its a room?
+				
+				targets.add(cell);
+				
+			}else {
+				findAllTargets(cell, pathLen-1);
+			}
+			visited.remove(cell);
+			
+		}
+	}
 
 	//the files are set here with a method, not in a constructor
 	public void setConfigFiles(String string, String string2) {
 		this.layoutConfigFile = string;
 		this.setUpConfigFile = string2;
-
 	}
 
 	public BoardCell getCell(int row, int col) {
@@ -261,35 +287,9 @@ public class Board{
 		return roomMap.get(cell.getInitial());
 	}
 
-
 	public Set<BoardCell> getAdjList(int row, int col) {
 		return grid[row][col].getAdjList();
 	}
-	public void calcTargets(BoardCell strtCell, int pathLen) { // need to instantiate the arraylists
-		visited = new HashSet<BoardCell>();
-		targets = new HashSet<BoardCell>();
-		visited.clear();
-		targets.clear();
-		visited.add(strtCell);
-		findAllTargets(strtCell, pathLen);
-	}
-	public void findAllTargets(BoardCell strtCell, int pathLen){ // also from previous test files
-		for(BoardCell cell:strtCell.getAdjList()) {
-			if(visited.contains(cell) || cell.getOccupation() && !cell.isRoomCenter()) {
-				continue;
-			}
-			visited.add(cell);
-			if(pathLen == 1 || cell.isRoomCenter()) { //changed this to room center instead of room. Should this be isroom or isroomcenter? if a tile is a room center should i also make it know its a room?
-
-				targets.add(cell);
-
-			}else {
-				findAllTargets(cell, pathLen-1);
-			}
-			visited.remove(cell);
-
-		}
-		}
 	public Set<BoardCell> getTargets() {
 		return this.targets;
 	}
