@@ -2,9 +2,12 @@ package clueGame;
 
 public class BadConfigFormatException extends Exception{
 	String file;
-	public BadConfigFormatException(String fl) {
+	public BadConfigFormatException() {
 		super("Error: bad config format");
-		file = fl;
+	}
+	
+	public BadConfigFormatException(String message) {
+		super(message);
 	}
 	@Override
 	public String toString() {

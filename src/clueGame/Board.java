@@ -64,12 +64,12 @@ public class Board{
 
 			String [] arr = temp.split(", "); // takes the temp string that was the whole line and splits it based off of commas
 			if(arr.length!=3) { // if the length isn't 3 then there must be some info missing in that line
-				throw new BadConfigFormatException(this.setUpConfigFile);
+				throw new BadConfigFormatException("Bad format or missing information from setup file");
 			}
 
 			if(!(arr[0].equals("Room"))) { // if what we are reading in isn't called a room
 				if(!(arr[0].equals("Space"))) {	//and it's not a space, throw an exception
-					throw new BadConfigFormatException(this.setUpConfigFile);
+					throw new BadConfigFormatException("Bad format or wrong information from setup file");
 				}
 			}
 			Character temp2 = arr[2].charAt(0); // this is the char we care about to make the rooms
@@ -113,7 +113,7 @@ public class Board{
 			
 			columns = arr.length; // getting columns a value one ahead of prevcol
 			if(prevCol != columns) { // if the columns aren't equal config format error
-				throw new BadConfigFormatException(this.layoutConfigFile);
+				throw new BadConfigFormatException("Bad format config file");
 			}
 			
 			prevCol = columns; // keeps prevcol trailing behind
@@ -162,7 +162,7 @@ public class Board{
 				}else if(roomMap.containsKey(temp2)) { // this is for all regular rooms
 					tempCell.setRoom(true);
 				}else if(temp2 != 'W' || temp2 != 'X') { // we don't need ot do anything with walkway and unused tiles, and if the cell isn't one of those it must be a bad config
-					throw new BadConfigFormatException(this.layoutConfigFile);
+					throw new BadConfigFormatException("Bad format or incorrect information from config file");
 				}
 			}
 		}
