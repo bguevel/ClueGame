@@ -83,8 +83,8 @@ public class Board{
 
 	public void loadLayoutConfig() throws BadConfigFormatException {
 		//variables that will be needed multiple times
-		String temp = null;
-		String[] fileLine;
+		String fileLine = null;
+		String[] splitFileLine;
 		BoardCell tempCell;
 		Scanner reader = null;
 		ArrayList<String> tempArr = new ArrayList<String>();
@@ -101,17 +101,17 @@ public class Board{
 		}
 
 		while(reader.hasNext()) { // these two loops will be used to calculate the dimensions of the board and make sure that its formatted correctly
-			temp = reader.nextLine();
-			tempArr.add(temp); // adding each string line to an arraylist of strings
-			fileLine = temp.split(","); // splitting the string into rows
+			fileLine = reader.nextLine();
+			tempArr.add(fileLine); // adding each string line to an arraylist of strings
+			splitFileLine = fileLine.split(","); // splitting the string into rows
 			
 			if(rows==0) { // doing this so we have an initial value to compare the rest of the columns to
-				prevCol = fileLine.length;
+				prevCol = splitFileLine.length;
 				rows++;
 				continue;
 			}
 			
-			columns = fileLine.length; // getting columns a value one ahead of prevcol
+			columns = splitFileLine.length; // getting columns a value one ahead of prevcol
 			if(prevCol != columns) { // if the columns aren't equal config format error
 				throw new BadConfigFormatException("Bad format config file");
 			}
@@ -126,42 +126,42 @@ public class Board{
 		this.grid = new BoardCell[this.numRows][this.numColumns];
 		
 		for(int r=0; r<numRows; r++) {
-			temp = tempArr.get(r);
-			fileLine = temp.split(","); // splits the string along the commas
+			fileLine = tempArr.get(r);
+			splitFileLine = fileLine.split(","); // splits the string along the commas
 			for(int c=0; c<numColumns; c++) {
 					// the character that is stored in that column number 
-				grid[r][c] = new BoardCell(r, c, fileLine[c].charAt(0));
+				grid[r][c] = new BoardCell(r, c, splitFileLine[c].charAt(0));
 				tempCell = grid[r][c];
-				if(fileLine[c].length()>1) {
-					if(fileLine[c].charAt(0)=='W') {
+				if(splitFileLine[c].length()>1) {
+					if(splitFileLine[c].charAt(0)=='W') {
 						tempCell.setDoor(true); // lets the cell know its a door
-						if(fileLine[c].charAt(1)=='>') {
+						if(splitFileLine[c].charAt(1)=='>') {
 							tempCell.setDoorDirection(DoorDirection.RIGHT);
 						}
-						if(fileLine[c].charAt(1)=='<') {
+						if(splitFileLine[c].charAt(1)=='<') {
 							tempCell.setDoorDirection(DoorDirection.LEFT);
 						}
-						if(fileLine[c].charAt(1)=='^') {
+						if(splitFileLine[c].charAt(1)=='^') {
 							tempCell.setDoorDirection(DoorDirection.UP);
 						}
-						if(fileLine[c].charAt(1)=='v') {
+						if(splitFileLine[c].charAt(1)=='v') {
 							tempCell.setDoorDirection(DoorDirection.DOWN);
 						}
 					} // should I have a check to throw a bad file config if every room doesn't have a center and a label?
-					if(fileLine[c].charAt(1)=='*'){ // checks if its the center of the room
+					if(splitFileLine[c].charAt(1)=='*'){ // checks if its the center of the room
 						tempCell.setRoomCenter(true); // makes sure the cell knows its a room center
-						this.roomMap.get(fileLine[c].charAt(0)).setCenterCell(tempCell); // find the room in the map and give it its center cell
+						this.roomMap.get(splitFileLine[c].charAt(0)).setCenterCell(tempCell); // find the room in the map and give it its center cell
 					}
-					if(fileLine[c].charAt(1)=='#') { // checks if its the room label
+					if(splitFileLine[c].charAt(1)=='#') { // checks if its the room label
 						tempCell.setRoomLabel(true); // makes sure the cell knows its a label
-						this.roomMap.get(fileLine[c].charAt(0)).setLabelCell(tempCell); // find the room in the map and give it its label cell
+						this.roomMap.get(splitFileLine[c].charAt(0)).setLabelCell(tempCell); // find the room in the map and give it its label cell
 					}
-					if(roomMap.containsKey(fileLine[c].charAt(1))) { // checks to make sure it is a secret passage
-						tempCell.setSecretPassage(fileLine[c].charAt(1));
+					if(roomMap.containsKey(splitFileLine[c].charAt(1))) { // checks to make sure it is a secret passage
+						tempCell.setSecretPassage(splitFileLine[c].charAt(1));
 					}
-				}else if(roomMap.containsKey(fileLine[c].charAt(0))) { // this is for all regular rooms
+				}else if(roomMap.containsKey(splitFileLine[c].charAt(0))) { // this is for all regular rooms
 					tempCell.setRoom(true);
-				}else if(fileLine[c].charAt(0) != 'W' || fileLine[c].charAt(0) != 'X') { // we don't need ot do anything with walkway and unused tiles, and if the cell isn't one of those it must be a bad config
+				}else if(splitFileLine[c].charAt(0) != 'W' || splitFileLine[c].charAt(0) != 'X') { // we don't need ot do anything with walkway and unused tiles, and if the cell isn't one of those it must be a bad config
 					throw new BadConfigFormatException("Bad format or incorrect information from config file");
 				}
 			}
