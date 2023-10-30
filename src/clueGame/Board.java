@@ -149,15 +149,11 @@ public class Board{
 			}
 		}
 	}
-	
-	public void loadLayoutConfig() throws BadConfigFormatException {
-		//variables that will be needed multiple times
+	private ArrayList<String> loadBoard() throws BadConfigFormatException{
+		Scanner reader = null;
+		ArrayList<String> fileLines = new ArrayList<String>();
 		String fileLine = null;
 		String[] splitFileLine;
-		BoardCell tempCell;
-		Scanner reader = null;
-		ArrayList<String> tempArr = new ArrayList<String>();
-
 		int rows=0;
 		int columns=0;
 		int prevCol =0;
@@ -171,7 +167,7 @@ public class Board{
 
 		while(reader.hasNext()) { // these two loops will be used to calculate the dimensions of the board and make sure that its formatted correctly
 			fileLine = reader.nextLine();
-			tempArr.add(fileLine); // adding each string line to an arraylist of strings
+			fileLines.add(fileLine); // adding each string line to an arraylist of strings
 			splitFileLine = fileLine.split(","); // splitting the string into rows
 			
 			if(rows==0) { // doing this so we have an initial value to compare the rest of the columns to
@@ -193,9 +189,14 @@ public class Board{
 		this.numColumns = prevCol; // if there is no bad config exception any column number should work
 		this.numRows = rows; 
 		this.grid = new BoardCell[this.numRows][this.numColumns];
-		
+		return fileLines;
+	}
+	private void makeGrid(ArrayList<String> fileLines) throws BadConfigFormatException {
+		String fileLine = null;
+		String[] splitFileLine;
+		BoardCell tempCell;
 		for(int r=0; r<numRows; r++) {
-			fileLine = tempArr.get(r);
+			fileLine = fileLines.get(r);
 			splitFileLine = fileLine.split(","); // splits the string along the commas
 			for(int c=0; c<numColumns; c++) {
 					// the character that is stored in that column number 
@@ -235,6 +236,13 @@ public class Board{
 				}
 			}
 		}
+	}
+	
+	public void loadLayoutConfig() throws BadConfigFormatException {
+		//variables that will be needed multiple times
+		ArrayList<String> fileLines = new ArrayList<String>();
+		fileLines = this.loadBoard();
+		this.makeGrid(fileLines);
 		this.getAdjs();
 	}
 	
