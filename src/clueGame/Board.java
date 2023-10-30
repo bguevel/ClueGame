@@ -47,6 +47,7 @@ public class Board{
 	public void loadSetupConfig() throws BadConfigFormatException {
 		Scanner reader = null;
 		this.roomMap = new HashMap<Character, Room>();
+		String fileLine = null;
 
 		try {
 			FileReader file = new FileReader(this.setUpConfigFile); // creating a filereader object with the setup file
@@ -56,13 +57,13 @@ public class Board{
 		}
 
 		while(reader.hasNext()) {//while there is a line to be taken in
-			String temp = reader.nextLine(); //read the whole line into temp string
+			fileLine = reader.nextLine(); //read the whole line into temp string
 
-			if(temp.charAt(0)=='/') { // to avoid reading in comments in the file
+			if(fileLine.charAt(0)=='/') { // to avoid reading in comments in the file
 				continue;
 			}
 
-			String [] arr = temp.split(", "); // takes the temp string that was the whole line and splits it based off of commas
+			String [] arr = fileLine.split(", "); // takes the temp string that was the whole line and splits it based off of commas
 			if(arr.length!=3) { // if the length isn't 3 then there must be some info missing in that line
 				throw new BadConfigFormatException("Bad format or missing information from setup file");
 			}
