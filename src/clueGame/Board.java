@@ -72,9 +72,9 @@ public class Board{
 					throw new BadConfigFormatException("Bad format or wrong information from setup file");
 				}
 			}
-			Character temp2 = arr[2].charAt(0); // this is the char we care about to make the rooms
 			String roomName = arr[1]; //this is the name of the room
-			this.roomMap.put(temp2, new Room(roomName)); //adds the room to the map
+			// this is the char we care about to make the rooms
+			this.roomMap.put(arr[2].charAt(0), new Room(roomName)); //adds the room to the map
 
 		}
 		reader.close();
@@ -85,7 +85,6 @@ public class Board{
 		String temp = null;
 		String[] arr;
 		BoardCell tempCell;
-		Character temp2;
 		Scanner reader = null;
 		ArrayList<String> tempArr = new ArrayList<String>();
 
@@ -129,11 +128,11 @@ public class Board{
 			temp = tempArr.get(r);
 			arr = temp.split(","); // splits the string along the commas
 			for(int c=0; c<numColumns; c++) {
-				temp2 = arr[c].charAt(0); // the character that is stored in that column number 
-				grid[r][c] = new BoardCell(r, c, temp2);
+					// the character that is stored in that column number 
+				grid[r][c] = new BoardCell(r, c, arr[c].charAt(0));
 				tempCell = grid[r][c];
 				if(arr[c].length()>1) {
-					if(temp2=='W') {
+					if(arr[c].charAt(0)=='W') {
 						tempCell.setDoor(true); // lets the cell know its a door
 						if(arr[c].charAt(1)=='>') {
 							tempCell.setDoorDirection(DoorDirection.RIGHT);
@@ -150,18 +149,18 @@ public class Board{
 					} // should I have a check to throw a bad file config if every room doesn't have a center and a label?
 					if(arr[c].charAt(1)=='*'){ // checks if its the center of the room
 						tempCell.setRoomCenter(true); // makes sure the cell knows its a room center
-						this.roomMap.get(temp2).setCenterCell(tempCell); // find the room in the map and give it its center cell
+						this.roomMap.get(arr[c].charAt(0)).setCenterCell(tempCell); // find the room in the map and give it its center cell
 					}
 					if(arr[c].charAt(1)=='#') { // checks if its the room label
 						tempCell.setRoomLabel(true); // makes sure the cell knows its a label
-						this.roomMap.get(temp2).setLabelCell(tempCell); // find the room in the map and give it its label cell
+						this.roomMap.get(arr[c].charAt(0)).setLabelCell(tempCell); // find the room in the map and give it its label cell
 					}
 					if(roomMap.containsKey(arr[c].charAt(1))) { // checks to make sure it is a secret passage
 						tempCell.setSecretPassage(arr[c].charAt(1));
 					}
-				}else if(roomMap.containsKey(temp2)) { // this is for all regular rooms
+				}else if(roomMap.containsKey(arr[c].charAt(0))) { // this is for all regular rooms
 					tempCell.setRoom(true);
-				}else if(temp2 != 'W' || temp2 != 'X') { // we don't need ot do anything with walkway and unused tiles, and if the cell isn't one of those it must be a bad config
+				}else if(arr[c].charAt(0) != 'W' || arr[c].charAt(0) != 'X') { // we don't need ot do anything with walkway and unused tiles, and if the cell isn't one of those it must be a bad config
 					throw new BadConfigFormatException("Bad format or incorrect information from config file");
 				}
 			}
