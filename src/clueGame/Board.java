@@ -81,6 +81,75 @@ public class Board{
 		reader.close();
 	}
 
+	private void getAdjs() {
+		for(int r=0; r<this.numRows; r++) {
+			for(int c=0; c<this.numColumns; c++) {
+					if(grid[r][c].isDoorway()) {
+						if(c+1<this.numColumns) { // the following 4 outter if statements make sure that other walkway tiles that are adj are in bounds
+							if(grid[r][c+1].getInitial()=='W') {
+								grid[r][c].addAdj(grid[r][c+1]);
+							}
+						}
+						if(c-1>=0) {
+							if(grid[r][c-1].getInitial()=='W') {
+								grid[r][c].addAdj(grid[r][c-1]);
+							}
+						}
+						if(r+1<this.numRows) {
+							if(grid[r+1][c].getInitial()=='W') {
+								grid[r][c].addAdj(grid[r+1][c]);
+							}
+						}
+						if(r-1>=0) {
+							if(grid[r-1][c].getInitial()=='W') {
+								grid[r][c].addAdj(grid[r-1][c]);
+							}
+						}
+						if(grid[r][c].getDoorDirection() == DoorDirection.UP) { //logic for doors
+							grid[r][c].addAdj(this.getRoom(grid[r-1][c]).getCenterCell());
+							this.getRoom(grid[r-1][c]).getCenterCell().addAdj(grid[r][c]);
+						}else if(grid[r][c].getDoorDirection() == DoorDirection.RIGHT) {
+							grid[r][c].addAdj(this.getRoom(grid[r][c+1]).getCenterCell());
+							this.getRoom(grid[r][c+1]).getCenterCell().addAdj(grid[r][c]);
+						}else if(grid[r][c].getDoorDirection() == DoorDirection.LEFT) {
+							grid[r][c].addAdj(this.getRoom(grid[r][c-1]).getCenterCell());
+							this.getRoom(grid[r][c-1]).getCenterCell().addAdj(grid[r][c]);
+						}else if(grid[r][c].getDoorDirection() == DoorDirection.DOWN) {
+							grid[r][c].addAdj(this.getRoom(grid[r+1][c]).getCenterCell());
+							this.getRoom(grid[r+1][c]).getCenterCell().addAdj(grid[r][c]);
+						}
+					}
+					if(this.roomMap.containsKey(grid[r][c].getSecretPassage())) { //basically I am setting two room centers to be in eachother's adj list
+						this.getRoom(grid[r][c].getInitial()).getCenterCell().addAdj(this.getRoom(grid[r][c].getSecretPassage()).getCenterCell());
+						this.getRoom(grid[r][c].getSecretPassage()).getCenterCell().addAdj(this.getRoom(grid[r][c]).getCenterCell());
+					}
+					if(grid[r][c].getInitial() == 'W' && !grid[r][c].isDoorway()) { //logic for dealing with regular walkways same logic for doors
+						if(c+1<this.numColumns) {
+							if(grid[r][c+1].getInitial()=='W') {
+								grid[r][c].addAdj(grid[r][c+1]);
+							}
+						}
+						if(c-1>=0) {
+							if(grid[r][c-1].getInitial()=='W') {
+								grid[r][c].addAdj(grid[r][c-1]);
+							}
+						}
+						if(r+1<this.numRows) {
+							if(grid[r+1][c].getInitial()=='W') {
+								grid[r][c].addAdj(grid[r+1][c]);
+							}
+						}
+						if(r-1>=0) {
+							if(grid[r-1][c].getInitial()=='W') {
+								grid[r][c].addAdj(grid[r-1][c]);
+							}
+						}
+					}
+
+			}
+		}
+	}
+	
 	public void loadLayoutConfig() throws BadConfigFormatException {
 		//variables that will be needed multiple times
 		String fileLine = null;
@@ -166,73 +235,9 @@ public class Board{
 				}
 			}
 		}
-		for(int r=0; r<this.numRows; r++) {
-			for(int c=0; c<this.numColumns; c++) {
-					if(grid[r][c].isDoorway()) {
-						if(c+1<this.numColumns) { // the following 4 outter if statements make sure that other walkway tiles that are adj are in bounds
-							if(grid[r][c+1].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r][c+1]);
-							}
-						}
-						if(c-1>=0) {
-							if(grid[r][c-1].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r][c-1]);
-							}
-						}
-						if(r+1<this.numRows) {
-							if(grid[r+1][c].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r+1][c]);
-							}
-						}
-						if(r-1>=0) {
-							if(grid[r-1][c].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r-1][c]);
-							}
-						}
-						if(grid[r][c].getDoorDirection() == DoorDirection.UP) { //logic for doors
-							grid[r][c].addAdj(this.getRoom(grid[r-1][c]).getCenterCell());
-							this.getRoom(grid[r-1][c]).getCenterCell().addAdj(grid[r][c]);
-						}else if(grid[r][c].getDoorDirection() == DoorDirection.RIGHT) {
-							grid[r][c].addAdj(this.getRoom(grid[r][c+1]).getCenterCell());
-							this.getRoom(grid[r][c+1]).getCenterCell().addAdj(grid[r][c]);
-						}else if(grid[r][c].getDoorDirection() == DoorDirection.LEFT) {
-							grid[r][c].addAdj(this.getRoom(grid[r][c-1]).getCenterCell());
-							this.getRoom(grid[r][c-1]).getCenterCell().addAdj(grid[r][c]);
-						}else if(grid[r][c].getDoorDirection() == DoorDirection.DOWN) {
-							grid[r][c].addAdj(this.getRoom(grid[r+1][c]).getCenterCell());
-							this.getRoom(grid[r+1][c]).getCenterCell().addAdj(grid[r][c]);
-						}
-					}
-					if(this.roomMap.containsKey(grid[r][c].getSecretPassage())) { //basically I am setting two room centers to be in eachother's adj list
-						this.getRoom(grid[r][c].getInitial()).getCenterCell().addAdj(this.getRoom(grid[r][c].getSecretPassage()).getCenterCell());
-						this.getRoom(grid[r][c].getSecretPassage()).getCenterCell().addAdj(this.getRoom(grid[r][c]).getCenterCell());
-					}
-					if(grid[r][c].getInitial() == 'W' && !grid[r][c].isDoorway()) { //logic for dealing with regular walkways same logic for doors
-						if(c+1<this.numColumns) {
-							if(grid[r][c+1].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r][c+1]);
-							}
-						}
-						if(c-1>=0) {
-							if(grid[r][c-1].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r][c-1]);
-							}
-						}
-						if(r+1<this.numRows) {
-							if(grid[r+1][c].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r+1][c]);
-							}
-						}
-						if(r-1>=0) {
-							if(grid[r-1][c].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r-1][c]);
-							}
-						}
-					}
-
-			}
-		}
+		this.getAdjs();
 	}
+	
 	
 	public void calcTargets(BoardCell strtCell, int pathLen) { // need to instantiate the arraylists
 		visited = new HashSet<BoardCell>();
