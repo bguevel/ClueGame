@@ -1,3 +1,62 @@
+commit ea576d33a037ad06565f4e69a5fb7db0c49be9ab (HEAD -> main, origin/main, origin/HEAD)
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 21 12:41:39 2023 -0600
+
+    all tests passing
+
+commit 8ec403f160f93a2229d4f95daa8ad1e5cdd85a32
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Thu Oct 19 12:10:50 2023 -0600
+
+    306 tests passing
+
+commit f631ad197e4d64a5763eeb77312938fe62119e8f
+Author: bguevel <bguevel@mines.edu>
+Date:   Wed Oct 18 18:38:23 2023 -0600
+
+    adj functionality mostly added, just need to figure out why gettargetsoccupied isn't passing, but thats it, also need to figure out whether isroom shuld be changed to isroomcenter in the calc targets function.
+
+commit 0fb490c906f459bc8bdca444217422b4d09fc5fb
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Oct 16 11:41:19 2023 -0600
+
+    all BoardAdjTargetTest made
+
+commit d39e2d3551bb9e1176c10ddec7d9574310abbf86
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 21:32:28 2023 -0600
+
+
+kaely@LAPTOP-UEI0C4P7 MINGW64 ~/Downloads/Fall 2023/CSCI 306 SE/ClueGame (main)
+$ git log < gitlog.txt
+commit ea576d33a037ad06565f4e69a5fb7db0c49be9ab (HEAD -> main, origin/main, origin/HEAD)
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 21 12:41:39 2023 -0600
+
+    all tests passing
+
+commit 8ec403f160f93a2229d4f95daa8ad1e5cdd85a32
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Thu Oct 19 12:10:50 2023 -0600
+
+    306 tests passing
+
+commit f631ad197e4d64a5763eeb77312938fe62119e8f
+Author: bguevel <bguevel@mines.edu>
+Date:   Wed Oct 18 18:38:23 2023 -0600
+
+    adj functionality mostly added, just need to figure out why gettargetsoccupied isn't passing, but thats it, also need to figure out whether isroom shuld be changed to isroomcenter in the calc targets function.
+
+commit 0fb490c906f459bc8bdca444217422b4d09fc5fb
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Oct 16 11:41:19 2023 -0600
+
+    all BoardAdjTargetTest made
+
+commit d39e2d3551bb9e1176c10ddec7d9574310abbf86
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 21:32:28 2023 -0600
+
 commit f6dc918302d00286f98c2167b51367697f9e0484
 Author: Kaelyn Boutin <kvboutin@mines.edu>
 Date:   Sat Oct 14 18:40:45 2023 -0600

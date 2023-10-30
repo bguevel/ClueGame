@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import experiment.TestBoardCell;
-
 public class Board{
 	private String layoutConfigFile;
 	private String setUpConfigFile;
