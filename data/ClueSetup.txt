@@ -11,3 +11,18 @@ Room, Spruce, S
 // other spaces
 Space, Unused, X
 Space, Walkway, W
+// players
+// First player non cpu
+Player, Prof Strong, Yellow , 0, 0
+Player, Prof CPW, Blue, 0, 15
+Player, Prof Kelly, Green, 6, 11
+Player, Prof Swanson, Red, 15, 7
+Player, Prof Bridgeman, Pink, 16, 20
+Player, Prof Can, Orange, 13, 8
+// start of weapons
+Weapon, Catapult
+Weapon, Flamethrower
+Weapon, Butterknife
+Weapon, Lego
+Weapon, Textbook
+Weapon, Chair

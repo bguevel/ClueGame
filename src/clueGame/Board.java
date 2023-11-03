@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -19,6 +20,11 @@ public class Board{
 	private Set<BoardCell> targets;
 	Map<Character, Room> roomMap;
 	private static Board theInstance = new Board();
+	private ArrayList<Card> deck = new ArrayList<Card>();
+	private ArrayList<Player> players = new ArrayList<Player>();
+	// make a new hashset of cards for the deck and other card functionality
+	// make some array/list of players
+	
 
 	// constructor is private to ensure only one can be created
 	private Board() {
@@ -64,17 +70,50 @@ public class Board{
 			}
 
 			String [] arr = fileLine.split(", "); // takes the temp string that was the whole line and splits it based off of commas
-			if(arr.length!=3) { // if the length isn't 3 then there must be some info missing in that line
+			if(arr.length!=3 || (arr.length!=5 && arr[0]=="Player") || (arr.length!=2 && arr[0]=="Weapon") ) { // if the length isn't 3 or other conditions then there must be some info missing in that line
 				throw new BadConfigFormatException("Bad format or missing information from setup file");
 			}
 
 			if(!(arr[0].equals("Room"))) { // if what we are reading in isn't called a room
-				if(!(arr[0].equals("Space"))) {	//and it's not a space, throw an exception
+				if(!(arr[0].equals("Space")) && !(arr[0].equals("Player")) && !(arr[0].equals("Weapon"))) {	//and it's not a space, throw an exception
 					throw new BadConfigFormatException("Bad format or wrong information from setup file");
 				}
+				if((arr[0].equals("Player"))) { // logic for initializing the players that are present in the file
+					deck.add(new Card(arr[1] , CardType.PERSON));
+					Color tempC = null;
+					switch (arr[2]) { // so that we can transform a string into a color for the constructor
+					case "Red":
+						tempC = Color.RED;
+						break;
+					case "Orange":
+						tempC = Color.ORANGE;
+						break;
+					case "Yellow":
+						tempC = Color.YELLOW;
+						break;
+					case "Green":
+						tempC = Color.GREEN;
+						break;
+					case "Blue":
+						tempC = Color.BLUE;
+						break;
+					case "Pink":
+						tempC = Color.PINK;
+					}
+					// add the player card and add the player to the players list
+					players.add(new HumanPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4])));
+					deck.add(new Card(arr[1], CardType.PERSON));
+				}
+				if((arr[0].equals("Weapon"))) {
+					// add weapon to the deck
+					deck.add(new Card(arr[1], CardType.WEAPON));
+				}
+				
 			}
 			String roomName = arr[1]; //this is the name of the room
+			deck.add(new Card(arr[1], CardType.ROOM)); // add room card to the deck
 			// this is the char we care about to make the rooms
+			// make the room a card
 			this.roomMap.put(arr[2].charAt(0), new Room(roomName)); //adds the room to the map
 
 		}
@@ -244,6 +283,7 @@ public class Board{
 		fileLines = this.loadBoard();
 		this.makeGrid(fileLines);
 		this.getAdjs();
+		
 	}
 	
 	
