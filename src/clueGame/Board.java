@@ -138,8 +138,8 @@ public class Board{
 		this.dealCards();
 	}
 	private void dealCards() {
-		Collections.shuffle(deck);
-		Card[] soln = new Card[3];
+		Collections.shuffle(deck); // this line shuffles the deck
+		Card[] soln = new Card[3]; // array of size 3 for the solution cards
 		for(Card c:deck) {
 			if(soln[0]!=null && soln[1]!=null && soln[2]!=null) { // exit loop if solution has all necessary cards
 				break;
@@ -159,7 +159,7 @@ public class Board{
 			if(deck.get(i) == soln[0] || deck.get(i) == soln[1] || deck.get(i) == soln[2]) { // this is a check to make sure that we aren't redistributing the cards involved in the solution
 				continue;
 			}else {
-				players.get(i/3).updateHand(deck.get(i)); // doing int division so that i give each player 3 cards at a time since they are shuffled it doesn't matter how they are distributed
+				players.get(i/3).updateHand(deck.get(i)); // doing int division so that it gives each player 3 cards at a time since they are shuffled it doesn't matter how they are distributed
 			}
 		}
 	}
