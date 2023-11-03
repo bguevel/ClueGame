@@ -10,8 +10,8 @@ public class ComputerPlayer extends Player{
 	}
 
 	@Override
-	public BooleanSupplier isHuman() {
-		return null;
+	public Boolean isHuman() {
+		return false;
 	}
 
 }

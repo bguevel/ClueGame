@@ -16,15 +16,7 @@ public class test{
 		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");		
 		// Initialize will load config files 
 		board.initialize();
-		Set<BoardCell> testList = board.getAdjList(5, 21);
-		Iterator<BoardCell> itr = testList.iterator();
-		System.out.println(testList.size());
-		while(itr.hasNext()) {
-			System.out.println(itr.next());
-		}
-		System.out.println(board.getCell(5, 23).getInitial());
-		
-
+		board.getPlayer("Prof Strong");
 	}
 
 }

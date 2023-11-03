@@ -10,8 +10,7 @@ public class HumanPlayer extends Player {
 	}
 
 	@Override
-	public BooleanSupplier isHuman() {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean isHuman() {
+		return true;
 	}
 }

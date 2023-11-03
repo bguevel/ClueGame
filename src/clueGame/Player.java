@@ -38,6 +38,6 @@ public abstract class Player {
 		return column;
 	}
 
-	public abstract BooleanSupplier isHuman();
+	public abstract Boolean isHuman();
 	
 }

@@ -73,7 +73,13 @@ public class Board{
 			}
 
 			String [] arr = fileLine.split(", "); // takes the temp string that was the whole line and splits it based off of commas
-			if(arr.length!=3 || (arr.length!=5 && arr[0]=="Player") || (arr.length!=2 && arr[0]=="Weapon") ) { // if the length isn't 3 or other conditions then there must be some info missing in that line
+			if(arr.length!=3 && ((arr[0].equals("Space") || arr[0].equals("Room")))) { // if the length isn't 3 or other conditions then there must be some info missing in that line
+				throw new BadConfigFormatException("Bad format or missing information from setup file");
+			}
+			if(arr.length!=5 && arr[0].equals("Player")) {
+				throw new BadConfigFormatException("Bad format or missing information from setup file");
+			}
+			if((arr.length!=2 && arr[0].equals("Weapon"))) {
 				throw new BadConfigFormatException("Bad format or missing information from setup file");
 			}
 
@@ -109,17 +115,20 @@ public class Board{
 					}else {
 						players.add(new ComputerPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4])));
 					}
-					deck.add(new Card(arr[1], CardType.PERSON));
 					humanP =true;
+					continue;
 				}
 				if((arr[0].equals("Weapon"))) {
 					// add weapon to the deck
 					deck.add(new Card(arr[1], CardType.WEAPON));
+					continue;
 				}
 				
 			}
+			if(!(arr[0].equals("Space"))){
+				deck.add(new Card(arr[1], CardType.ROOM)); // add room card to the deck
+			}
 			String roomName = arr[1]; //this is the name of the room
-			deck.add(new Card(arr[1], CardType.ROOM)); // add room card to the deck
 			// this is the char we care about to make the rooms
 			// make the room a card
 			this.roomMap.put(arr[2].charAt(0), new Room(roomName)); //adds the room to the map
@@ -382,13 +391,21 @@ public class Board{
 		return this.targets;
 	}
 
-	public BooleanSupplier containsPlayer(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean containsPlayer(String name) {
+		for(int i=0; i<6; i++) {
+			if(this.players.get(i).getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public Player getPlayer(String string) {
-		// TODO Auto-generated method stub
+	public Player getPlayer(String name) {
+		for(int i=0; i<6; i++) {
+			if(this.players.get(i).getName().equals(name)) {
+				return this.players.get(i);
+			}
+		}
 		return null;
 	}
 
