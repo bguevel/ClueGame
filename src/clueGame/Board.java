@@ -55,6 +55,7 @@ public class Board{
 		Scanner reader = null;
 		this.roomMap = new HashMap<Character, Room>();
 		String fileLine = null;
+		boolean humanP =false;
 
 		try {
 			FileReader file = new FileReader(this.setUpConfigFile); // creating a filereader object with the setup file
@@ -102,8 +103,13 @@ public class Board{
 						tempC = Color.PINK;
 					}
 					// add the player card and add the player to the players list
-					players.add(new HumanPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4])));
+					if(humanP==false) {
+						players.add(new HumanPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4])));
+					}else {
+						players.add(new ComputerPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4])));
+					}
 					deck.add(new Card(arr[1], CardType.PERSON));
+					humanP =true;
 				}
 				if((arr[0].equals("Weapon"))) {
 					// add weapon to the deck
@@ -119,6 +125,7 @@ public class Board{
 
 		}
 		reader.close();
+		
 	}
 
 	private void getAdjs() {
