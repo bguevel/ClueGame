@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.function.BooleanSupplier;
 
 public class Board{
 	private String layoutConfigFile;
@@ -18,7 +19,7 @@ public class Board{
 	private int numColumns;
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
-	Map<Character, Room> roomMap;
+	private Map<Character, Room> roomMap;
 	private static Board theInstance = new Board();
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Player> players = new ArrayList<Player>();
@@ -29,8 +30,7 @@ public class Board{
 
 	// constructor is private to ensure only one can be created
 	private Board() {
-		super() ;
-
+		super();
 	}
 
 	// this method returns the only Board
@@ -348,5 +348,23 @@ public class Board{
 		return this.targets;
 	}
 
+	public BooleanSupplier containsPlayer(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Player getPlayer(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public BooleanSupplier containsWeapon(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Card> getDeck() {
+		return deck;
+	}
 
 }

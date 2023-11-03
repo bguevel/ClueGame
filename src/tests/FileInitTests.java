@@ -99,13 +99,13 @@ public class FileInitTests {
 	@Test
 	public void testRooms() {
 		// just test a standard room location
-		BoardCell cell = board.getCell( 2, 3);
-		Room room = board.getRoom(cell) ;
-		assertTrue( room != null );
-		assertEquals( room.getName(), "CTLM" ) ;
-		assertFalse( cell.isLabel() );
-		assertFalse( cell.isRoomCenter() ) ;
-		assertFalse( cell.isDoorway()) ;
+		BoardCell cell = board.getCell(2, 3);
+		Room room = board.getRoom(cell);
+		assertTrue(room != null );
+		assertEquals(room.getName(), "CTLM");
+		assertFalse(cell.isLabel());
+		assertFalse(cell.isRoomCenter());
+		assertFalse(cell.isDoorway());
 
 		// this is a label cell to test
 		cell = board.getCell(0, 11);
