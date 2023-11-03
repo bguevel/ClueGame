@@ -88,7 +88,7 @@ public class Board{
 					throw new BadConfigFormatException("Bad format or wrong information from setup file");
 				}
 				if((arr[0].equals("Player"))) { // logic for initializing the players that are present in the file
-					deck.add(new Card(arr[1] , CardType.PERSON));
+					deck.add(new Card(arr[1] , CardType.PERSON)); // add player card
 					Color tempC = null;
 					switch (arr[2]) { // so that we can transform a string into a color for the constructor
 					case "Red":
@@ -109,24 +109,24 @@ public class Board{
 					case "Pink":
 						tempC = Color.PINK;
 					}
-					// add the player card and add the player to the players list
+					// add the player to the players list
 					if(humanP==false) {
-						players.add(new HumanPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4])));
+						players.add(new HumanPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4]))); // Integer.parseInt(string) gives a integer from the string
 					}else {
 						players.add(new ComputerPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4])));
 					}
 					humanP =true;
-					continue;
+					continue; // so that we move on to a new interation of the loop
 				}
 				if((arr[0].equals("Weapon"))) {
 					// add weapon to the deck
 					deck.add(new Card(arr[1], CardType.WEAPON));
-					continue;
+					continue; // so that we move on to a new interation of the loop
 				}
 				
 			}
 			if(!(arr[0].equals("Space"))){
-				deck.add(new Card(arr[1], CardType.ROOM)); // add room card to the deck
+				deck.add(new Card(arr[1], CardType.ROOM)); // add room card to the deck not spaces
 			}
 			String roomName = arr[1]; //this is the name of the room
 			// this is the char we care about to make the rooms
