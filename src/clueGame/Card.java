@@ -8,4 +8,7 @@ public class Card {
 		this.cardName=name;
 		this.type=type;
 	}
+	public CardType getType() {
+		return this.type;
+	}
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -125,7 +126,33 @@ public class Board{
 
 		}
 		reader.close();
-		
+		this.dealCards();
+	}
+	private void dealCards() {
+		Collections.shuffle(deck);
+		Card[] soln = new Card[3];
+		for(Card c:deck) {
+			if(soln[0]!=null && soln[1]!=null && soln[2]!=null) { // exit loop if solution has all necessary cards
+				break;
+			}
+			if(c.getType()==CardType.PERSON && soln[0]==null) { // the following three checks are to make sure that the solution only has one type of each card
+				soln[0]=c;
+			}
+			if(c.getType()==CardType.ROOM && soln[1]==null) {
+				soln[1]=c;
+			}
+			if(c.getType()==CardType.WEAPON && soln[2]==null) {
+				soln[2]=c;
+			}
+		}
+		this.theAnswer = new Solution(soln[1], soln[2], soln[0]);
+		for(int i=0; i<18; i++) {
+			if(deck.get(i) == soln[0] || deck.get(i) == soln[1] || deck.get(i) == soln[2]) { // this is a check to make sure that we aren't redistributing the cards involved in the solution
+				continue;
+			}else {
+				players.get(i/3).updateHand(deck.get(i)); // doing int division so that i give each player 3 cards at a time since they are shuffled it doesn't matter how they are distributed
+			}
+		}
 	}
 
 	private void getAdjs() {
