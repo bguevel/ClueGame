@@ -5,13 +5,7 @@ import java.util.function.BooleanSupplier;
 
 public class ComputerPlayer extends Player{
 
-	public ComputerPlayer(String name, Color c, int row, int column) {
-		super(name, c, row, column);
+	public ComputerPlayer(String name, String c, int row, int column, boolean isHuman) {
+		super(name, c, row, column, isHuman);
 	}
-
-	@Override
-	public Boolean isHuman() {
-		return false;
-	}
-
 }

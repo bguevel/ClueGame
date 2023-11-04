@@ -13,7 +13,7 @@ Space, Unused, X
 Space, Walkway, W
 // players
 // First player non cpu
-Player, Prof Strong, Yellow , 0, 0
+Player, Prof Strong, Yellow, 0, 0
 Player, Prof CPW, Blue, 0, 15
 Player, Prof Kelly, Green, 6, 11
 Player, Prof Swanson, Red, 15, 7

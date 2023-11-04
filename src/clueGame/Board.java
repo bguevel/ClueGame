@@ -89,31 +89,33 @@ public class Board{
 				}
 				if((arr[0].equals("Player"))) { // logic for initializing the players that are present in the file
 					deck.add(new Card(arr[1] , CardType.PERSON)); // add player card
-					Color tempC = null;
-					switch (arr[2]) { // so that we can transform a string into a color for the constructor
-					case "Red":
-						tempC = Color.RED;
-						break;
-					case "Orange":
-						tempC = Color.ORANGE;
-						break;
-					case "Yellow":
-						tempC = Color.YELLOW;
-						break;
-					case "Green":
-						tempC = Color.GREEN;
-						break;
-					case "Blue":
-						tempC = Color.BLUE;
-						break;
-					case "Pink":
-						tempC = Color.PINK;
-					}
+//					Color tempC = null; changed it to a string for now because idk why it was storing color as null
+//					switch (arr[2]) { // so that we can transform a string into a color for the constructor
+//					case "Red":
+//						tempC = Color.RED;
+//						break;
+//					case "Orange":
+//						tempC = Color.ORANGE;
+//						break;
+//					case "Yellow":
+//						tempC = Color.YELLOW;
+//						break;
+//					case "Green":
+//						tempC = Color.GREEN;
+//						break;
+//					case "Blue":
+//						tempC = Color.BLUE;
+//						break;
+//					case "Pink":
+//						tempC = Color.PINK;
+//					}
 					// add the player to the players list
 					if(humanP==false) {
-						players.add(new HumanPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4]))); // Integer.parseInt(string) gives a integer from the string
+						Player tempPlayer = new HumanPlayer(arr[1], arr[2], Integer.parseInt(arr[3]), Integer.parseInt(arr[4]), true);
+						players.add(tempPlayer); // Integer.parseInt(string) gives a integer from the string
 					}else {
-						players.add(new ComputerPlayer(arr[1], tempC, Integer.parseInt(arr[3]), Integer.parseInt(arr[4])));
+						Player tempPlayer = new ComputerPlayer(arr[1], arr[2], Integer.parseInt(arr[3]), Integer.parseInt(arr[4]), false);
+						players.add(tempPlayer);
 					}
 					humanP =true;
 					continue; // so that we move on to a new interation of the loop

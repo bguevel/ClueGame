@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import clueGame.Board;
 import clueGame.Card;
+import clueGame.CardType;
 
 public class GameSetupTests {
 	private static Board board;
@@ -33,45 +34,63 @@ public class GameSetupTests {
 	public void testPlayers(){
 		//first player from setup is human
 		assertTrue(board.containsPlayer("Prof Strong"));
-		assertTrue(board.getPlayer("Prof Strong").isHuman());
+		assertTrue(board.getPlayer("Prof Strong").getIsHuman());
 		//rest of players are cpu
 		assertTrue(board.containsPlayer("Prof CPW"));
-		assertFalse(board.getPlayer("Prof CPW").isHuman());
+		assertFalse(board.getPlayer("Prof CPW").getIsHuman());
 		assertTrue(board.containsPlayer("Prof Kelly"));
-		assertFalse(board.getPlayer("Prof Kelly").isHuman());
+		assertFalse(board.getPlayer("Prof Kelly").getIsHuman());
 		assertTrue(board.containsPlayer("Prof Swanson"));
-		assertFalse(board.getPlayer("Prof Swanson").isHuman());
+		assertFalse(board.getPlayer("Prof Swanson").getIsHuman());
 		assertTrue(board.containsPlayer("Prof Bridgeman"));
-		assertFalse(board.getPlayer("Prof Bridgeman").isHuman());
+		assertFalse(board.getPlayer("Prof Bridgeman").getIsHuman());
 		assertTrue(board.containsPlayer("Prof Can"));
-		assertFalse(board.getPlayer("Prof Can").isHuman());
+		assertFalse(board.getPlayer("Prof Can").getIsHuman());
 	}
 	
 	//testing the colors of the players are correct
 	@Test
 	public void testPlayerColor() {
-		assertEquals(Color.YELLOW, board.getPlayer("Prof Strong").getColor());
-		assertEquals(Color.BLUE, board.getPlayer("Prof CPW").getColor());
-		assertEquals(Color.GREEN, board.getPlayer("Prof Kelly").getColor());
-		assertEquals(Color.RED, board.getPlayer("Prof Swanson").getColor());
-		assertEquals(Color.PINK, board.getPlayer("Prof Bridgeman").getColor());
-		assertEquals(Color.ORANGE, board.getPlayer("Prof Can").getColor());
+		assertEquals("Yellow", board.getPlayer("Prof Strong").getColor());
+		assertEquals("Blue", board.getPlayer("Prof CPW").getColor());
+		assertEquals("Green", board.getPlayer("Prof Kelly").getColor());
+		assertEquals("Red", board.getPlayer("Prof Swanson").getColor());
+		assertEquals("Pink", board.getPlayer("Prof Bridgeman").getColor());
+		assertEquals("Orange", board.getPlayer("Prof Can").getColor());
 	}
 	
 	//testing the starting locations are correct
 	@Test
 	public void testPlayerStartLocation() {
-		
+		assertEquals(0, board.getPlayer("Prof Strong").getRow());
+		assertEquals(0, board.getPlayer("Prof Strong").getColumn());
+		assertEquals(0, board.getPlayer("Prof CPW").getRow());
+		assertEquals(15, board.getPlayer("Prof CPW").getColumn());
+		assertEquals(6, board.getPlayer("Prof Kelly").getRow());
+		assertEquals(11, board.getPlayer("Prof Kelly").getColumn());
+		assertEquals(15, board.getPlayer("Prof Swanson").getRow());
+		assertEquals(7, board.getPlayer("Prof Swanson").getColumn());
+		assertEquals(16, board.getPlayer("Prof Bridgeman").getRow());
+		assertEquals(20, board.getPlayer("Prof Bridgeman").getColumn());
+		assertEquals(13, board.getPlayer("Prof Can").getRow());
+		assertEquals(8, board.getPlayer("Prof Can").getColumn());
 	}
 	
 	@Test
 	public void testWeaponLabels() {
-		assertTrue(board.containsWeapon("Catapult"));
-		assertTrue(board.containsWeapon("Flamethrower"));
-		assertTrue(board.containsWeapon("Butterknife"));
-		assertTrue(board.containsWeapon("Lego"));
-		assertTrue(board.containsWeapon("Textbook"));
-		assertTrue(board.containsWeapon("Chair"));
+		ArrayList<String> testLabels = new ArrayList<String>();
+		//loop through deck and if weapon add to list
+		for(int i=0; i < board.getDeck().size(); i++) {
+			if(board.getDeck().get(i).getType() == CardType.WEAPON) {
+				testLabels.add(board.getDeck().get(i).getCardName());
+			}
+		}
+		assertTrue(testLabels.contains("Catapult"));
+		assertTrue(testLabels.contains("Flamethrower"));
+		assertTrue(testLabels.contains("Butterknife"));
+		assertTrue(testLabels.contains("Lego"));
+		assertTrue(testLabels.contains("Textbook"));
+		assertTrue(testLabels.contains("Chair"));
 	}
 	
 	
@@ -81,7 +100,6 @@ public class GameSetupTests {
 		ArrayList<Card> testDeck = new ArrayList<Card>();
 		testDeck = board.getDeck();
 		assertEquals(21, testDeck.size());
-		//do we have to check that every card is in the deck?
 	}
 	
 	//testing that the cards were dealed to the players

@@ -6,16 +6,18 @@ import java.util.function.BooleanSupplier;
 
 public abstract class Player {
 	private String name;
-	private Color color;
+	private String color;
 	private int row;
 	private int column;
 	private ArrayList<Card> hand;
+	private boolean isHuman;
 	
-	public Player(String name, Color c, int row, int column) {
+	public Player(String name, String color, int row, int column, boolean isHuman) {
 		this.name = name;
-		this.color = c;
+		this.color = color;
 		this.row = row;
 		this.column = column;
+		this.isHuman = isHuman;
 	}
 	
 	public void updateHand(Card card) {
@@ -26,7 +28,7 @@ public abstract class Player {
 		return name;
 	}
 
-	public Color getColor() {
+	public String getColor() {
 		return color;
 	}
 
@@ -38,6 +40,8 @@ public abstract class Player {
 		return column;
 	}
 
-	public abstract Boolean isHuman();
+	public  Boolean getIsHuman() {
+		return isHuman;
+	}
 	
 }
