@@ -1,6 +1,5 @@
 package clueGame;
 
-import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -157,11 +156,13 @@ public class Board{
 			}
 		}
 		this.theAnswer = new Solution(soln[1], soln[2], soln[0]);
-		for(int i=0; i<18; i++) {
+		int dealCount = 0;
+		for(int i=0; i<21; i++) {
 			if(deck.get(i) == soln[0] || deck.get(i) == soln[1] || deck.get(i) == soln[2]) { // this is a check to make sure that we aren't redistributing the cards involved in the solution
 				continue;
 			}else {
-				players.get(i/3).updateHand(deck.get(i)); // doing int division so that it gives each player 3 cards at a time since they are shuffled it doesn't matter how they are distributed
+				players.get(dealCount/3).updateHand(deck.get(i)); // doing int division so that it gives each player 3 cards at a time since they are shuffled it doesn't matter how they are distributed
+				dealCount++;
 			}
 		}
 	}
@@ -411,13 +412,26 @@ public class Board{
 		return null;
 	}
 
-	public BooleanSupplier containsWeapon(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean containsWeapon(String string) {
+		for(Card c: deck) {
+			if(c.getType() == CardType.WEAPON) {
+				if(c.getCardName() == string) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}
+	
+	public ArrayList<Player> getPlayerList(){
+		return players;
+	}
 
+	public Solution getTheAnswer() {
+		return theAnswer;
+	}
 }

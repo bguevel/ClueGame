@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import clueGame.Board;
 import clueGame.Card;
 import clueGame.CardType;
+import clueGame.Player;
 
 public class GameSetupTests {
 	private static Board board;
@@ -105,6 +108,22 @@ public class GameSetupTests {
 	//testing that the cards were dealed to the players
 	@Test
 	public void testDeal() {
+		ArrayList<Card> testDeck = new ArrayList<Card>(); 
+		//add all cards from player hands
+		for(Player p: board.getPlayerList()) {
+			ArrayList<Card> pHand = new ArrayList<Card>();
+			pHand = p.getHand();
+			assertEquals(3, pHand.size());
+			for(Card c: pHand) {
+				testDeck.add(c);
+			}
+		}
+		testDeck.add(board.getTheAnswer().getRoom()); //add the cards from the solution
+		testDeck.add(board.getTheAnswer().getPerson());
+		testDeck.add(board.getTheAnswer().getWeapon());
+		assertEquals(testDeck.size(), board.getDeck().size()); //all cards dealt
+		Set<Card> cardSet = new HashSet<Card>(testDeck);
+		assertEquals(cardSet.size(), testDeck.size());
 		
 	}
 }

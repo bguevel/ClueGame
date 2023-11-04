@@ -18,10 +18,15 @@ public abstract class Player {
 		this.row = row;
 		this.column = column;
 		this.isHuman = isHuman;
+		hand = new ArrayList<Card>();
 	}
 	
 	public void updateHand(Card card) {
-		
+		hand.add(card);
+	}
+	
+	public ArrayList<Card> getHand() {
+		return hand;
 	}
 
 	public String getName() {
