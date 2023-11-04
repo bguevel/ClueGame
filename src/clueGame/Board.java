@@ -139,6 +139,7 @@ public class Board{
 		reader.close();
 		this.dealCards();
 	}
+	
 	private void dealCards() {
 		Collections.shuffle(deck); // this line shuffles the deck
 		Card[] soln = new Card[3]; // array of size 3 for the solution cards

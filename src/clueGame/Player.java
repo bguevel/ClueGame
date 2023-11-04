@@ -21,9 +21,13 @@ public abstract class Player {
 	}
 	
 	public void updateHand(Card card) {
-		
+		hand.add(card);
 	}
 
+	public ArrayList<Card> getHand(){
+		return hand;
+	}
+	
 	public String getName() {
 		return name;
 	}
