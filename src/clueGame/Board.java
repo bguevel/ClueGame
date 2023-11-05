@@ -447,4 +447,9 @@ public class Board{
 	public Solution getTheAnswer() {
 		return theAnswer;
 	}
+	
+	public void setTheAnswer(Card room, Card person, Card weapon) {
+		Solution answer = new Solution(room, person, weapon);
+		this.theAnswer = answer;
+	}
 }

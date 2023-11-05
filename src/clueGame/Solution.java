@@ -5,7 +5,7 @@ public class Solution {
 	private Card weapon;
 	private Card person;
 	
-	public Solution(Card room, Card weapon, Card person) {
+	public Solution(Card room, Card person, Card weapon) {
 		super();
 		this.room = room;
 		this.weapon = weapon;
