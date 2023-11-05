@@ -32,14 +32,17 @@ public abstract class Player {
 			if(c.equals(suggestion.getPerson()) && foundP == false) { // check to see if person in suggestion is in player's hand
 				involved.add(c);
 				foundP=true;
+				continue;
 			}
 			if(c.equals(suggestion.getRoom()) && foundR == false) { // check to see if room in suggestion is in player's hand
 				involved.add(c);
 				foundR =true;
+				continue;
 			}
 			if(c.equals(suggestion.getWeapon()) && foundW == false) {// check to see if weapon in suggestion is in player's hand
 				involved.add(c);
 				foundW=true;
+				continue;
 			}
 		}
 		if(involved.size()>1) { // if there are more than 2 cards from the suggestion present in the player's hand then we return a rand one
