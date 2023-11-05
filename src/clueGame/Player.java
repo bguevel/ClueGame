@@ -29,6 +29,13 @@ public abstract class Player {
 		hand.add(card);
 	}
 	
+	public void setHand(Card roomCard, Card personCard, Card weaponCard) {
+		hand.clear();
+		hand.add(roomCard);
+		hand.add(personCard);
+		hand.add(weaponCard);
+	}
+	
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
@@ -52,5 +59,6 @@ public abstract class Player {
 	public  Boolean getIsHuman() {
 		return isHuman;
 	}
+
 	
 }

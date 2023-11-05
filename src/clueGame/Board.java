@@ -365,6 +365,9 @@ public class Board{
 	}
 	
 	public boolean checkAccusation(Solution accusation) {
+		if((accusation.getRoom() == theAnswer.getRoom()) && (accusation.getPerson() == theAnswer.getPerson()) && (accusation.getWeapon() == theAnswer.getWeapon())) {
+			return true;
+		}
 		return false;
 	}
 	
