@@ -21,6 +21,10 @@ public abstract class Player {
 		hand = new ArrayList<Card>();
 	}
 	
+	public Card disproveSuggestion(Solution suggestion) {
+		return null;
+	}
+	
 	public void updateHand(Card card) {
 		hand.add(card);
 	}

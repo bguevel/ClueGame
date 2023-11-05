@@ -138,6 +138,7 @@ public class Board{
 		reader.close();
 		this.dealCards();
 	}
+	
 	private void dealCards() {
 		Collections.shuffle(deck); // this line shuffles the deck
 		Card[] soln = new Card[3]; // array of size 3 for the solution cards
@@ -235,6 +236,7 @@ public class Board{
 			}
 		}
 	}
+	
 	private ArrayList<String> loadBoard() throws BadConfigFormatException{
 		Scanner reader = null;
 		ArrayList<String> fileLines = new ArrayList<String>();
@@ -277,6 +279,7 @@ public class Board{
 		this.grid = new BoardCell[this.numRows][this.numColumns];
 		return fileLines;
 	}
+	
 	private void makeGrid(ArrayList<String> fileLines) throws BadConfigFormatException {
 		String fileLine = null;
 		String[] splitFileLine;
@@ -360,11 +363,39 @@ public class Board{
 			
 		}
 	}
-
+	
+	public boolean checkAccusation(Solution accusation) {
+		return false;
+	}
+	
+	public Card handleSuggestion(Solution suggestion) {
+		return null;
+	}
+	
 	//the files are set here with a method, not in a constructor
 	public void setConfigFiles(String string, String string2) {
 		this.layoutConfigFile = string;
 		this.setUpConfigFile = string2;
+	}
+	
+	public Boolean containsPlayer(String name) {
+		for(int i=0; i<6; i++) {
+			if(this.players.get(i).getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Boolean containsWeapon(String string) {
+		for(Card c: deck) {
+			if(c.getType() == CardType.WEAPON) {
+				if(c.getCardName() == string) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public BoardCell getCell(int row, int col) {
@@ -394,14 +425,6 @@ public class Board{
 		return this.targets;
 	}
 
-	public Boolean containsPlayer(String name) {
-		for(int i=0; i<6; i++) {
-			if(this.players.get(i).getName().equals(name)) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	public Player getPlayer(String name) {
 		for(int i=0; i<6; i++) {
@@ -412,16 +435,6 @@ public class Board{
 		return null;
 	}
 
-	public Boolean containsWeapon(String string) {
-		for(Card c: deck) {
-			if(c.getType() == CardType.WEAPON) {
-				if(c.getCardName() == string) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 
 	public ArrayList<Card> getDeck() {
 		return deck;
