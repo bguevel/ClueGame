@@ -372,6 +372,11 @@ public class Board{
 	}
 	
 	public Card handleSuggestion(Solution suggestion) {
+		for(Player p:this.players) {
+			if(p.disproveSuggestion(suggestion)!=null) {
+				return p.disproveSuggestion(suggestion);
+			}
+		}
 		return null;
 	}
 	
