@@ -12,7 +12,7 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public Solution createSuggestion(Card room) { // not sure if we should be giving the function Room objs or Card objs?
-		// if the input needs to be a Room then we could do for(Card c:Board.getDeck())  if(room.getName() == c.getCardName) Card Room = c; break;
+		// if the input needs to be a Room then we could do for(Card c:Board.getDeck()){  if(room.getName() == c.getCardName){ Card Room = c; break;}}
 		ArrayList<Card> tempDeck = Board.getDeck();
 		Random rand = new Random();
 		int randNum;
@@ -20,7 +20,7 @@ public class ComputerPlayer extends Player{
 		Card weapon = null;
 		boolean foundP =false;
 		boolean foundW =false;
-		while(true) {
+		while(!foundP || !foundW) {
 			randNum =rand.nextInt((20+1)); // random number between 0 and 20 to get a random card in the deck
 			for(Card c : this.getSeen()) { // this to make sure that we aren't suggesting a card that we have seen already
 				if(!(tempDeck.get(randNum).equals(c)) && tempDeck.get(randNum).getType()==CardType.PERSON && foundP==false) {
@@ -35,9 +35,6 @@ public class ComputerPlayer extends Player{
 					foundW=true;
 					break;
 				}
-			}
-			if(foundP && foundW) { // to exit the loop
-				break;
 			}
 		}
 		return new Solution(room, person, weapon); // making the suggestion
