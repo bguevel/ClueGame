@@ -12,6 +12,7 @@ public abstract class Player {
 	private int column;
 	private ArrayList<Card> hand;
 	private boolean isHuman;
+	private ArrayList<Card> seen ;
 	
 	public Player(String name, String color, int row, int column, boolean isHuman) {
 		this.name = name;
@@ -20,6 +21,7 @@ public abstract class Player {
 		this.column = column;
 		this.isHuman = isHuman;
 		hand = new ArrayList<Card>();
+		seen = new ArrayList<Card>();
 	}
 	
 	public Card disproveSuggestion(Solution suggestion) {
@@ -88,6 +90,9 @@ public abstract class Player {
 
 	public  Boolean getIsHuman() {
 		return isHuman;
+	}
+	public ArrayList<Card> getSeen(){
+		return this.seen;
 	}
 	
 }

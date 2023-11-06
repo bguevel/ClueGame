@@ -21,7 +21,7 @@ public class Board{
 	private Set<BoardCell> targets;
 	private Map<Character, Room> roomMap;
 	private static Board theInstance = new Board();
-	private ArrayList<Card> deck = new ArrayList<Card>();
+	private static ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private Solution theAnswer; //Initialize this with 3 cards before dealing the rest
 	// make a new hashset of cards for the deck and other card functionality
@@ -136,7 +136,9 @@ public class Board{
 
 		}
 		reader.close();
-		this.dealCards();
+		if(this.deck.size()==21) {
+			this.dealCards();
+		}
 	}
 	
 	private void dealCards() {
@@ -444,7 +446,7 @@ public class Board{
 	}
 
 
-	public ArrayList<Card> getDeck() {
+	public static ArrayList<Card> getDeck() {
 		return deck;
 	}
 	
