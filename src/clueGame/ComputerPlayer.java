@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.BooleanSupplier;
 
 public class ComputerPlayer extends Player{
@@ -40,7 +41,28 @@ public class ComputerPlayer extends Player{
 		return new Solution(room, person, weapon); // making the suggestion
 	}
 	
-	public BoardCell selectTargets() {
+	public BoardCell selectTargets(Set<BoardCell> targets) {
+		ArrayList<BoardCell> actualTargets = new ArrayList<BoardCell>();
+		Random rand = new Random();
+		BoardCell[] targs;
+		for(BoardCell cell: targets) {
+			for(Card c: this.getSeen()) {
+				if(c.getType()==CardType.ROOM && cell.isRoomCenter() && !Board.getRoom(cell).getName().equals(c.getCardName())) {
+					actualTargets.add(cell);
+				}
+			}
+		}
+		if(actualTargets.size()==1) {
+			return actualTargets.get(0);
+		}
+		if(actualTargets.size()>1) {
+			return actualTargets.get(rand.nextInt(actualTargets.size()));
+		}
+		if(actualTargets.size()==0) {
+			targs =  (BoardCell[]) targets.toArray();
+			return targs[rand.nextInt(targs.length)];
+ 
+		}
 		return null;
 	}
 }

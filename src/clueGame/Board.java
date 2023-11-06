@@ -19,7 +19,7 @@ public class Board{
 	private int numColumns;
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
-	private Map<Character, Room> roomMap;
+	private static Map<Character, Room> roomMap;
 	private static Board theInstance = new Board();
 	private static ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Player> players = new ArrayList<Player>();
@@ -424,7 +424,7 @@ public class Board{
 		return roomMap.get(c);
 	}
 
-	public Room getRoom(BoardCell cell) {
+	public static Room getRoom(BoardCell cell) {
 		return roomMap.get(cell.getInitial());
 	}
 
