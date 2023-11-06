@@ -373,7 +373,7 @@ public class Board{
 		return false;
 	}
 	
-	public Card handleSuggestion(Solution suggestion) {
+	public Card handleSuggestion(Solution suggestion, String player) {
 		for(Player p:this.players) {
 			if(p.disproveSuggestion(suggestion)!=null) {
 				return p.disproveSuggestion(suggestion);

@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 
 import clueGame.Board;
@@ -44,7 +44,7 @@ public class GameSolutionTest {
 		legoCard = new Card("Lego", CardType.WEAPON);
 		chairCard = new Card("Chair", CardType.WEAPON);
 	}
-	
+
 	@Test
 	public void testCheckAccusation() {
 		board.setTheAnswer(marquezCard, strongCard, legoCard);
@@ -55,21 +55,21 @@ public class GameSolutionTest {
 		//wrong person
 		assertFalse(board.checkAccusation(new Solution(marquezCard, kellyCard, legoCard)));
 		//wrong weapon
-		assertTrue(board.checkAccusation(new Solution(marquezCard, strongCard, flamethrowerCard)));
+		assertFalse(board.checkAccusation(new Solution(marquezCard, strongCard, flamethrowerCard)));
 	}
-	
+
 	@Test
 	public void testDisproveSuggestion() {
 		Solution suggestion = new Solution(marquezCard, strongCard, legoCard);
-		
+
 		//player has 1 matching card
 		board.getPlayer("Prof Strong").setHand(marquezCard, cpwCard, flamethrowerCard);
 		assertEquals(marquezCard, board.getPlayer("Prof Strong").disproveSuggestion(suggestion));
-		
+
 		//player has no matching cards
 		board.getPlayer("Prof Strong").setHand(ctlmCard, kellyCard, brownCard);
 		assertEquals(null, board.getPlayer("Prof Strong").disproveSuggestion(suggestion));
-		
+
 		//player has more than 1 (2) matching cards
 		board.getPlayer("Prof Strong").setHand(marquezCard, strongCard, flamethrowerCard);
 		ArrayList<Card> testList = new ArrayList<Card>();
@@ -82,7 +82,7 @@ public class GameSolutionTest {
 		assertTrue(testList.contains(marquezCard));
 		assertTrue(testList.contains(strongCard));
 	}
-	
+
 	@Test
 	public void testHandleSuggestion() {
 		//setting these three hands to test
@@ -93,15 +93,15 @@ public class GameSolutionTest {
 		board.getPlayer("Prof Swanson").setHand(brownCard, canCard, chairCard);
 		board.getPlayer("Prof Bridgeman").setHand(brownCard, canCard, chairCard);
 		board.getPlayer("Prof Can").setHand(brownCard, canCard, chairCard);
-		
+
 		//suggestion no one can disprove return null
 		Solution suggestion = new Solution(marquezCard, cpwCard, legoCard); 
-		assertEquals(null, board.handleSuggestion(suggestion));
+		assertEquals(null, board.handleSuggestion(suggestion, null));
 		//suggestion only suggesting player can disprove return null
 		suggestion = new Solution(ctlmCard, cpwCard, legoCard); //only the human player has ctml
-		assertEquals(null, board.handleSuggestion(suggestion));
+		assertEquals(null, board.handleSuggestion(suggestion, null));
 		//suggestion only human player can disprove return card found
-		
+
 		//suggestion two players can disprove returns first card found
 	}
 }
