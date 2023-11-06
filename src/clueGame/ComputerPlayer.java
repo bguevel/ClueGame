@@ -11,7 +11,8 @@ public class ComputerPlayer extends Player{
 		super(name, c, row, column, isHuman);
 	}
 	
-	public Solution createSuggestion(Card room) {
+	public Solution createSuggestion(Card room) { // not sure if we should be giving the function Room objs or Card objs?
+		// if the input needs to be a Room then we could do for(Card c:Board.getDeck())  if(room.getName() == c.getCardName) Card Room = c; break;
 		ArrayList<Card> tempDeck = Board.getDeck();
 		Random rand = new Random();
 		int randNum;
