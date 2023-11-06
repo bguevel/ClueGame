@@ -41,6 +41,7 @@ public class ComputerPlayer extends Player{
 		return new Solution(room, person, weapon); // making the suggestion
 	}
 	
+
 	public BoardCell selectTargets(Set<BoardCell> targets) {
 		ArrayList<BoardCell> actualTargets = new ArrayList<BoardCell>();
 		Random rand = new Random();
@@ -63,6 +64,5 @@ public class ComputerPlayer extends Player{
 			return targs[rand.nextInt(targs.length)];
  
 		}
-		return null;
 	}
 }

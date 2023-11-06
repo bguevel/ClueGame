@@ -97,5 +97,12 @@ public abstract class Player {
 	public void updateSeen(Card c) {
 		this.seen.add(c);
 	}
+
+	public void setLocation(BoardCell cell) {
+		row = cell.getRow();
+		column = cell.getColumn();
+	}
+
+	public BoardCell selectTargets();
 	
 }

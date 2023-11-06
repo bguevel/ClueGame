@@ -16,8 +16,9 @@ public class test{
 		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");		
 		// Initialize will load config files 
 		board.initialize();
-		board.getPlayer("Prof Strong");
-
+		board.calcTargets(board.getCell(5, 3), 3);
+		Set<BoardCell> targets = board.getTargets();
+		System.out.print(targets);
 	}
 
 }

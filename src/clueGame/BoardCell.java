@@ -77,5 +77,11 @@ public class BoardCell{
 	public String toString() {
 		return "BoardCell: " + row + ", " + column;
 	}
+	public int getRow() {
+		return row;
+	}
+	public int getColumn() {
+		return column;
+	}
 
 }
