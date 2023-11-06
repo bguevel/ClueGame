@@ -94,5 +94,8 @@ public abstract class Player {
 	public ArrayList<Card> getSeen(){
 		return this.seen;
 	}
+	public void updateSeen(Card c) {
+		this.seen.add(c);
+	}
 	
 }

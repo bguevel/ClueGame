@@ -17,6 +17,7 @@ public class test{
 		// Initialize will load config files 
 		board.initialize();
 		board.getPlayer("Prof Strong");
+
 	}
 
 }
