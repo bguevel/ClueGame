@@ -40,6 +40,7 @@ public class ComputerPlayer extends Player{
 		return new Solution(room, person, weapon); // making the suggestion
 	}
 	
+	@Override
 	public BoardCell selectTargets() {
 		return null;
 	}
