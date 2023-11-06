@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.BooleanSupplier;
 
 public abstract class Player {
@@ -103,6 +104,8 @@ public abstract class Player {
 		column = cell.getColumn();
 	}
 
-	public BoardCell selectTargets();
+	public abstract BoardCell selectTargets(Set<BoardCell> targets);
+
+	public abstract Solution createSuggestion(Card ctlmCard);
 	
 }

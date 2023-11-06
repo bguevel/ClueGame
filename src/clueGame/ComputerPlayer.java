@@ -11,7 +11,8 @@ public class ComputerPlayer extends Player{
 	public ComputerPlayer(String name, String c, int row, int column, boolean isHuman) {
 		super(name, c, row, column, isHuman);
 	}
-	
+
+	@Override
 	public Solution createSuggestion(Card room) { // not sure if we should be giving the function Room objs or Card objs?
 		// if the input needs to be a Room then we could do for(Card c:Board.getDeck()){  if(room.getName() == c.getCardName){ Card Room = c; break;}}
 		ArrayList<Card> tempDeck = Board.getDeck();
@@ -40,8 +41,8 @@ public class ComputerPlayer extends Player{
 		}
 		return new Solution(room, person, weapon); // making the suggestion
 	}
-	
 
+	@Override
 	public BoardCell selectTargets(Set<BoardCell> targets) {
 		ArrayList<BoardCell> actualTargets = new ArrayList<BoardCell>();
 		Random rand = new Random();
@@ -62,7 +63,8 @@ public class ComputerPlayer extends Player{
 		if(actualTargets.size()==0) {
 			targs =  (BoardCell[]) targets.toArray();
 			return targs[rand.nextInt(targs.length)];
- 
+
 		}
+		return null;
 	}
 }

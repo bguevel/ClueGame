@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.util.Set;
 import java.util.function.BooleanSupplier;
 
 public class HumanPlayer extends Player {
@@ -10,7 +11,13 @@ public class HumanPlayer extends Player {
 	}
 
 	@Override
-	protected BoardCell selectTargets() {
+	public BoardCell selectTargets(Set<BoardCell> targets) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Solution createSuggestion(Card ctlmCard) {
 		// TODO Auto-generated method stub
 		return null;
 	}
