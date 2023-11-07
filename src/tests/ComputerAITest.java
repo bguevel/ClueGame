@@ -48,7 +48,7 @@ public class ComputerAITest {
 		textbookCard = new Card("Textbook", CardType.WEAPON);
 	}
 	
-	//@Test
+	@Test
 	public void testSelectTargets() {
 		//test room has not been seen
 		board.getPlayer("Prof CPW").setLocation(board.getCell(5,  3));
@@ -113,7 +113,8 @@ public class ComputerAITest {
 				testList.add(returnedSol);
 			}
 		}
-		assertTrue(testList.contains(new Solution(ctlmCard, bridgemanCard, textbookCard)));
+		Solution soln1 = new Solution(ctlmCard, bridgemanCard, textbookCard);
+		assertTrue(testList.contains(soln1));
 		assertTrue(testList.contains(new Solution(ctlmCard, bridgemanCard, chairCard)));
 		assertTrue(testList.contains(new Solution(ctlmCard, canCard, textbookCard)));
 		assertTrue(testList.contains(new Solution(ctlmCard, canCard, chairCard)));

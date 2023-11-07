@@ -19,7 +19,23 @@ public class ComputerPlayer extends Player{
 		ArrayList<Card> notSeenW = new ArrayList<Card>();
 		ArrayList<Card> notSeenP = new ArrayList<Card>();
 		Random rand = new Random();
+		boolean addCard = true;
 		for(Card c: tempDeck) {
+			for(Card card: this.getSeen()) {
+				if(card.getCardName().equals(c.getCardName())) {
+					addCard=false;
+				}
+			}
+			if(addCard) {
+				if(c.getType() == CardType.PERSON) {
+					notSeenP.add(c);					
+				} else if (c.getType() == CardType.WEAPON) {
+					notSeenW.add(c);
+				}
+			}
+			addCard=true;
+/*
+ * 
 			if(!(this.getSeen().contains(c))) { //this check isn't working so it's adding too much to the lists
 				if(c.getType() == CardType.PERSON) {
 					notSeenP.add(c);					
@@ -27,6 +43,9 @@ public class ComputerPlayer extends Player{
 					notSeenW.add(c);
 				}
 			}
+ * 
+ * 
+ */
 		}
 		Card person = notSeenP.get(rand.nextInt(notSeenP.size()));
 		Card weapon = notSeenW.get(rand.nextInt(notSeenW.size()));
@@ -66,7 +85,7 @@ public BoardCell selectTargets(Set<BoardCell> targets) {
 			roomSeen = false;
 			for(Card c: this.getSeen()) {
 				String name = Board.getRoom(cell).getName();
-				if(c.getCardName() == name) { //even when equal it doesn't go into this statement
+				if(c.getCardName() == name) { //even when equal it doesn't go into this statement, this might be due to .equals()
 					roomSeen = true;
 				}
 			}
