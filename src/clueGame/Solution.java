@@ -11,9 +11,10 @@ public class Solution {
 		this.weapon = weapon;
 		this.person = person;
 	}
-	
-    public boolean equals(Solution o) {
-		if(o.getRoom() == this.room && o.getWeapon() == this.weapon && o.getPerson() == this.person) {
+	@Override
+    public boolean equals(Object o) {
+		Solution soln =(Solution)o;
+		if(soln.getRoom().equals(this.room) && soln.getWeapon().equals(this.weapon) && soln.getPerson().equals(this.person)) {
 			return true;
 		}
 		return false;

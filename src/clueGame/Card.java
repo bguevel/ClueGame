@@ -16,5 +16,12 @@ public class Card {
 	public String getCardName() {
 		return cardName;
 	}
-	
+	@Override
+	public boolean equals(Object o) {
+		Card card = (Card) o;
+		if(this.cardName.equals(card.getCardName()) && this.type == card.getType()) {
+			return true;
+		}
+		return false;
+	}
 }

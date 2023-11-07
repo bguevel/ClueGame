@@ -80,7 +80,7 @@ public class ComputerAITest {
 		
 		//test no room in list
 		board.getPlayer("Prof CPW").setLocation(board.getCell(0, 0));
-		board.calcTargets(board.getCell(5, 3), 3);
+		board.calcTargets(board.getCell(0, 0), 3);
 		targets = board.getTargets();
 		testList.clear();
 		while(testList.size() != 2) {
@@ -113,8 +113,7 @@ public class ComputerAITest {
 				testList.add(returnedSol);
 			}
 		}
-		Solution soln1 = new Solution(ctlmCard, bridgemanCard, textbookCard);
-		assertTrue(testList.contains(soln1));
+		assertTrue(testList.contains(new Solution(ctlmCard, bridgemanCard, textbookCard)));
 		assertTrue(testList.contains(new Solution(ctlmCard, bridgemanCard, chairCard)));
 		assertTrue(testList.contains(new Solution(ctlmCard, canCard, textbookCard)));
 		assertTrue(testList.contains(new Solution(ctlmCard, canCard, chairCard)));

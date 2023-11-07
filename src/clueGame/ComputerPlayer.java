@@ -77,21 +77,20 @@ public class ComputerPlayer extends Player{
 public BoardCell selectTargets(Set<BoardCell> targets) {
 	ArrayList<BoardCell> actualTargets = new ArrayList<BoardCell>();
 	Random rand = new Random();
-	boolean roomSeen;
+	boolean roomSeen = false;
 
 	BoardCell[] targs;
 	for(BoardCell cell: targets) {
 		if(cell.isRoomCenter()) {
-			roomSeen = false;
 			for(Card c: this.getSeen()) {
-				String name = Board.getRoom(cell).getName();
-				if(c.getCardName() == name) { //even when equal it doesn't go into this statement, this might be due to .equals()
+				if(c.getCardName().equals(Board.getRoom(cell).getName())) { //even when equal it doesn't go into this statement, this might be due to .equals()
 					roomSeen = true;
 				}
 			}
-			if(roomSeen == false) {
+			if(roomSeen == false ) {
 				actualTargets.add(cell);
 			}
+			roomSeen = false;
 		}
 	}
 
