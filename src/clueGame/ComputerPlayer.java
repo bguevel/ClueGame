@@ -61,7 +61,7 @@ public class ComputerPlayer extends Player{
 			return actualTargets.get(rand.nextInt(actualTargets.size()));
 		}
 		if(actualTargets.size()==0) {
-			targs =  (BoardCell[]) targets.toArray();
+			targs =  targets.toArray(new BoardCell[targets.size()]);
 			return targs[rand.nextInt(targs.length)];
 
 		}
