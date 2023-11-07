@@ -13,7 +13,7 @@ public abstract class Player {
 	private int column;
 	private ArrayList<Card> hand;
 	private boolean isHuman;
-	private ArrayList<Card> seen ;
+	protected ArrayList<Card> seen ;
 	
 	public Player(String name, String color, int row, int column, boolean isHuman) {
 		this.name = name;
@@ -50,7 +50,7 @@ public abstract class Player {
 		}
 		if(involved.size()>1) { // if there are more than 2 cards from the suggestion present in the player's hand then we return a rand one
 			Random rand = new Random();
-			return this.hand.get(rand.nextInt(2 +1));
+			return involved.get(rand.nextInt(involved.size()));
 		}else if(involved.size() == 1){ // should only be one thing in the arraylist at idx 0
 			return involved.get(0);
 		}else { // if there is nothing from the suggestion in the player's hand
@@ -60,13 +60,18 @@ public abstract class Player {
 	
 	public void updateHand(Card card) {
 		hand.add(card);
+		seen.add(card);
 	}
 	
-	public void setHand(Card roomCard, Card personCard, Card weaponCard) {
+	public void setHand(Card c1, Card c2, Card c3) {
+		seen.clear();
 		hand.clear();
-		hand.add(roomCard);
-		hand.add(personCard);
-		hand.add(weaponCard);
+		hand.add(c1);
+		hand.add(c2);
+		hand.add(c3);
+		seen.add(c1);
+		seen.add(c2);
+		seen.add(c3);
 	}
 	
 	public ArrayList<Card> getHand() {
@@ -96,7 +101,9 @@ public abstract class Player {
 		return this.seen;
 	}
 	public void updateSeen(Card c) {
-		this.seen.add(c);
+		if(!this.seen.contains(c)){
+			this.seen.add(c);
+		}
 	}
 
 	public void setLocation(BoardCell cell) {

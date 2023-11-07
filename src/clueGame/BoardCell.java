@@ -15,13 +15,14 @@ public class BoardCell{
 	private boolean room;
 	private boolean occupied;
 	private boolean door;
-	
+
 	public BoardCell(int row, int col, char init) {
 		this.row = row;
 		this.column = col;
 		adjList = new HashSet<BoardCell>();
 		this.initial = init;
 	}
+
 	public void setDoorDirection(DoorDirection direction) {
 		this.doorDirection = direction;
 	}

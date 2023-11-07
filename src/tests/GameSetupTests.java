@@ -83,9 +83,9 @@ public class GameSetupTests {
 	public void testWeaponLabels() {
 		ArrayList<String> testLabels = new ArrayList<String>();
 		//loop through deck and if weapon add to list
-		for(int i=0; i < board.getDeck().size(); i++) {
-			if(board.getDeck().get(i).getType() == CardType.WEAPON) {
-				testLabels.add(board.getDeck().get(i).getCardName());
+		for(int i=0; i < Board.getDeck().size(); i++) {
+			if(Board.getDeck().get(i).getType() == CardType.WEAPON) {
+				testLabels.add(Board.getDeck().get(i).getCardName());
 			}
 		}
 		assertTrue(testLabels.contains("Catapult"));
@@ -101,7 +101,7 @@ public class GameSetupTests {
 	@Test
 	public void testDeck() {
 		ArrayList<Card> testDeck = new ArrayList<Card>();
-		testDeck = board.getDeck();
+		testDeck = Board.getDeck();
 		assertEquals(21, testDeck.size());
 	}
 	
@@ -121,7 +121,7 @@ public class GameSetupTests {
 		testDeck.add(board.getTheAnswer().getRoom()); //add the cards from the solution
 		testDeck.add(board.getTheAnswer().getPerson());
 		testDeck.add(board.getTheAnswer().getWeapon());
-		assertEquals(testDeck.size(), board.getDeck().size()); //all cards dealt
+		assertEquals(testDeck.size(), Board.getDeck().size()); //all cards dealt
 		Set<Card> cardSet = new HashSet<Card>(testDeck);
 		assertEquals(cardSet.size(), testDeck.size());
 		

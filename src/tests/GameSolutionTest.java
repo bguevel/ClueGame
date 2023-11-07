@@ -96,12 +96,15 @@ public class GameSolutionTest {
 
 		//suggestion no one can disprove return null
 		Solution suggestion = new Solution(marquezCard, cpwCard, legoCard); 
-		assertEquals(null, board.handleSuggestion(suggestion, null));
-		//suggestion only suggesting player can disprove return null
+		assertEquals(null, board.handleSuggestion(suggestion, "Prof Strong"));
+		//suggestion only human player can disprove return null
 		suggestion = new Solution(ctlmCard, cpwCard, legoCard); //only the human player has ctml
-		assertEquals(null, board.handleSuggestion(suggestion, null));
-		//suggestion only human player can disprove return card found
-
+		assertEquals(ctlmCard, board.handleSuggestion(suggestion, "Prof CPW"));
+		//suggestion only suggesting player can disprove return card found
+		suggestion = new Solution(marquezCard, kellyCard, legoCard); //only cpw has kelly
+		assertEquals(kellyCard, board.handleSuggestion(suggestion, "Prof CPW"));
 		//suggestion two players can disprove returns first card found
+		suggestion = new Solution(brownCard, swansonCard, legoCard); //cpw has brown and kelly has swanson
+		assertEquals(brownCard, board.handleSuggestion(suggestion, "Prof Strong"));
 	}
 }
