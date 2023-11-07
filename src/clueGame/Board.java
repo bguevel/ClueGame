@@ -42,6 +42,9 @@ public class Board{
 	 * initialize the board (since we are using singleton pattern)
 	 */
 	public void initialize() { // exceptions are thrown to this method, also calls both load functions
+		clearDeck();
+		clearHands();
+		players.clear();
 		try {
 			loadSetupConfig();
 			loadLayoutConfig();
@@ -136,12 +139,13 @@ public class Board{
 
 		}
 		reader.close();
-		if(this.deck.size()==21) {
+		if(Board.deck.size()==21) {
 			this.dealCards();
 		}
 	}
 	
-	private void dealCards() {
+	public void dealCards() {
+	
 		Collections.shuffle(deck); // this line shuffles the deck
 		Card[] soln = new Card[3]; // array of size 3 for the solution cards
 		for(Card c:deck) {
@@ -462,4 +466,17 @@ public class Board{
 		Solution answer = new Solution(room, person, weapon);
 		this.theAnswer = answer;
 	}
+
+	public void clearDeck() {
+		deck.clear();
+		
+	}
+
+	public void clearHands() {
+		for(Player p: players) {
+			p.clearHand();
+		}
+		
+	}
+
 }

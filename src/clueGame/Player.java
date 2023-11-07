@@ -11,10 +11,10 @@ public abstract class Player {
 	private String color;
 	private int row;
 	private int column;
-	private ArrayList<Card> hand;
+	protected ArrayList<Card> hand;
 	private boolean isHuman;
 	protected ArrayList<Card> seen ;
-	
+
 	public Player(String name, String color, int row, int column, boolean isHuman) {
 		this.name = name;
 		this.color = color;
@@ -24,7 +24,7 @@ public abstract class Player {
 		hand = new ArrayList<Card>();
 		seen = new ArrayList<Card>();
 	}
-	
+
 	public Card disproveSuggestion(Solution suggestion) {
 		// need random logic
 		ArrayList<Card> involved = new ArrayList<Card>();
@@ -57,15 +57,17 @@ public abstract class Player {
 			return null;
 		}
 	}
-	
+
 	public void updateHand(Card card) {
 		hand.add(card);
 		seen.add(card);
 	}
-	
+
 	public void setHand(Card c1, Card c2, Card c3) {
+		if(hand.size() != 0) {
+			hand.clear();
+		}
 		seen.clear();
-		hand.clear();
 		hand.add(c1);
 		hand.add(c2);
 		hand.add(c3);
@@ -73,7 +75,7 @@ public abstract class Player {
 		seen.add(c2);
 		seen.add(c3);
 	}
-	
+
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
@@ -114,5 +116,12 @@ public abstract class Player {
 	public abstract BoardCell selectTargets(Set<BoardCell> targets);
 
 	public abstract Solution createSuggestion(Card ctlmCard);
-	
+
+	public void clearHand() {
+		if(hand.size() != 0) {
+			hand.clear();
+		}
+
+	}
+
 }

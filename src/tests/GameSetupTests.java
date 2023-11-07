@@ -24,6 +24,8 @@ public class GameSetupTests {
 	public static void setUp() {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
+//		board.clearDeck();
+//		board.clearHands();
 		// set the file names to use my config files
 		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
 		// Initialize will load BOTH config files
@@ -111,8 +113,8 @@ public class GameSetupTests {
 		ArrayList<Card> testDeck = new ArrayList<Card>(); 
 		//add all cards from player hands
 		for(Player p: board.getPlayerList()) {
-			ArrayList<Card> pHand = new ArrayList<Card>();
-			pHand = p.getHand();
+			ArrayList<Card> pHand =  p.getHand();
+			System.out.println(p.getName());
 			assertEquals(3, pHand.size());
 			for(Card c: pHand) {
 				testDeck.add(c);
