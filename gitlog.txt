@@ -1,66 +1,141 @@
+commit 9b0803dab99c65a174230b7deae6d5e6bbe6c607 (HEAD -> main, origin/main, origin/HEAD)
 Author: Kaelyn Boutin <kvboutin@mines.edu>
-Date:   Sat Nov 4 01:51:44 2023 -0600
+Date:   Tue Nov 7 13:35:24 2023 -0700
 
-    all tests passing
+    all tests passing even when ran together
 
-commit 8e86e0eb79e75831dfc0e0a8ad8e0e6b3da601b2
+commit 00016ffbcda8ef9123f3ab225a8d4ca76cd2b052
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 7 12:12:58 2023 -0700
+
+    everything running and functioning as it should.
+
+commit 8d9634a2a72b15a9d5b56bd5ff9d4260344d86c1
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 7 12:12:44 2023 -0700
+
+    everything running and functioning as it should.
+
+commit c716c45a757c10b01988c153fb060b780e40e04c
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 7 11:17:36 2023 -0700
+
+    got the createsuggestion method working properly
+
+commit 1879431481e0699fc4e39bb21d5a8dcb5549bd38
 Author: Kaelyn Boutin <kvboutin@mines.edu>
-Date:   Fri Nov 3 23:21:40 2023 -0600
+Date:   Mon Nov 6 22:47:26 2023 -0700
 
-    All current tests passing, just need to add testDeal
+    gameSolutionTests are all passing not computerAI thou
 
-commit cccf760102757a91f966fbea9459add35017d4bc
-Author: bguevel <bguevel@mines.edu>
-Date:   Fri Nov 3 15:34:43 2023 -0600
-
-    added more comments again
-
-commit bd92a48c3e6227833aa68d38b3c44a28bdb08ca3
-Author: bguevel <bguevel@mines.edu>
-Date:   Fri Nov 3 15:30:53 2023 -0600
-
-    added more comments
-
-commit b75c69d7f366b563bd461045f6bf1a82d078eba2
-Author: bguevel <bguevel@mines.edu>
-Date:   Fri Nov 3 15:23:48 2023 -0600
-
-    deck is created properly with all necessary items.
-
-commit 50b36a1608a8e0130e38b0ba3352c3ff993b9a7c
-Author: bguevel <bguevel@mines.edu>
-Date:   Fri Nov 3 14:25:39 2023 -0600
-
-    added functionality to distribute cards to both the players and the solution.
-
-commit 640dd0bc651bf7ede2eadf0d7457db9e40fd0e1d
-Author: bguevel <bguevel@mines.edu>
-Date:   Fri Nov 3 14:02:39 2023 -0600
-
-    added funtionality so that the computer players is created after the human one is.
-
-commit 47d768f4931cddb69f32d4d3df97d311f0ce2426
+commit d30bc64f540aacd48974b0be5c1a0d729506889a
 Author: Kaelyn Boutin <kvboutin@mines.edu>
-commit 47d768f4931cddb69f32d4d3df97d311f0ce2426
+Date:   Mon Nov 6 18:40:55 2023 -0700
+
+    changed how we are casting target list
+
+commit 92a2292a12fb7a41d872f63e5e932a2b90904d92
 Author: Kaelyn Boutin <kvboutin@mines.edu>
-Date:   Fri Nov 3 13:23:09 2023 -0600
+Date:   Mon Nov 6 15:51:13 2023 -0700
 
-    tests for player label/color, weapon label and size of deck made
+    imports fixed so tests should run
 
-commit 3fe0eb99f0d9f1c452ba420462058b06443c18e2
+commit 7e69a29fe04cafa69dcaaf7ac518ca8336e3ef33
 Author: Kaelyn Boutin <kvboutin@mines.edu>
-Date:   Fri Nov 3 08:00:46 2023 -0600
+Date:   Mon Nov 6 14:46:18 2023 -0700
 
-    Added shells of tests I think we need and solution class
+    computeraitests made
 
-commit d3b0bfc74750225c1e835ea2283187279269f9df
+commit 5b40b0cb8fcc740d64db25c439b20e1331ce0400
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Nov 6 14:44:05 2023 -0700
+
+    ComputerAITests made
+
+commit e5b25db7ce419da3bfc0d4c9250306480b99cfc6
+Merge: 227322e 884fa13
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Nov 6 14:20:57 2023 -0700
+
+    merged
+
+commit 884fa139092bc2b8603e40b976098464b0cb0534 (origin/selectTarget, selectTarget)
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Nov 6 14:17:47 2023 -0700
+
+    test for selectTargets
+
+commit 227322e54069d6e8e1b70599fcffc349d0572ffc
 Author: bguevel <bguevel@mines.edu>
-Date:   Thu Nov 2 20:59:32 2023 -0600
+Date:   Mon Nov 6 13:47:46 2023 -0700
 
-    added functionality in load config so that the deck and player list are created seemingly with correct functionality.
+    select move target function added to computer player.
 
-commit af55960a0bfa7a163155d514d743f0ecff32b007
+commit cddabf2d8232cd79d6b0b6994b053aed71a3b9e1
+Author: bguevel <bguevel@mines.edu>
+Date:   Sun Nov 5 17:50:50 2023 -0700
+
+    small simplification in while loop in createsuggestion.
+
+commit eb338be96c5716370a15ba50806197a06d821f05
+Author: bguevel <bguevel@mines.edu>
+Date:   Sun Nov 5 17:48:03 2023 -0700
+
+    added getSeen.
+
+commit e6398c1994de9c7ece38d77aaea4c7493c1aefb8
+Author: bguevel <bguevel@mines.edu>
+Date:   Sun Nov 5 17:42:01 2023 -0700
+
+    some more comments
+
+commit c92d593edd6634582474c86c32c973f720b074d7
+Author: bguevel <bguevel@mines.edu>
+Date:   Sun Nov 5 17:37:18 2023 -0700
+
+    creating suggestion functionality for the AI.
+
+commit 91e98fdc6eafb9f4b3a1691603f88a6b1a428946
+Author: bguevel <bguevel@mines.edu>
+Date:   Sun Nov 5 16:35:48 2023 -0700
+
+    handle suggestion
+
+commit e2eb89ef13868b9cec61be5512d5acd4270dbbbc
+Author: bguevel <bguevel@mines.edu>
+Date:   Sun Nov 5 14:48:08 2023 -0700
+
+    slight change
+
+commit d8d641ef7ebe8853cbf587bb28f7fcc4dfd5b3c3
+Author: bguevel <bguevel@mines.edu>
+Date:   Sun Nov 5 14:46:45 2023 -0700
+
+    disprovesuggestion logic added seems to be correct.
+
+commit 1331940465fb5bddd8eea7fc25df4a9e0fa5c815
 Author: Kaelyn Boutin <kvboutin@mines.edu>
-Date:   Tue Oct 31 12:18:26 2023 -0600
+Date:   Sun Nov 5 13:43:55 2023 -0700
 
-    made empty new classes
+    tests made for disproveSuggestion and implemented checkAccusation but is erroring idk why
+
+commit d930a71c8ce5c701bd23b5bda366f2a0f0ed71dc
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sun Nov 5 12:47:12 2023 -0700
+
+    check accusation test made and failing
+Date:   Sun Nov 5 13:43:55 2023 -0700
+
+    tests made for disproveSuggestion and implemented checkAccusation but is erroring idk why
+
+commit d930a71c8ce5c701bd23b5bda366f2a0f0ed71dc
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sun Nov 5 12:47:12 2023 -0700
+
+    check accusation test made and failing
+
+commit a7dcde02d9e09e9d03dda8c981cd709620fd6fa7
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sun Nov 5 12:21:16 2023 -0700
+
+    methods and tests created but not filled in
