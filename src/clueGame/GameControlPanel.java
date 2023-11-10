@@ -8,18 +8,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel{
-	private String turn;
+	private String turn ;
 	private String guess;
 	private String guessResult;
 	private Integer roll = 0;
-	
+	JTextField turnText;
+	JTextField guessResText;
+	JTextField guessText;
 
 	public GameControlPanel() {
 		//create jpanel 2x0
-		JPanel outside = new JPanel();
-		outside.setLayout(new GridLayout(2, 0));
+//		JPanel outside = new JPanel();
+		setLayout(new GridLayout(2, 0));
 		
 		//create a jpanel 1x4
 		JPanel north = new JPanel();
@@ -31,8 +35,8 @@ public class GameControlPanel extends JPanel{
 		north.add(accusationB);
 		north.add(nextB);
 		
-		outside.add(north, BorderLayout.NORTH);
-		outside.add(guessPanel(), BorderLayout.SOUTH);	
+		add(north, BorderLayout.NORTH);
+		add(guessPanel(), BorderLayout.SOUTH);	
 	}
 	
 	public JPanel guessPanel(){
@@ -42,13 +46,15 @@ public class GameControlPanel extends JPanel{
 		
 		//jpanel 1x0 for guess
 		JPanel guessP = new JPanel();
-		JTextField guessText = new JTextField(guess);
+		guessP.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
+		guessText = new JTextField();
 		guessP.add(guessText);
 		
 		//jpanel 1x0
 		JPanel guessResP = new JPanel();
-		JTextField guessResText = new JTextField(guessResult);
-		guessP.add(guessResText);
+		guessResP.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
+		guessResText = new JTextField();
+		guessResP.add(guessResText);
 		
 		overall.add(guessP);
 		overall.add(guessResP);
@@ -58,9 +64,10 @@ public class GameControlPanel extends JPanel{
 	public JPanel turnPanel() {
 		JPanel turnP = new JPanel();
 		JLabel turnL = new JLabel("Whose turn?");
-		JTextField turnText = new JTextField(turn);
+		turnText = new JTextField(turn);
 		turnP.add(turnL);
 		turnP.add(turnText);
+		
 		return turnP;
 	}
 	
@@ -74,26 +81,28 @@ public class GameControlPanel extends JPanel{
 	}
 	
 	public void setTurn(Player turn) {
-		this.turn = turn.getName();
+//		this.turn = turn.getName();
+		turnText.setText(turn.getName());
 	}
 	
 	public void setGuess(String guess) {
-		this.guess = guess;
+		this.guessText.setText(guess);
 	}
 	
 	public void setGuessResult(String guessResult) {
-		this.guessResult = guessResult;
+		this.guessResText.setText(guessResult);
 	}
 	
 	public static void main(String[] args) {
 		GameControlPanel panel = new GameControlPanel();
 		JFrame frame = new JFrame();
+		Player testP = new ComputerPlayer("Prof CPW", "Blue", 0, 15, false);
+		panel.setTurn(testP);
 		frame.setContentPane(panel);
 		frame.setSize(750, 180);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-		panel.setTurn(new ComputerPlayer("Prof CPW", "Blue", 0, 15, false));
+		System.out.print(testP.getName());
 		panel.setGuess("I have no guess");
 		panel.setGuessResult("So you have nothing?");
 	}
