@@ -1,3 +1,23 @@
+commit 9b0c36be0f6367f1e05fb891d05622788dfcadb1 (HEAD -> main, origin/main)
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 10 13:12:18 2023 -0700
+
+    color for player turn set
+
+commit 8d065b2922af880547caea51278dff5f03e0a7d2
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Nov 9 20:58:51 2023 -0700
+
+    got the first ui working
+
+commit b54a061066199eda14d5c2bdc5b66f679e1d758f
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Thu Nov 9 13:48:25 2023 -0700
+
+    all objects made but not displaying
+
+    ;
+
 commit 9b0803dab99c65a174230b7deae6d5e6bbe6c607 (HEAD -> main, origin/main, origin/HEAD)
 Author: Kaelyn Boutin <kvboutin@mines.edu>
 Date:   Tue Nov 7 13:35:24 2023 -0700

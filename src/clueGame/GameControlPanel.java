@@ -87,6 +87,7 @@ public class GameControlPanel extends JPanel{
 		switch (turn.getColor()) {
 		case "Blue":
 			turnText.setBackground(Color.BLUE);
+			turnText.setForeground(Color.WHITE);
 			break;
 		case "Yellow":
 			turnText.setBackground(Color.YELLOW);
