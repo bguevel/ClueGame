@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -83,6 +84,27 @@ public class GameControlPanel extends JPanel{
 	public void setTurn(Player turn) {
 //		this.turn = turn.getName();
 		turnText.setText(turn.getName());
+		switch (turn.getColor()) {
+		case "Blue":
+			turnText.setBackground(Color.BLUE);
+			break;
+		case "Yellow":
+			turnText.setBackground(Color.YELLOW);
+			break;
+		case "Green":
+			turnText.setBackground(Color.GREEN);
+			break;
+		case "Red":
+			turnText.setBackground(Color.RED);
+			break;
+		case "Pink":
+			turnText.setBackground(Color.PINK);
+			break;
+		case "Orange":
+			turnText.setBackground(Color.ORANGE);
+			break;
+		}
+			
 	}
 	
 	public void setGuess(String guess) {
