@@ -114,7 +114,6 @@ public class GameSetupTests {
 		//add all cards from player hands
 		for(Player p: board.getPlayerList()) {
 			ArrayList<Card> pHand =  p.getHand();
-			System.out.println(p.getName());
 			assertEquals(3, pHand.size());
 			for(Card c: pHand) {
 				testDeck.add(c);

@@ -1,3 +1,9 @@
+commit 2052b5fbba533f4dfc37a547aaa0724e8192b288 (HEAD -> main, origin/main)
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 10 15:58:05 2023 -0700
+
+    displaying cards correctly
+
 commit 9b0c36be0f6367f1e05fb891d05622788dfcadb1 (HEAD -> main, origin/main)
 Author: bguevel <bguevel@mines.edu>
 Date:   Fri Nov 10 13:12:18 2023 -0700

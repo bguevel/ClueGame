@@ -22,7 +22,7 @@ public class Board{
 	private static Map<Character, Room> roomMap;
 	private static Board theInstance = new Board();
 	private static ArrayList<Card> deck = new ArrayList<Card>();
-	private ArrayList<Player> players = new ArrayList<Player>();
+	private static ArrayList<Player> players = new ArrayList<Player>();
 	private Solution theAnswer; //Initialize this with 3 cards before dealing the rest
 	// make a new hashset of cards for the deck and other card functionality
 	// make some array/list of players
@@ -454,7 +454,7 @@ public class Board{
 		return deck;
 	}
 	
-	public ArrayList<Player> getPlayerList(){
+	public static ArrayList<Player> getPlayerList(){
 		return players;
 	}
 

@@ -39,7 +39,16 @@ public class CardDisplay extends JPanel{
 		weapons.add(new JTextField("None"));
 		
 	}
-	public void updateCards(ArrayList<Card> hand, ArrayList<Card> seen) {
+	public void updateCards() {
+		Board.getPlayerList();
+		ArrayList<Card> hand = new ArrayList<Card>();
+		ArrayList<Card> seen = new ArrayList<Card>();
+		for(Player p:Board.getPlayerList()) {
+			if(p.getIsHuman()) {
+				hand = p.getHand();
+				seen = p.getSeen();
+			}
+		}
 		int personCt=0;
 		int roomCt =0;
 		int weaponCt =0;
@@ -202,12 +211,42 @@ public class CardDisplay extends JPanel{
 
 	}
 	public static void main(String[] args) {
-		ArrayList<Card> seen = new ArrayList<Card>();
-		ArrayList<Card> hand = new ArrayList<Card>();
-		seen.add(new Card("Prof CPW", CardType.PERSON));
-		hand.add(new Card("Flamethrower", CardType.WEAPON));
+		// Board is singleton, get the only instance
+		Board board = Board.getInstance();
+		// set the file names to use my config files
+		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
+		// Initialize will load BOTH config files
+		board.initialize();
+
+		//create card constants to test, 3 of each card type to start
+		Card marquezCard = new Card("Marquez", CardType.ROOM);
+		Card ctlmCard = new Card("CTLM", CardType.ROOM);
+		Card brownCard = new Card("Brown", CardType.ROOM);
+		Card strongCard = new Card("Prof Strong", CardType.PERSON);
+		Card cpwCard = new Card("Prof CPW", CardType.PERSON);
+		Card kellyCard = new Card("Prof Kelly", CardType.PERSON);
+		Card swansonCard = new Card("Prof Swanson", CardType.PERSON);
+		Card bridgemanCard = new Card("Prof Bridgeman", CardType.PERSON);
+		Card canCard = new Card("Prof Can", CardType.PERSON);
+		Card catapultCard = new Card("Catapult", CardType.WEAPON);
+		Card flamethrowerCard = new Card("Flamethrower", CardType.WEAPON);
+		Card legoCard = new Card("Lego", CardType.WEAPON);
+		Card butterknifeCard = new Card("Butterknife", CardType.WEAPON);
+		Card chairCard = new Card("Chair", CardType.WEAPON);
+		Card textbookCard = new Card("Textbook", CardType.WEAPON);
 		CardDisplay panel = new CardDisplay();
-		panel.updateCards(hand, seen);
+		panel.updateCards();
+		Player human = null;
+		for(Player p :Board.getPlayerList()) {
+			if(p.getIsHuman()) {
+				human=p;
+				break;
+			}
+		}
+		human.updateSeen(textbookCard);
+		human.updateHand(chairCard);
+		human.updateHand(kellyCard);
+		panel.updateCards();
 		JFrame frame = new JFrame();
 		frame.setContentPane(panel);
 		frame.setSize(180, 700);
