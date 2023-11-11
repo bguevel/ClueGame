@@ -14,7 +14,9 @@ public abstract class Player {
 	protected ArrayList<Card> hand;
 	private boolean isHuman;
 	protected ArrayList<Card> seen ;
-
+	public void clearSeen() {
+		this.seen.clear();
+	}
 	public Player(String name, String color, int row, int column, boolean isHuman) {
 		this.name = name;
 		this.color = color;

@@ -84,6 +84,9 @@ public BoardCell selectTargets(Set<BoardCell> targets) {
 		if(cell.isRoomCenter()) {
 			for(Card c: this.getSeen()) {
 				if(c.getCardName().equals(Board.getRoom(cell).getName())) { //even when equal it doesn't go into this statement, this might be due to .equals()
+					System.out.println(Board.getRoom(cell).getName());
+					System.out.println(c.getCardName());
+					System.out.println("weird shit");
 					roomSeen = true;
 				}
 			}
@@ -93,7 +96,7 @@ public BoardCell selectTargets(Set<BoardCell> targets) {
 			roomSeen = false;
 		}
 	}
-
+	System.out.println(actualTargets);
 	if(actualTargets.size()==1) {
 		return actualTargets.get(0);
 	}

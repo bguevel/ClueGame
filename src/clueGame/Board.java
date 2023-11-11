@@ -27,7 +27,11 @@ public class Board{
 	// make a new hashset of cards for the deck and other card functionality
 	// make some array/list of players
 	
-
+	public static void clearSeen() {
+		for(Player p:Board.getPlayerList()) {
+			p.clearSeen();
+		}
+	}
 	// constructor is private to ensure only one can be created
 	private Board() {
 		super();
@@ -44,6 +48,7 @@ public class Board{
 	public void initialize() { // exceptions are thrown to this method, also calls both load functions
 		clearDeck();
 		clearHands();
+		clearSeen();
 		players.clear();
 		try {
 			loadSetupConfig();

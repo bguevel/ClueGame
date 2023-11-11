@@ -40,7 +40,6 @@ public class CardDisplay extends JPanel{
 		
 	}
 	public void updateCards() {
-		Board.getPlayerList();
 		ArrayList<Card> hand = new ArrayList<Card>();
 		ArrayList<Card> seen = new ArrayList<Card>();
 		for(Player p:Board.getPlayerList()) {
@@ -243,7 +242,7 @@ public class CardDisplay extends JPanel{
 				break;
 			}
 		}
-		human.updateSeen(textbookCard);
+		human.updateSeen(textbookCard);// these seen and hand updates may cause duplicates as the deal randomly deals cards
 		human.updateHand(chairCard);
 		human.updateHand(kellyCard);
 		panel.updateCards();
