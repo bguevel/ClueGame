@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,11 +17,18 @@ public class BoardCell{
 	private boolean occupied;
 	private boolean door;
 
+	
 	public BoardCell(int row, int col, char init) {
 		this.row = row;
 		this.column = col;
 		adjList = new HashSet<BoardCell>();
 		this.initial = init;
+	}
+	public void draw(Graphics g) {
+		
+		if(this.getInitial()=='W') {
+			
+		}
 	}
 
 	public void setDoorDirection(DoorDirection direction) {

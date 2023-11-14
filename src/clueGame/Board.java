@@ -14,9 +14,9 @@ import java.util.function.BooleanSupplier;
 public class Board{
 	private String layoutConfigFile;
 	private String setUpConfigFile;
-	private BoardCell[][] grid;
-	private int numRows;
-	private int numColumns;
+	private static BoardCell[][] grid;
+	private static int numRows;
+	private static int numColumns;
 	private Set<BoardCell> visited;
 	private Set<BoardCell> targets;
 	private static Map<Character, Room> roomMap;
@@ -417,7 +417,7 @@ public class Board{
 		return false;
 	}
 
-	public BoardCell getCell(int row, int col) {
+	public static BoardCell getCell(int row, int col) {
 		return grid[row][col];
 	}
 
@@ -482,6 +482,12 @@ public class Board{
 			p.clearHand();
 		}
 		
+	}
+	public static int getRow() {
+		return numRows;
+	}
+	public static int getColumn() {
+		return numColumns;
 	}
 
 }

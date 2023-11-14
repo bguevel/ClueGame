@@ -54,7 +54,6 @@ public class ComputerAITest {
 		board.getPlayer("Prof CPW").setLocation(board.getCell(5,  3));
 		board.calcTargets(board.getCell(5, 3), 3);
 		Set<BoardCell> targets = board.getTargets();
-		System.out.println(targets);
 		assertEquals(board.getCell(3, 4), board.getPlayer("Prof CPW").selectTargets(targets));
 		
 		//test room that has been seen
