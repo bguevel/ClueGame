@@ -28,15 +28,15 @@ public class CardDisplay extends JPanel{
 		people.add(new JLabel("in hand:"));
 		rooms.add(new JLabel("in hand:"));
 		weapons.add(new JLabel("in hand:"));
-		people.add(new JTextField("None"));
-		rooms.add(new JTextField("None"));
-		weapons.add(new JTextField("None"));
+		people.add(new JTextField("None",20));
+		rooms.add(new JTextField("None", 20));
+		weapons.add(new JTextField("None", 20));
 		people.add(new JLabel("in seen:"));
 		rooms.add(new JLabel("in seen:"));
 		weapons.add(new JLabel("in seen:"));
-		people.add(new JTextField("None"));
-		rooms.add(new JTextField("None"));
-		weapons.add(new JTextField("None"));
+		people.add(new JTextField("None", 20));
+		rooms.add(new JTextField("None", 20));
+		weapons.add(new JTextField("None", 20));
 		
 	}
 	public void updateCards() {
@@ -58,15 +58,15 @@ public class CardDisplay extends JPanel{
 			people.add(new JLabel("in hand:"));
 			rooms.add(new JLabel("in hand:"));
 			weapons.add(new JLabel("in hand:"));
-			people.add(new JTextField("None"));
-			rooms.add(new JTextField("None"));
-			weapons.add(new JTextField("None"));
+			people.add(new JTextField("None", 20));
+			rooms.add(new JTextField("None", 20));
+			weapons.add(new JTextField("None", 20));
 			people.add(new JLabel("in seen:"));
 			rooms.add(new JLabel("in seen:"));
 			weapons.add(new JLabel("in seen:"));
-			people.add(new JTextField("None"));
-			rooms.add(new JTextField("None"));
-			weapons.add(new JTextField("None"));
+			people.add(new JTextField("None", 20));
+			rooms.add(new JTextField("None", 20));
+			weapons.add(new JTextField("None", 20));
 		}else if(hand.size()<1 && seen.size()>=1) {
 			JTextField card;
 			people.removeAll();
@@ -75,11 +75,11 @@ public class CardDisplay extends JPanel{
 			people.add(new JLabel("in hand:"));
 			rooms.add(new JLabel("in hand:"));
 			weapons.add(new JLabel("in hand:"));
-			people.add(new JTextField("None"));
-			rooms.add(new JTextField("None"));
-			weapons.add(new JTextField("None"));
+			people.add(new JTextField("None", 20));
+			rooms.add(new JTextField("None", 20));
+			weapons.add(new JTextField("None", 20));
 			for(Card c: seen) {
-				card = new JTextField(c.getCardName());
+				card = new JTextField(c.getCardName(), 20);
 				if(c.getType()==CardType.PERSON) {
 					personCt++;
 					people.add(card);
@@ -94,13 +94,13 @@ public class CardDisplay extends JPanel{
 				}
 			}
 			if(personCt == 0) {
-				people.add(new JTextField("None"));
+				people.add(new JTextField("None", 20));
 			}
 			if(roomCt == 0) {
-				rooms.add(new JTextField("None"));
+				rooms.add(new JTextField("None", 20));
 			}
 			if(weaponCt ==0) {
-				weapons.add(new JTextField("None"));
+				weapons.add(new JTextField("None", 20));
 			}
 		}else if(hand.size()>=1 && seen.size()<1) {
 			JTextField card;
@@ -112,7 +112,7 @@ public class CardDisplay extends JPanel{
 			weapons.add(new JLabel("in hand:"));
 			
 			for(Card c: hand) {
-				card = new JTextField(c.getCardName());
+				card = new JTextField(c.getCardName(), 20);
 				if(c.getType()==CardType.PERSON) {
 					personCt++;
 					people.add(card);
@@ -127,20 +127,20 @@ public class CardDisplay extends JPanel{
 				}
 			}
 			if(personCt == 0) {
-				people.add(new JTextField("None"));
+				people.add(new JTextField("None", 20));
 			}
 			if(roomCt == 0) {
-				rooms.add(new JTextField("None"));
+				rooms.add(new JTextField("None", 20));
 			}
 			if(weaponCt ==0) {
-				weapons.add(new JTextField("None"));
+				weapons.add(new JTextField("None", 20));
 			}
 			people.add(new JLabel("in seen:"));
 			rooms.add(new JLabel("in seen:"));
 			weapons.add(new JLabel("in seen:"));
-			people.add(new JTextField("None"));
-			rooms.add(new JTextField("None"));
-			weapons.add(new JTextField("None"));
+			people.add(new JTextField("None", 20));
+			rooms.add(new JTextField("None", 20));
+			weapons.add(new JTextField("None", 20));
 			
 		}else {
 			JTextField card;
@@ -152,7 +152,7 @@ public class CardDisplay extends JPanel{
 			weapons.add(new JLabel("in hand:"));
 			
 			for(Card c: hand) {
-				card = new JTextField(c.getCardName());
+				card = new JTextField(c.getCardName(), 20);
 				if(c.getType()==CardType.PERSON) {
 					personCt++;
 					people.add(card);
@@ -167,13 +167,13 @@ public class CardDisplay extends JPanel{
 				}
 			}
 			if(personCt == 0) {
-				people.add(new JTextField("None"));
+				people.add(new JTextField("None", 20));
 			}
 			if(roomCt == 0) {
-				rooms.add(new JTextField("None"));
+				rooms.add(new JTextField("None", 20));
 			}
 			if(weaponCt ==0) {
-				weapons.add(new JTextField("None"));
+				weapons.add(new JTextField("None", 20));
 			}
 			personCt =0;
 			roomCt =0;
@@ -182,7 +182,7 @@ public class CardDisplay extends JPanel{
 			rooms.add(new JLabel("in seen:"));
 			weapons.add(new JLabel("in seen:"));
 			for(Card c: seen) {
-				card = new JTextField(c.getCardName());
+				card = new JTextField(c.getCardName(), 20);
 				if(c.getType()==CardType.PERSON) {
 					personCt++;
 					people.add(card);
@@ -197,13 +197,13 @@ public class CardDisplay extends JPanel{
 				}
 			}
 			if(personCt == 0) {
-				people.add(new JTextField("None"));
+				people.add(new JTextField("None", 20));
 			}
 			if(roomCt == 0) {
-				rooms.add(new JTextField("None"));
+				rooms.add(new JTextField("None", 20));
 			}
 			if(weaponCt ==0) {
-				weapons.add(new JTextField("None"));
+				weapons.add(new JTextField("None", 20));
 			}
 		}
 		

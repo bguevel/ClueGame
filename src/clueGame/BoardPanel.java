@@ -26,9 +26,14 @@ public class BoardPanel extends JPanel{
 		//drawing the labels
 		for(int r=0; r< Board.getRow();r++) {
 			for(int c=0; c< Board.getColumn();c++) {
+				BoardCell temp =Board.getCell(r, c);
 				if(Board.getCell(r, c).isLabel()) {
 					g.setColor(Color.blue);
-					g.drawString(Board.getRoom(Board.getCell(r, c)).getName(), cellWidth, cellHeight);
+					if(r ==0) {
+						g.drawString(Board.getRoom(Board.getCell(r, c)).getName(),cellWidth*c , 15);
+						continue;
+					}
+					g.drawString(Board.getRoom(Board.getCell(r, c)).getName(),cellWidth*c , cellHeight*r);
 				}
 			}
 		}
