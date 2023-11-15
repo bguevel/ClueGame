@@ -76,10 +76,10 @@ public abstract class Player {
 		seen.add(c3);
 	}
 
-	public ArrayList<Card> getHand() {
+	public ArrayList<Card> getHand(){
 		return hand;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
