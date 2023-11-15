@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,10 +25,47 @@ public class BoardCell{
 		adjList = new HashSet<BoardCell>();
 		this.initial = init;
 	}
-	public void draw(Graphics g) {
+	public void draw(int cellWidth, int cellHeight, Graphics g) {
+		int xOffset = column * cellWidth;
+		int yOffset = row * cellHeight;
 		
-		if(this.getInitial()=='W') {
+		switch(initial) {
+		case 'W':
+			g.setColor(Color.yellow);
+			g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
 			
+			g.setColor(Color.blue);
+			if(door == true) {
+				switch(doorDirection) {
+				case DOWN:
+					int doorY = yOffset + cellHeight/3 * 2 + cellHeight % 3;
+					g.fillRect(xOffset, doorY, cellWidth, cellHeight/6);
+					break;
+				case RIGHT:
+					int doorX = xOffset + cellWidth/3 * 2 + cellWidth % 6;
+					g.fillRect(doorX, yOffset, cellWidth/6, cellHeight);
+					break;
+				case UP:
+					g.fillRect(xOffset, yOffset, cellWidth, cellHeight/6);
+					break;
+				case LEFT:
+					g.fillRect(xOffset, yOffset, cellWidth/6, cellHeight);
+					break;
+				default:
+					break;
+				}
+				break;
+			}
+			
+		case 'X':
+			g.setColor(Color.black);
+			g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
+			break;
+			
+		default:
+			g.setColor(Color.gray);
+			g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
+			break;
 		}
 	}
 

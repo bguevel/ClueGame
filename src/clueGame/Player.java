@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -124,6 +125,36 @@ public abstract class Player {
 			hand.clear();
 		}
 
+	}
+	public void draw(int cellWidth, int cellHeight, Graphics g) {
+		Color drawColor;
+		switch(color) {
+		case "Yellow":
+			drawColor = Color.yellow;
+			break;
+		case "Blue":
+			drawColor = Color.blue;
+			break;
+		case "Green":
+			drawColor = Color.green;
+			break;
+		case "Red":
+			drawColor = Color.red;
+			break;
+		case "Pink":
+			drawColor = Color.pink;
+			break;
+		case "Orange":
+			drawColor = Color.orange;
+			break;
+		default:
+			drawColor = Color.white;
+			break;
+		}
+		
+		g.setColor(drawColor);
+		g.fillOval(cellWidth * column, cellHeight * row, cellWidth, cellHeight);
+		
 	}
 
 }
