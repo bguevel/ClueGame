@@ -33,6 +33,8 @@ public class BoardCell{
 		case 'W':
 			g.setColor(Color.white);
 			g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
+			g.setColor(Color.black);
+			g.drawRect(xOffset, yOffset, cellWidth, cellHeight);
 			
 			g.setColor(Color.blue);
 			if(door == true) {
