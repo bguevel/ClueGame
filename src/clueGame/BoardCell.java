@@ -31,7 +31,7 @@ public class BoardCell{
 		
 		switch(initial) {
 		case 'W':
-			g.setColor(Color.yellow);
+			g.setColor(Color.white);
 			g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
 			
 			g.setColor(Color.blue);
@@ -42,7 +42,7 @@ public class BoardCell{
 					g.fillRect(xOffset, doorY, cellWidth, cellHeight/6);
 					break;
 				case RIGHT:
-					int doorX = xOffset + cellWidth/3 * 2 + cellWidth % 6;
+					int doorX = xOffset + cellWidth/3 * 2 + cellWidth % 3;
 					g.fillRect(doorX, yOffset, cellWidth/6, cellHeight);
 					break;
 				case UP:
@@ -54,8 +54,8 @@ public class BoardCell{
 				default:
 					break;
 				}
-				break;
 			}
+			break;
 			
 		case 'X':
 			g.setColor(Color.black);
