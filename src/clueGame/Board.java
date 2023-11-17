@@ -7,10 +7,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Board{
+	private int turn = 0;
 	private String layoutConfigFile;
 	private String setUpConfigFile;
 	private static BoardCell[][] grid;
@@ -25,6 +27,7 @@ public class Board{
 	private Solution theAnswer; //Initialize this with 3 cards before dealing the rest
 	// make a new hashset of cards for the deck and other card functionality
 	// make some array/list of players
+	private GameControlPanel cntrlPanel;
 	
 	public static void clearSeen() {
 		for(Player p:Board.getPlayerList()) {
@@ -54,6 +57,20 @@ public class Board{
 			loadLayoutConfig();
 		}catch(BadConfigFormatException error){
 			System.out.println("Setup/Layout Failed");
+		}
+	}
+	public void nextPlayer() {
+		this.turn=this.turn+1;
+		GameControlPanel.setTurn(Board.getPlayerList().get(this.turn%6));
+		Random roll = new Random();
+		GameControlPanel.setRoll(roll.nextInt(7));
+		calcTargets(Board.getCell(Board.getPlayerList().get(this.turn%6).getRow(), Board.getPlayerList().get(this.turn%6).getColumn()), roll.nextInt());
+		if(Board.getPlayerList().get(this.turn%6).getIsHuman()) {
+			//display target options for the player
+		}else {
+			BoardCell target = Board.getPlayerList().get(this.turn%6).selectTargets(getTargets());
+			Board.getPlayerList().get(this.turn%6).updatePosition(target.getRow(), target.getColumn());
+			//should I check if I am now in a room and make a suggestion or such?
 		}
 	}
 

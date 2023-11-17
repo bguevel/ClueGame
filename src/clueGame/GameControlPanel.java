@@ -3,6 +3,8 @@ package clueGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,9 +19,12 @@ public class GameControlPanel extends JPanel{
 	private String guess;
 	private String guessResult;
 	private Integer roll = 0;
-	JTextField turnText;
-	JTextField guessResText;
-	JTextField guessText;
+	private static JTextField turnText;
+	private JTextField guessResText;
+	private JTextField guessText;
+	private JButton nextB;
+	private JButton accusationB;
+	private static JTextField rollText;
 
 	public GameControlPanel() {
 		//create jpanel 2x0
@@ -31,15 +36,26 @@ public class GameControlPanel extends JPanel{
 		north.setLayout(new GridLayout(1, 4));
 		north.add(turnPanel());
 		north.add(rollPanel());
-		JButton accusationB = new JButton("Make Accusation");
-		JButton nextB = new JButton("NEXT!");
+		accusationB = new JButton("Make Accusation");
+		nextB = new JButton("NEXT!");
 		north.add(accusationB);
 		north.add(nextB);
 		
 		add(north, BorderLayout.NORTH);
 		add(guessPanel(), BorderLayout.SOUTH);	
 	}
-	
+	private class ButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==nextB) {
+				// nxt player
+				// pass player to guesspannel
+				// 
+			}
+		}
+		
+	}
 	public JPanel guessPanel(){
 		//jpanel 0x2
 		JPanel overall = new JPanel();
@@ -75,13 +91,13 @@ public class GameControlPanel extends JPanel{
 	public JPanel rollPanel() {
 		JPanel rollP = new JPanel();
 		JLabel rollL = new JLabel("Roll:");
-		JTextField rollText = new JTextField(roll.toString());
+		rollText = new JTextField(roll.toString());
 		rollP.add(rollL);
 		rollP.add(rollText);
 		return rollP;
 	}
 	
-	public void setTurn(Player turn) {
+	public static void setTurn(Player turn) {
 //		this.turn = turn.getName();
 		turnText.setText(turn.getName());
 		switch (turn.getColor()) {
@@ -115,6 +131,11 @@ public class GameControlPanel extends JPanel{
 	public void setGuessResult(String guessResult) {
 		this.guessResText.setText(guessResult);
 	}
+	public static void setRoll(int roll) {
+		Integer i =roll;
+		rollText.setText(i.toString());
+		
+	}
 	
 	public static void main(String[] args) {
 		GameControlPanel panel = new GameControlPanel();
@@ -129,5 +150,6 @@ public class GameControlPanel extends JPanel{
 		panel.setGuess("I have no guess");
 		panel.setGuessResult("So you have nothing?");
 	}
+
 	
 }

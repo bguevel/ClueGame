@@ -27,7 +27,10 @@ public abstract class Player {
 		hand = new ArrayList<Card>();
 		seen = new ArrayList<Card>();
 	}
-
+	public void updatePosition(int row, int column) {
+		this.row = row;
+		this.column = column;
+	}
 	public Card disproveSuggestion(Solution suggestion) {
 		// need random logic
 		ArrayList<Card> involved = new ArrayList<Card>();

@@ -1,10 +1,58 @@
-commit 2052b5fbba533f4dfc37a547aaa0724e8192b288 (HEAD -> main, origin/main)
+commit f43aa71950564b5f17f5306d27597b6db6094e8e
+Author: bguevel <bguevel@mines.edu>
+Date:   Wed Nov 15 14:46:07 2023 -0700
+
+    labels for rooms working and made right side bar larger
+
+commit fcb86395eaacf8dd479988ce74e2cd287e41048c
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Wed Nov 15 11:38:40 2023 -0700
+
+    walkways done!
+
+commit 6edf187ad6ab76d290b39e81987b3f3a63f44755
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Wed Nov 15 11:35:47 2023 -0700
+
+    doors look better
+
+commit 9700d7932afe1d291a6f76e6da4e121fd6dd4b74
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Wed Nov 15 11:30:25 2023 -0700
+
+    fixed coloring walkways
+
+commit 38137e2373200f1e92197aad2b9c8d0ac8195b4c
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Tue Nov 14 21:23:07 2023 -0700
+
+    It kinda works but some weird stuff is happening
+
+commit b13994edbc45f23498310b5e852834c03a6c7eea
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 14 13:47:47 2023 -0700
+
+    somethings added
+
+commit 63af641d85ffa6302046c80f4fb523120f13c259
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 10 23:06:53 2023 -0700
+
+    fixed random error when running the tests they would error and not get the room that should be gotten since the seen lists wasn't cleared.
+
+commit a5a07d1a8840304da99f6427462ee6c689ff6f2e
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 10 17:46:17 2023 -0700
+
+    made the constructor just make a display with everything empty then update cards takes the player and gets the hand and seen and fills the display in.
+
+commit 2052b5fbba533f4dfc37a547aaa0724e8192b288
 Author: bguevel <bguevel@mines.edu>
 Date:   Fri Nov 10 15:58:05 2023 -0700
 
     displaying cards correctly
 
-commit 9b0c36be0f6367f1e05fb891d05622788dfcadb1 (HEAD -> main, origin/main)
+commit 9b0c36be0f6367f1e05fb891d05622788dfcadb1
 Author: bguevel <bguevel@mines.edu>
 Date:   Fri Nov 10 13:12:18 2023 -0700
 
@@ -21,10 +69,10 @@ Author: Kaelyn Boutin <kvboutin@mines.edu>
 Date:   Thu Nov 9 13:48:25 2023 -0700
 
     all objects made but not displaying
-
+    
     ;
 
-commit 9b0803dab99c65a174230b7deae6d5e6bbe6c607 (HEAD -> main, origin/main, origin/HEAD)
+commit 9b0803dab99c65a174230b7deae6d5e6bbe6c607
 Author: Kaelyn Boutin <kvboutin@mines.edu>
 Date:   Tue Nov 7 13:35:24 2023 -0700
 
@@ -85,7 +133,7 @@ Date:   Mon Nov 6 14:20:57 2023 -0700
 
     merged
 
-commit 884fa139092bc2b8603e40b976098464b0cb0534 (origin/selectTarget, selectTarget)
+commit 884fa139092bc2b8603e40b976098464b0cb0534
 Author: Kaelyn Boutin <kvboutin@mines.edu>
 Date:   Mon Nov 6 14:17:47 2023 -0700
 
@@ -150,18 +198,255 @@ Author: Kaelyn Boutin <kvboutin@mines.edu>
 Date:   Sun Nov 5 12:47:12 2023 -0700
 
     check accusation test made and failing
-Date:   Sun Nov 5 13:43:55 2023 -0700
-
-    tests made for disproveSuggestion and implemented checkAccusation but is erroring idk why
-
-commit d930a71c8ce5c701bd23b5bda366f2a0f0ed71dc
-Author: Kaelyn Boutin <kvboutin@mines.edu>
-Date:   Sun Nov 5 12:47:12 2023 -0700
-
-    check accusation test made and failing
 
 commit a7dcde02d9e09e9d03dda8c981cd709620fd6fa7
 Author: Kaelyn Boutin <kvboutin@mines.edu>
 Date:   Sun Nov 5 12:21:16 2023 -0700
 
     methods and tests created but not filled in
+
+commit e8e14cefc5c6aae44a90bb530395b8b827ebd51f
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Nov 4 01:51:44 2023 -0600
+
+    all tests passing
+
+commit 8e86e0eb79e75831dfc0e0a8ad8e0e6b3da601b2
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Fri Nov 3 23:21:40 2023 -0600
+
+    All current tests passing, just need to add testDeal
+
+commit cccf760102757a91f966fbea9459add35017d4bc
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 3 15:34:43 2023 -0600
+
+    added more comments again
+
+commit bd92a48c3e6227833aa68d38b3c44a28bdb08ca3
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 3 15:30:53 2023 -0600
+
+    added more comments
+
+commit b75c69d7f366b563bd461045f6bf1a82d078eba2
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 3 15:23:48 2023 -0600
+
+    deck is created properly with all necessary items.
+
+commit 50b36a1608a8e0130e38b0ba3352c3ff993b9a7c
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 3 14:25:39 2023 -0600
+
+    added functionality to distribute cards to both the players and the solution.
+
+commit 640dd0bc651bf7ede2eadf0d7457db9e40fd0e1d
+Author: bguevel <bguevel@mines.edu>
+Date:   Fri Nov 3 14:02:39 2023 -0600
+
+    added funtionality so that the computer players is created after the human one is.
+
+commit 47d768f4931cddb69f32d4d3df97d311f0ce2426
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Fri Nov 3 13:23:09 2023 -0600
+
+    tests for player label/color, weapon label and size of deck made
+
+commit 3fe0eb99f0d9f1c452ba420462058b06443c18e2
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Fri Nov 3 08:00:46 2023 -0600
+
+    Added shells of tests I think we need and solution class
+
+commit d3b0bfc74750225c1e835ea2283187279269f9df
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Nov 2 20:59:32 2023 -0600
+
+    added functionality in load config so that the deck and player list are created seemingly with correct functionality.
+
+commit af55960a0bfa7a163155d514d743f0ecff32b007
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Tue Oct 31 12:18:26 2023 -0600
+
+    made empty new classes
+
+commit ae8709c72c87b984012d5df9ad60f6b2271aba7d
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Oct 30 16:41:22 2023 -0600
+
+    refactored all of the tasks of loadLayotConfig into separate private methods so that the method thats calling them aka load will be easier to understand.
+
+commit 6c214b9cc8782b4fb79df0be23040f8f03961b78
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Oct 30 16:26:07 2023 -0600
+
+    refactored calculating adjcencies into its own function that is private because only loadconfig should be calling it.
+
+commit 85241e1bb43ed06b282734c1ff7a11ce788bcc72
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Oct 30 16:13:04 2023 -0600
+
+    changed temp to fileLine and other temp string array to splitFileLine.
+
+commit eb7a76efe7acecb3a6553a6f2dc17cb3de162f06
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Oct 30 16:03:31 2023 -0600
+
+    changed string temp variable to be fileLine so it is more readable
+
+commit 7634f90a8e453b0d2af8d798776b66fbef2e7cd3
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Oct 30 15:51:32 2023 -0600
+
+    changed arr variable to be fileLine so that the code is more interpretable.
+
+commit 41e31ebd8b8e9fa60ee8832d106c6b8a9445dd1d
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Oct 30 15:45:06 2023 -0600
+
+    got rid of temp2 from loadLayoutConfig
+
+commit c7355cc7a1461facc99446e40143dcf0c9faa1c7
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Oct 30 14:02:42 2023 -0600
+
+    moved getters and setters to underneath any methods that have game logic
+
+commit 6940e2ac28d7cc27a57194f763a9794a0aca472b
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Oct 30 13:51:30 2023 -0600
+
+    Made the error messeages from BadConfigFormatException more specific and useful
+
+commit bd5f7f7e79111336701fdf9f63ce4af75ea9cb49
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Oct 30 13:35:09 2023 -0600
+
+    Made instance variables in BoardCell private instead of package
+
+commit 4728b9a792dae3615d213d25c9751f2fb1b0efed
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Oct 30 11:22:27 2023 -0600
+
+    Removed unused import from Board
+
+commit ea576d33a037ad06565f4e69a5fb7db0c49be9ab
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 21 12:41:39 2023 -0600
+
+    all tests passing
+
+commit 8ec403f160f93a2229d4f95daa8ad1e5cdd85a32
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Thu Oct 19 12:10:50 2023 -0600
+
+    306 tests passing
+
+commit f631ad197e4d64a5763eeb77312938fe62119e8f
+Author: bguevel <bguevel@mines.edu>
+Date:   Wed Oct 18 18:38:23 2023 -0600
+
+    adj functionality mostly added, just need to figure out why gettargetsoccupied isn't passing, but thats it, also need to figure out whether isroom shuld be changed to isroomcenter in the calc targets function.
+
+commit 0fb490c906f459bc8bdca444217422b4d09fc5fb
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Oct 16 11:41:19 2023 -0600
+
+    all BoardAdjTargetTest made
+
+commit d39e2d3551bb9e1176c10ddec7d9574310abbf86
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 21:32:28 2023 -0600
+
+    Added all test stubs and some tests
+
+commit f6dc918302d00286f98c2167b51367697f9e0484
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 18:40:45 2023 -0600
+
+    Refactored
+
+commit a78d3cc4a5c8cc289622d749d16c81e552635068
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 17:22:21 2023 -0600
+
+    All tests passing
+
+commit 1fec074e88ade9b60177fbda2c78d98a7d6767ef
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Sat Oct 14 16:15:59 2023 -0600
+
+    ExceptionTests and ExceptionTest306 passing
+
+commit 4dcf2640b15578e9e80764724dfa18166956245f
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Fri Oct 13 16:41:01 2023 -0600
+
+    finished initialize method
+
+commit 8e4949361ae3de5458bf4d80673df1ef5035c385
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 12 23:10:16 2023 -0600
+
+    Very close to getting things running just need to figure some stuff out with initialize
+
+commit 1e74f6c4cb259c01191331c78d1fab6a10798d60
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 12 13:49:10 2023 -0600
+
+    LoadSetUpConfig done
+
+commit fc690fd7f35ccd1328ed63804e4ac4cb7779108b
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 13:31:25 2023 -0600
+
+    tests added ready just about for the submit
+
+commit d4af3684472f1b63150605d08cb62a1728006f33
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 01:04:04 2023 -0600
+
+     cmt
+
+commit 706ef1431ef4f1a4efdfe192594efcb83b9bbdfd
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 01:01:46 2023 -0600
+
+    stub methods added for all the stuff needed seemingly
+
+commit decf7b3fe864e24f39b628038448b8e1e7d40f3e
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 00:47:04 2023 -0600
+
+    maybe all that has to be done with the exception class
+
+commit e54fecdf6df6e11010cb94fdd7802aa727aecd7e
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 00:39:42 2023 -0600
+
+    maybe the correct version of the constructor
+
+commit 2128e985bd39ff38b63e19c1a512b51592f63b0f
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Oct 10 00:31:35 2023 -0600
+
+    got the tests working and started working on the next assignment
+
+commit c2a41a30ae483792cbdf1e65a85b63b134bcaf44
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 13:28:39 2023 -0600
+
+    tests added for testing adjacency
+
+commit 8373191e2d77307de43988026b13ec880214c590
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 11:55:56 2023 -0600
+
+    added first functionality for the TeadBoardCell class
+
+commit b512633704252457172a9682d47dfd9e887a9b42
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Oct 5 11:37:13 2023 -0600
+
+    initial commit
