@@ -27,6 +27,7 @@ public abstract class Player {
 		hand = new ArrayList<Card>();
 		seen = new ArrayList<Card>();
 	}
+	public abstract void makeMove() ;
 	public void updatePosition(int row, int column) {
 		this.row = row;
 		this.column = column;

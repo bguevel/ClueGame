@@ -109,4 +109,10 @@ public BoardCell selectTargets(Set<BoardCell> targets) {
 
 	return null;
 }
+
+@Override
+public void makeMove() {
+	// TODO Auto-generated method stub
+	
+}
 }

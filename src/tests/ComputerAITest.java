@@ -49,7 +49,7 @@ public class ComputerAITest {
 	
 	@Test
 	public void testSelectTargets() {
-		Board.clearSeen();
+		board.clearSeen();
 		//test room has not been seen
 		board.getPlayer("Prof CPW").setLocation(board.getCell(5,  3));
 		board.calcTargets(board.getCell(5, 3), 3);
@@ -91,12 +91,12 @@ public class ComputerAITest {
 		}
 		assertTrue(testList.contains(board.getCell(3, 0)));
 		assertTrue(testList.contains(board.getCell(0, 3)));
-		Board.clearSeen();
+		board.clearSeen();
 	}
 	
 	@Test
 	public void testCreateSuggestion() {
-		Board.clearSeen();
+		board.clearSeen();
 		board.getPlayer("Prof CPW").setHand(butterknifeCard, cpwCard, catapultCard);
 		board.getPlayer("Prof CPW").updateSeen(strongCard);
 		board.getPlayer("Prof CPW").updateSeen(cpwCard);
@@ -124,7 +124,7 @@ public class ComputerAITest {
 		
 		assertEquals(new Solution(ctlmCard, canCard, textbookCard), board.getPlayer("Prof CPW").createSuggestion(ctlmCard));
 		
-		Board.clearSeen();
+		board.clearSeen();
 	}
 	
 }

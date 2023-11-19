@@ -16,7 +16,12 @@ public class CardDisplay extends JPanel{
 	private JPanel people = new JPanel();
 	private JPanel rooms = new JPanel();
 	private JPanel weapons = new JPanel();
-	public CardDisplay() {
+	private Board board;
+	public void setBoard(Board b) {
+		this.board=b;
+	}
+	public CardDisplay(Board board) {
+		this.board =board;
 		setLayout(new GridLayout(3, 0));
 		setBorder(new TitledBorder (new EtchedBorder(), "Known Cards"));
 		people.setLayout(new GridLayout(0, 1));
@@ -42,7 +47,7 @@ public class CardDisplay extends JPanel{
 	public void updateCards() {
 		ArrayList<Card> hand = new ArrayList<Card>();
 		ArrayList<Card> seen = new ArrayList<Card>();
-		for(Player p:Board.getPlayerList()) {
+		for(Player p:board.getPlayerList()) {
 			if(p.getIsHuman()) {
 				hand = p.getHand();
 				seen = p.getSeen();
@@ -233,10 +238,10 @@ public class CardDisplay extends JPanel{
 		Card butterknifeCard = new Card("Butterknife", CardType.WEAPON);
 		Card chairCard = new Card("Chair", CardType.WEAPON);
 		Card textbookCard = new Card("Textbook", CardType.WEAPON);
-		CardDisplay panel = new CardDisplay();
-		panel.updateCards();
+		//CardDisplay panel = new CardDisplay();
+		//panel.updateCards();
 		Player human = null;
-		for(Player p :Board.getPlayerList()) {
+		for(Player p :board.getPlayerList()) {
 			if(p.getIsHuman()) {
 				human=p;
 				break;
@@ -245,9 +250,9 @@ public class CardDisplay extends JPanel{
 		human.updateSeen(textbookCard);// these seen and hand updates may cause duplicates as the deal randomly deals cards
 		human.updateHand(chairCard);
 		human.updateHand(kellyCard);
-		panel.updateCards();
+		//panel.updateCards();
 		JFrame frame = new JFrame();
-		frame.setContentPane(panel);
+		//frame.setContentPane(panel);
 		frame.setSize(180, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);

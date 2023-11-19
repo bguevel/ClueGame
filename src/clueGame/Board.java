@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -12,25 +13,27 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Board{
-	private int turn = 0;
+	private static int turn = -1;
 	private String layoutConfigFile;
 	private String setUpConfigFile;
 	private static BoardCell[][] grid;
 	private static int numRows;
 	private static int numColumns;
-	private Set<BoardCell> visited;
+	private static Set<BoardCell> visited;
 	private Set<BoardCell> targets;
 	private static Map<Character, Room> roomMap;
 	private static Board theInstance = new Board();
 	private static ArrayList<Card> deck = new ArrayList<Card>();
-	private static ArrayList<Player> players = new ArrayList<Player>();
+	private ArrayList<Player> players = new ArrayList<Player>();
 	private Solution theAnswer; //Initialize this with 3 cards before dealing the rest
 	// make a new hashset of cards for the deck and other card functionality
 	// make some array/list of players
-	private GameControlPanel cntrlPanel;
-	
-	public static void clearSeen() {
-		for(Player p:Board.getPlayerList()) {
+	private GameControlPanel cntrlPanel = new GameControlPanel(theInstance);
+	private BoardPanel boardPanel = new BoardPanel(theInstance);
+	private CardDisplay crdDisplay = new CardDisplay(theInstance);
+	private static ClueGame game;
+	public void clearSeen() {
+		for(Player p:this.getPlayerList()) {
 			p.clearSeen();
 		}
 	}
@@ -59,19 +62,50 @@ public class Board{
 			System.out.println("Setup/Layout Failed");
 		}
 	}
+	public static void main(String[] args) {
+		Board board = Board.getInstance();
+		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
+		board.initialize();
+		game = new ClueGame(board);
+	}
+	public int getTurn() {
+		return this.turn;
+	}
 	public void nextPlayer() {
-		this.turn=this.turn+1;
-		GameControlPanel.setTurn(Board.getPlayerList().get(this.turn%6));
-		Random roll = new Random();
-		GameControlPanel.setRoll(roll.nextInt(7));
-		calcTargets(Board.getCell(Board.getPlayerList().get(this.turn%6).getRow(), Board.getPlayerList().get(this.turn%6).getColumn()), roll.nextInt());
-		if(Board.getPlayerList().get(this.turn%6).getIsHuman()) {
-			//display target options for the player
-		}else {
-			BoardCell target = Board.getPlayerList().get(this.turn%6).selectTargets(getTargets());
-			Board.getPlayerList().get(this.turn%6).updatePosition(target.getRow(), target.getColumn());
-			//should I check if I am now in a room and make a suggestion or such?
+		for(int r=0; r<this.numRows;r++) {
+			for(int c=0; c<this.numColumns;c++) {
+				this.getCell(r, c).setHighlight(false);
+			}
 		}
+		
+		//player index
+		turn=turn+1;
+		String name = this.getPlayerList().get(turn%6).getName();
+		String color = this.getPlayerList().get(turn%6).getColor();
+		
+		game.setTurn(name, color); // updates the turn panel
+		Random roll = new Random();
+		int rollD = roll.nextInt(7);
+		System.out.println(rollD);
+		if(rollD==0) {
+			rollD=1;
+		}
+		
+		game.setRoll(rollD); // updates the roll panel
+		calcTargets(Board.getCell(this.getPlayerList().get(turn%6).getRow(), this.getPlayerList().get(turn%6).getColumn()), rollD);
+		if(this.getPlayerList().get(turn%6).getIsHuman()) {
+			for(BoardCell c:getTargets()) {
+				c.setHighlight(true);
+			}
+			// need to check that player's turn is over
+			
+			
+		}else {
+			BoardCell target = this.getPlayerList().get(turn%6).selectTargets(getTargets()); // gets a valid target for the AI
+			this.getPlayerList().get(turn%6).updatePosition(target.getRow(), target.getColumn()); // updates the position of the AI in the board
+		}
+		game.repaintEverything();
+		
 	}
 
 	//sets up the HashMap for the rooms using the setup files
@@ -457,7 +491,7 @@ public class Board{
 		return grid[row][col].getAdjList();
 	}
 	public Set<BoardCell> getTargets() {
-		return this.targets;
+		return targets;
 	}
 
 
@@ -475,7 +509,7 @@ public class Board{
 		return deck;
 	}
 	
-	public static ArrayList<Player> getPlayerList(){
+	public ArrayList<Player> getPlayerList(){
 		return players;
 	}
 

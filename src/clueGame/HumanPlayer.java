@@ -21,5 +21,9 @@ public class HumanPlayer extends Player {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+	@Override
+	public void makeMove() {
+		
+	}
+
 }

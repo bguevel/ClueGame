@@ -17,7 +17,14 @@ public class BoardCell{
 	private boolean room;
 	private boolean occupied;
 	private boolean door;
-
+	private boolean highlighted;
+	
+	public void setHighlight(boolean b) {
+		highlighted = b;
+	}
+	public boolean isHighlighted() {
+		return highlighted;
+	}
 	
 	public BoardCell(int row, int col, char init) {
 		this.row = row;
@@ -28,14 +35,41 @@ public class BoardCell{
 	public void draw(int cellWidth, int cellHeight, Graphics g) {
 		int xOffset = column * cellWidth;
 		int yOffset = row * cellHeight;
-		
+		if(highlighted) {
+			g.setColor(Color.red);
+			if(!door) {
+				g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
+				g.drawRect(xOffset, yOffset, cellWidth, cellHeight);
+				return;
+			}
+			if(door == true) {
+				switch(doorDirection) {
+				case DOWN:
+					int doorY = yOffset + cellHeight/3 * 2 + cellHeight % 3 + 4;
+					g.fillRect(xOffset, doorY, cellWidth, cellHeight/6);
+					break;
+				case RIGHT:
+					int doorX = xOffset + cellWidth/3 * 2 + cellWidth % 3 + 10;
+					g.fillRect(doorX, yOffset, cellWidth/6, cellHeight);
+					break;
+				case UP:
+					g.fillRect(xOffset, yOffset, cellWidth, cellHeight/6);
+					break;
+				case LEFT:
+					g.fillRect(xOffset, yOffset, cellWidth/8, cellHeight);
+					break;
+				default:
+					break;
+				}
+			}
+			return;
+		}
 		switch(initial) {
 		case 'W':
 			g.setColor(Color.white);
 			g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
 			g.setColor(Color.black);
 			g.drawRect(xOffset, yOffset, cellWidth, cellHeight);
-			
 			g.setColor(Color.blue);
 			if(door == true) {
 				switch(doorDirection) {

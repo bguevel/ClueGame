@@ -15,7 +15,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel{
-	private String turn ;
+	private String turn = "None";
 	private String guess;
 	private String guessResult;
 	private Integer roll = 0;
@@ -25,8 +25,10 @@ public class GameControlPanel extends JPanel{
 	private JButton nextB;
 	private JButton accusationB;
 	private static JTextField rollText;
-
-	public GameControlPanel() {
+	private Board board;
+	private JPanel turnP;
+	public GameControlPanel(Board board) {
+		this.board=board;
 		//create jpanel 2x0
 //		JPanel outside = new JPanel();
 		setLayout(new GridLayout(2, 0));
@@ -40,7 +42,8 @@ public class GameControlPanel extends JPanel{
 		nextB = new JButton("NEXT!");
 		north.add(accusationB);
 		north.add(nextB);
-		
+		ButtonListener button = new ButtonListener();
+		nextB.addActionListener(button);
 		add(north, BorderLayout.NORTH);
 		add(guessPanel(), BorderLayout.SOUTH);	
 	}
@@ -49,9 +52,7 @@ public class GameControlPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==nextB) {
-				// nxt player
-				// pass player to guesspannel
-				// 
+				board.nextPlayer();
 			}
 		}
 		
@@ -79,13 +80,12 @@ public class GameControlPanel extends JPanel{
 	}
 	
 	public JPanel turnPanel() {
-		JPanel turnP = new JPanel();
+		this.turnP = new JPanel();
 		JLabel turnL = new JLabel("Whose turn?");
-		turnText = new JTextField(turn);
-		turnP.add(turnL);
-		turnP.add(turnText);
-		
-		return turnP;
+		this.turnText = new JTextField(turn, 15);
+		this.turnP.add(turnL);
+		this.turnP.add(turnText);
+		return this.turnP;
 	}
 	
 	public JPanel rollPanel() {
@@ -97,31 +97,37 @@ public class GameControlPanel extends JPanel{
 		return rollP;
 	}
 	
-	public static void setTurn(Player turn) {
+	public void setTurn(String name, String color) {
 //		this.turn = turn.getName();
-		turnText.setText(turn.getName());
-		switch (turn.getColor()) {
+		this.turnText.removeAll();
+		this.turnText.setText(name);
+		switch (color) {
 		case "Blue":
 			turnText.setBackground(Color.BLUE);
 			turnText.setForeground(Color.WHITE);
 			break;
 		case "Yellow":
 			turnText.setBackground(Color.YELLOW);
+			turnText.setForeground(Color.BLACK);
 			break;
 		case "Green":
 			turnText.setBackground(Color.GREEN);
+			turnText.setForeground(Color.BLACK);
 			break;
 		case "Red":
 			turnText.setBackground(Color.RED);
+			turnText.setForeground(Color.BLACK);
 			break;
 		case "Pink":
 			turnText.setBackground(Color.PINK);
+			turnText.setForeground(Color.BLACK);
 			break;
 		case "Orange":
 			turnText.setBackground(Color.ORANGE);
+			turnText.setForeground(Color.BLACK);
 			break;
 		}
-			
+
 	}
 	
 	public void setGuess(String guess) {
@@ -138,17 +144,17 @@ public class GameControlPanel extends JPanel{
 	}
 	
 	public static void main(String[] args) {
-		GameControlPanel panel = new GameControlPanel();
+		//GameControlPanel panel = new GameControlPanel(Board b);
 		JFrame frame = new JFrame();
 		Player testP = new ComputerPlayer("Prof CPW", "Blue", 0, 15, false);
-		panel.setTurn(testP);
-		frame.setContentPane(panel);
+		//panel.setTurn(testP);
+		//frame.setContentPane(panel);
 		frame.setSize(750, 180);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		System.out.print(testP.getName());
-		panel.setGuess("I have no guess");
-		panel.setGuessResult("So you have nothing?");
+		//panel.setGuess("I have no guess");
+		//panel.setGuessResult("So you have nothing?");
 	}
 
 	
