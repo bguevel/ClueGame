@@ -32,6 +32,7 @@ public class Board{
 	private BoardPanel boardPanel = new BoardPanel(theInstance);
 	private CardDisplay crdDisplay = new CardDisplay(theInstance);
 	private static ClueGame game;
+	private boolean madeMove = true;
 	public void clearSeen() {
 		for(Player p:this.getPlayerList()) {
 			p.clearSeen();
@@ -71,7 +72,15 @@ public class Board{
 	public int getTurn() {
 		return this.turn;
 	}
+	public void setMove(boolean b) {
+		this.madeMove=b;
+	}
 	public void nextPlayer() {
+		if(!this.madeMove) {
+			
+			// print out error that they haven't preformed move (maybe a splash screen displaying the error)
+			return;
+		}
 		for(int r=0; r<this.numRows;r++) {
 			for(int c=0; c<this.numColumns;c++) {
 				this.getCell(r, c).setHighlight(false);
@@ -97,6 +106,7 @@ public class Board{
 			for(BoardCell c:getTargets()) {
 				c.setHighlight(true);
 			}
+			this.madeMove=false;
 			// need to check that player's turn is over
 			
 			

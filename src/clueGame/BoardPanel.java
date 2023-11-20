@@ -39,8 +39,10 @@ public class BoardPanel extends JPanel{
 					System.out.println("made it here");
 					board.getPlayerList().get(board.getTurn()%6).updatePosition(c.getRow(), c.getColumn());
 					repaint();
-					// if the board cell is a room player's turn isn't over
+					board.setMove(true);
 					return;
+				}else {
+					// print error message
 				}
 			}
 			// if it gets through the for loop then an invalid target was selected
