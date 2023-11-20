@@ -3,6 +3,7 @@ package clueGame;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame{
 	private static Board board;
@@ -29,9 +30,9 @@ public class ClueGame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Mines Clue");
 		
-		//board = Board.getInstance();
-		//board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
-		//board.initialize();
+		board = Board.getInstance();
+		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
+		board.initialize();
 		System.out.println(board);
 		boardPanel = new BoardPanel(board);
 		this.add(boardPanel, BorderLayout.CENTER);
@@ -42,13 +43,14 @@ public class ClueGame extends JFrame{
 		
 		gamePanel = new GameControlPanel(board);
 		this.add(gamePanel, BorderLayout.SOUTH);
+		
+		JOptionPane.showMessageDialog(this, "You are Prof Strong. Can you find the solution?");
+		
 		this.setVisible(true);
 	}
-	/*
-	 * 	public static void main(String []args) {
+	 	public static void main(String []args) {
 		ClueGame game = new ClueGame(board);
 	}
-	 * 
-	 */
+	 
 
 }
