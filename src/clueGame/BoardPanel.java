@@ -41,8 +41,6 @@ public class BoardPanel extends JPanel{
 					repaint();
 					board.setMove(true);
 					return;
-				}else {
-					// print error message
 				}
 			}
 			// if it gets through the for loop then an invalid target was selected
