@@ -10,11 +10,12 @@ public class ClueGame extends JFrame{
 	private CardDisplay cardPanel;
 	private GameControlPanel gamePanel;
 	private BoardPanel boardPanel;
+	
 	public void setTurn(String name, String color) {
 		gamePanel.setTurn(name, color);
 	}
 	public void setRoll(int roll) {
-		gamePanel.setRoll(roll);
+		GameControlPanel.setRoll(roll);
 	}
 	public void repaintEverything() {
 		cardPanel.updateCards();
@@ -30,9 +31,9 @@ public class ClueGame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Mines Clue");
 		
-		board = Board.getInstance();
-		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
-		board.initialize();
+//		board = Board.getInstance();
+//		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
+//		board.initialize();
 		System.out.println(board);
 		boardPanel = new BoardPanel(board);
 		this.add(boardPanel, BorderLayout.CENTER);
@@ -44,13 +45,14 @@ public class ClueGame extends JFrame{
 		gamePanel = new GameControlPanel(board);
 		this.add(gamePanel, BorderLayout.SOUTH);
 		
-		JOptionPane.showMessageDialog(this, "You are Prof Strong. Can you find the solution?");
-		
 		this.setVisible(true);
+		JOptionPane.showMessageDialog(this, "You are Prof Strong. Can you find the solution?");
 	}
-	 	public static void main(String []args) {
-		ClueGame game = new ClueGame(board);
-	}
+	
+//	 	public static void main(String []args) {
+//		ClueGame game = new ClueGame(board);
+//		
+//	}
 	 
 
 }

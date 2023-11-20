@@ -138,7 +138,7 @@ public class GameControlPanel extends JPanel{
 		this.guessResText.setText(guessResult);
 	}
 	public static void setRoll(int roll) {
-		Integer i =roll;
+		Integer i = roll;
 		rollText.setText(i.toString());
 		
 	}

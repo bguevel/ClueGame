@@ -12,6 +12,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 public class Board{
 	private static int turn = -1;
 	private String layoutConfigFile;
@@ -68,6 +70,7 @@ public class Board{
 		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
 		board.initialize();
 		game = new ClueGame(board);
+		board.nextPlayer();
 	}
 	public int getTurn() {
 		return this.turn;
@@ -77,7 +80,7 @@ public class Board{
 	}
 	public void nextPlayer() {
 		if(!this.madeMove) {
-			
+			JOptionPane.showMessageDialog(null, "Please move");
 			// print out error that they haven't preformed move (maybe a splash screen displaying the error)
 			return;
 		}

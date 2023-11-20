@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class BoardPanel extends JPanel{
@@ -43,6 +44,7 @@ public class BoardPanel extends JPanel{
 					return;
 				}
 			}
+			JOptionPane.showMessageDialog(null, "You can't go there");
 			// if it gets through the for loop then an invalid target was selected
 			
 		}
