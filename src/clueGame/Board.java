@@ -97,11 +97,7 @@ public class Board{
 		
 		game.setTurn(name, color); // updates the turn panel
 		Random roll = new Random();
-		int rollD = roll.nextInt(7);
-		System.out.println(rollD);
-		if(rollD==0) {
-			rollD=1;
-		}
+		int rollD = roll.nextInt(6)+1;
 		
 		game.setRoll(rollD); // updates the roll panel
 		calcTargets(Board.getCell(this.getPlayerList().get(turn%6).getRow(), this.getPlayerList().get(turn%6).getColumn()), rollD);
