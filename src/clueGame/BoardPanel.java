@@ -28,10 +28,10 @@ public class BoardPanel extends JPanel{
 
 		public void mouseClicked(MouseEvent e) {
 			for(BoardCell c: board.getTargets()) {
-				if(e.getX()/cellWidth == c.getColumn() && e.getY()/cellHeight == c.getRow()) {
-					board.getPlayerList().get(board.getTurn()%6).updatePosition(c.getRow(), c.getColumn());
+				if(e.getX()/cellWidth == c.getColumn() && e.getY()/cellHeight == c.getRow()) { // divides the x by the width of the drawn cell and y by height of drawn cell
+					board.getPlayerList().get(board.getTurn()%6).updatePosition(c.getRow(), c.getColumn()); // updates position on board
 					repaint();
-					board.setMove(true);
+					board.setMove(true); // allows for the player to move on to next move
 					return;
 				}
 			}

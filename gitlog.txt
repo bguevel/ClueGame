@@ -1,3 +1,21 @@
+commit 2d9b98c2d15c893975c69679cef1edca0451f702
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 21 16:39:00 2023 -0700
+
+    major change to update cards.
+
+commit 892275a14a988d3923f39b495a68bc95eadd7dba
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 21 16:19:55 2023 -0700
+
+    comments added to the paint component to make it more legible.
+
+commit 9e5a10d0e408780a48aac7707114758f2f1ea36c
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 21 16:12:38 2023 -0700
+
+    comments added to the paint component to make it more legible.
+
 commit 0eb37ff8559534c8cfe81018b147704aad98c9af
 Author: bguevel <bguevel@mines.edu>
 Date:   Tue Nov 21 16:03:53 2023 -0700
