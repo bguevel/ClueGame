@@ -1,3 +1,76 @@
+commit 0eb37ff8559534c8cfe81018b147704aad98c9af
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 21 16:03:53 2023 -0700
+
+    changed roll to not have the if statement
+
+commit 637b702ac95f1926016810f0d5a081bb4b1fa6a1
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Tue Nov 21 15:08:55 2023 -0700
+
+    added headers to gamecontrolpanel and cardpanel
+
+commit 88df3a8b2f38670bc51e69f879b2f62fd201da33
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Tue Nov 21 14:55:20 2023 -0700
+
+    removed useless comments and unused variables in board and boardpanel
+
+commit 6a2c3814c23c9117b5d6d914ef71f00030009e1c
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Tue Nov 21 14:33:57 2023 -0700
+
+    changed access to static for a lot of variables to get rid of warnings
+
+commit b0d2264ad2e613edc6cfe2e7561286e70615435f
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Nov 20 15:53:23 2023 -0700
+
+    error messages implemented
+
+commit 48c5e6e88f3a73980bed6480a3e4643eca15344b
+Merge: b395e35 ed91654
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Nov 20 12:23:15 2023 -0700
+
+    Merge branch 'main' of github.com:bguevel/ClueGame
+
+commit ed916542c224d0e50488904db43af24a1ee92183
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Nov 20 11:48:48 2023 -0700
+
+    slightest of changes
+
+commit 3ba34105b9e5dba4ee52c513ea60b3a96106b472
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Nov 20 11:45:19 2023 -0700
+
+    incorperated changed Kae made don't want to do merge
+
+commit 5dbf97c49754e347bdf5e8a6b0b846d71a1c893b
+Author: bguevel <bguevel@mines.edu>
+Date:   Mon Nov 20 11:41:18 2023 -0700
+
+    most added
+
+commit b395e35b972fac2e1c3a40d9f50d07e204b7468a
+Author: Kaelyn Boutin <kvboutin@mines.edu>
+Date:   Mon Nov 20 10:24:31 2023 -0700
+
+    splash screen implemented
+
+commit 8f548b48ef3602fca6d60849aea30bc68577b41b
+Author: bguevel <bguevel@mines.edu>
+Date:   Sun Nov 19 15:04:19 2023 -0700
+
+    got the player and AI player moving working correctly just need logic for if the player is in a room so that they don't click next when they aren't supposed to
+
+commit b2f391d44c70a06f1c02ef10b2eab99eba9f052f
+Author: bguevel <bguevel@mines.edu>
+Date:   Thu Nov 16 19:54:43 2023 -0700
+
+    added part of the button listener and nextPlayer method added some functionality to get the next player calc targets and handle the computer player turn somewhat.
+
 commit f43aa71950564b5f17f5306d27597b6db6094e8e
 Author: bguevel <bguevel@mines.edu>
 Date:   Wed Nov 15 14:46:07 2023 -0700
