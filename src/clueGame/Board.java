@@ -73,7 +73,7 @@ public class Board{
 		board.nextPlayer();
 	}
 	public int getTurn() {
-		return this.turn;
+		return Board.turn;
 	}
 	public void setMove(boolean b) {
 		this.madeMove=b;
@@ -84,9 +84,9 @@ public class Board{
 			// print out error that they haven't preformed move (maybe a splash screen displaying the error)
 			return;
 		}
-		for(int r=0; r<this.numRows;r++) {
-			for(int c=0; c<this.numColumns;c++) {
-				this.getCell(r, c).setHighlight(false);
+		for(int r=0; r<Board.numRows;r++) {
+			for(int c=0; c<Board.numColumns;c++) {
+				Board.getCell(r, c).setHighlight(false);
 			}
 		}
 		
@@ -124,7 +124,7 @@ public class Board{
 	//sets up the HashMap for the rooms using the setup files
 	public void loadSetupConfig() throws BadConfigFormatException {
 		Scanner reader = null;
-		this.roomMap = new HashMap<Character, Room>();
+		Board.roomMap = new HashMap<Character, Room>();
 		String fileLine = null;
 		boolean humanP =false;
 
@@ -203,7 +203,7 @@ public class Board{
 			String roomName = arr[1]; //this is the name of the room
 			// this is the char we care about to make the rooms
 			// make the room a card
-			this.roomMap.put(arr[2].charAt(0), new Room(roomName)); //adds the room to the map
+			Board.roomMap.put(arr[2].charAt(0), new Room(roomName)); //adds the room to the map
 
 		}
 		reader.close();
@@ -243,10 +243,10 @@ public class Board{
 	}
 
 	private void getAdjs() {
-		for(int r=0; r<this.numRows; r++) {
-			for(int c=0; c<this.numColumns; c++) {
+		for(int r=0; r<Board.numRows; r++) {
+			for(int c=0; c<Board.numColumns; c++) {
 					if(grid[r][c].isDoorway()) {
-						if(c+1<this.numColumns) { // the following 4 outter if statements make sure that other walkway tiles that are adj are in bounds
+						if(c+1<Board.numColumns) { // the following 4 outter if statements make sure that other walkway tiles that are adj are in bounds
 							if(grid[r][c+1].getInitial()=='W') {
 								grid[r][c].addAdj(grid[r][c+1]);
 							}
@@ -267,25 +267,25 @@ public class Board{
 							}
 						}
 						if(grid[r][c].getDoorDirection() == DoorDirection.UP) { //logic for doors
-							grid[r][c].addAdj(this.getRoom(grid[r-1][c]).getCenterCell());
-							this.getRoom(grid[r-1][c]).getCenterCell().addAdj(grid[r][c]);
+							grid[r][c].addAdj(Board.getRoom(grid[r-1][c]).getCenterCell());
+							Board.getRoom(grid[r-1][c]).getCenterCell().addAdj(grid[r][c]);
 						}else if(grid[r][c].getDoorDirection() == DoorDirection.RIGHT) {
-							grid[r][c].addAdj(this.getRoom(grid[r][c+1]).getCenterCell());
-							this.getRoom(grid[r][c+1]).getCenterCell().addAdj(grid[r][c]);
+							grid[r][c].addAdj(Board.getRoom(grid[r][c+1]).getCenterCell());
+							Board.getRoom(grid[r][c+1]).getCenterCell().addAdj(grid[r][c]);
 						}else if(grid[r][c].getDoorDirection() == DoorDirection.LEFT) {
-							grid[r][c].addAdj(this.getRoom(grid[r][c-1]).getCenterCell());
-							this.getRoom(grid[r][c-1]).getCenterCell().addAdj(grid[r][c]);
+							grid[r][c].addAdj(Board.getRoom(grid[r][c-1]).getCenterCell());
+							Board.getRoom(grid[r][c-1]).getCenterCell().addAdj(grid[r][c]);
 						}else if(grid[r][c].getDoorDirection() == DoorDirection.DOWN) {
-							grid[r][c].addAdj(this.getRoom(grid[r+1][c]).getCenterCell());
-							this.getRoom(grid[r+1][c]).getCenterCell().addAdj(grid[r][c]);
+							grid[r][c].addAdj(Board.getRoom(grid[r+1][c]).getCenterCell());
+							Board.getRoom(grid[r+1][c]).getCenterCell().addAdj(grid[r][c]);
 						}
 					}
-					if(this.roomMap.containsKey(grid[r][c].getSecretPassage())) { //basically I am setting two room centers to be in eachother's adj list
+					if(Board.roomMap.containsKey(grid[r][c].getSecretPassage())) { //basically I am setting two room centers to be in eachother's adj list
 						this.getRoom(grid[r][c].getInitial()).getCenterCell().addAdj(this.getRoom(grid[r][c].getSecretPassage()).getCenterCell());
-						this.getRoom(grid[r][c].getSecretPassage()).getCenterCell().addAdj(this.getRoom(grid[r][c]).getCenterCell());
+						this.getRoom(grid[r][c].getSecretPassage()).getCenterCell().addAdj(Board.getRoom(grid[r][c]).getCenterCell());
 					}
 					if(grid[r][c].getInitial() == 'W' && !grid[r][c].isDoorway()) { //logic for dealing with regular walkways same logic for doors
-						if(c+1<this.numColumns) {
+						if(c+1<Board.numColumns) {
 							if(grid[r][c+1].getInitial()=='W') {
 								grid[r][c].addAdj(grid[r][c+1]);
 							}
@@ -295,7 +295,7 @@ public class Board{
 								grid[r][c].addAdj(grid[r][c-1]);
 							}
 						}
-						if(r+1<this.numRows) {
+						if(r+1<Board.numRows) {
 							if(grid[r+1][c].getInitial()=='W') {
 								grid[r][c].addAdj(grid[r+1][c]);
 							}
@@ -348,9 +348,9 @@ public class Board{
 			rows++; // upadtes row by row
 		}
 
-		this.numColumns = prevCol; // if there is no bad config exception any column number should work
-		this.numRows = rows; 
-		this.grid = new BoardCell[this.numRows][this.numColumns];
+		Board.numColumns = prevCol; // if there is no bad config exception any column number should work
+		Board.numRows = rows; 
+		Board.grid = new BoardCell[Board.numRows][Board.numColumns];
 		return fileLines;
 	}
 	
@@ -383,11 +383,11 @@ public class Board{
 					} // should I have a check to throw a bad file config if every room doesn't have a center and a label?
 					if(splitFileLine[c].charAt(1)=='*'){ // checks if its the center of the room
 						tempCell.setRoomCenter(true); // makes sure the cell knows its a room center
-						this.roomMap.get(splitFileLine[c].charAt(0)).setCenterCell(tempCell); // find the room in the map and give it its center cell
+						Board.roomMap.get(splitFileLine[c].charAt(0)).setCenterCell(tempCell); // find the room in the map and give it its center cell
 					}
 					if(splitFileLine[c].charAt(1)=='#') { // checks if its the room label
 						tempCell.setRoomLabel(true); // makes sure the cell knows its a label
-						this.roomMap.get(splitFileLine[c].charAt(0)).setLabelCell(tempCell); // find the room in the map and give it its label cell
+						Board.roomMap.get(splitFileLine[c].charAt(0)).setLabelCell(tempCell); // find the room in the map and give it its label cell
 					}
 					if(roomMap.containsKey(splitFileLine[c].charAt(1))) { // checks to make sure it is a secret passage
 						tempCell.setSecretPassage(splitFileLine[c].charAt(1));
