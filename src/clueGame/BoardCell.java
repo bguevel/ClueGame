@@ -35,7 +35,7 @@ public class BoardCell{
 	public void draw(int cellWidth, int cellHeight, Graphics g) {
 		int xOffset = column * cellWidth;
 		int yOffset = row * cellHeight;
-		if(highlighted) {
+		if(highlighted) { // to paint highlighted tiles differently than their nonhighlighted counterparts
 			g.setColor(Color.red);
 			if(!door) {
 				g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
@@ -69,7 +69,7 @@ public class BoardCell{
 			g.setColor(Color.white);
 			g.fillRect(xOffset, yOffset, cellWidth, cellHeight);
 			g.setColor(Color.black);
-			g.drawRect(xOffset, yOffset, cellWidth, cellHeight);
+			g.drawRect(xOffset, yOffset, cellWidth, cellHeight); // drawing the door
 			g.setColor(Color.blue);
 			if(door == true) {
 				switch(doorDirection) {
