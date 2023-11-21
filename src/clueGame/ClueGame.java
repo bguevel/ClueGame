@@ -34,7 +34,6 @@ public class ClueGame extends JFrame{
 //		board = Board.getInstance();
 //		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
 //		board.initialize();
-		System.out.println(board);
 		boardPanel = new BoardPanel(board);
 		this.add(boardPanel, BorderLayout.CENTER);
 		

@@ -19,6 +19,8 @@ public class CardDisplay extends JPanel{
 	private JPanel rooms = new JPanel();
 	private JPanel weapons = new JPanel();
 	private Board board;
+	ArrayList<Card> hand = new ArrayList<Card>();
+	ArrayList<Card> seen = new ArrayList<Card>();
 	public void setBoard(Board b) {
 		this.board=b;
 	}
@@ -46,175 +48,193 @@ public class CardDisplay extends JPanel{
 		weapons.add(new JTextField("None", 20));
 		
 	}
-	public void updateCards() {
-		ArrayList<Card> hand = new ArrayList<Card>();
-		ArrayList<Card> seen = new ArrayList<Card>();
+	public void setNone() {
+		people.removeAll();
+		rooms.removeAll();
+		weapons.removeAll();
+		people.add(new JLabel("in hand:"));
+		rooms.add(new JLabel("in hand:"));
+		weapons.add(new JLabel("in hand:"));
+		people.add(new JTextField("None", 20));
+		rooms.add(new JTextField("None", 20));
+		weapons.add(new JTextField("None", 20));
+		people.add(new JLabel("in seen:"));
+		rooms.add(new JLabel("in seen:"));
+		weapons.add(new JLabel("in seen:"));
+		people.add(new JTextField("None", 20));
+		rooms.add(new JTextField("None", 20));
+		weapons.add(new JTextField("None", 20));
+	}
+	public void onlySeen() {
+		int personCt=0;
+		int roomCt =0;
+		int weaponCt =0;
+		JTextField card;
+		people.removeAll();
+		rooms.removeAll();
+		weapons.removeAll();
+		people.add(new JLabel("in hand:"));
+		rooms.add(new JLabel("in hand:"));
+		weapons.add(new JLabel("in hand:"));
+		people.add(new JTextField("None", 20));
+		rooms.add(new JTextField("None", 20));
+		weapons.add(new JTextField("None", 20));
+		for(Card c: seen) {
+			card = new JTextField(c.getCardName(), 20);
+			if(c.getType()==CardType.PERSON) {
+				personCt++;
+				people.add(card);
+			}
+			if(c.getType()==CardType.ROOM) {
+				roomCt++;
+				rooms.add(card);
+			}
+			if(c.getType()==CardType.WEAPON) {
+				weaponCt++;
+				weapons.add(card);
+			}
+		}
+		if(personCt == 0) {
+			people.add(new JTextField("None", 20));
+		}
+		if(roomCt == 0) {
+			rooms.add(new JTextField("None", 20));
+		}
+		if(weaponCt ==0) {
+			weapons.add(new JTextField("None", 20));
+		}
+	}
+	public void setLists() {
 		for(Player p:board.getPlayerList()) {
 			if(p.getIsHuman()) {
 				hand = p.getHand();
 				seen = p.getSeen();
 			}
 		}
+	}
+	public void onlyHand() {
 		int personCt=0;
 		int roomCt =0;
 		int weaponCt =0;
-		if(hand.size()<1 && seen.size()<1) {
-			people.removeAll();
-			rooms.removeAll();
-			weapons.removeAll();
-			people.add(new JLabel("in hand:"));
-			rooms.add(new JLabel("in hand:"));
-			weapons.add(new JLabel("in hand:"));
-			people.add(new JTextField("None", 20));
-			rooms.add(new JTextField("None", 20));
-			weapons.add(new JTextField("None", 20));
-			people.add(new JLabel("in seen:"));
-			rooms.add(new JLabel("in seen:"));
-			weapons.add(new JLabel("in seen:"));
-			people.add(new JTextField("None", 20));
-			rooms.add(new JTextField("None", 20));
-			weapons.add(new JTextField("None", 20));
-		}else if(hand.size()<1 && seen.size()>=1) {
-			JTextField card;
-			people.removeAll();
-			rooms.removeAll();
-			weapons.removeAll();
-			people.add(new JLabel("in hand:"));
-			rooms.add(new JLabel("in hand:"));
-			weapons.add(new JLabel("in hand:"));
-			people.add(new JTextField("None", 20));
-			rooms.add(new JTextField("None", 20));
-			weapons.add(new JTextField("None", 20));
-			for(Card c: seen) {
-				card = new JTextField(c.getCardName(), 20);
-				if(c.getType()==CardType.PERSON) {
-					personCt++;
-					people.add(card);
-				}
-				if(c.getType()==CardType.ROOM) {
-					roomCt++;
-					rooms.add(card);
-				}
-				if(c.getType()==CardType.WEAPON) {
-					weaponCt++;
-					weapons.add(card);
-				}
+		JTextField card;
+		people.removeAll();
+		rooms.removeAll();
+		weapons.removeAll();
+		people.add(new JLabel("in hand:"));
+		rooms.add(new JLabel("in hand:"));
+		weapons.add(new JLabel("in hand:"));
+		
+		for(Card c: hand) {
+			card = new JTextField(c.getCardName(), 20);
+			if(c.getType()==CardType.PERSON) {
+				personCt++;
+				people.add(card);
 			}
-			if(personCt == 0) {
-				people.add(new JTextField("None", 20));
+			if(c.getType()==CardType.ROOM) {
+				rooms.add(card);
+				roomCt++;
 			}
-			if(roomCt == 0) {
-				rooms.add(new JTextField("None", 20));
-			}
-			if(weaponCt ==0) {
-				weapons.add(new JTextField("None", 20));
-			}
-		}else if(hand.size()>=1 && seen.size()<1) {
-			JTextField card;
-			people.removeAll();
-			rooms.removeAll();
-			weapons.removeAll();
-			people.add(new JLabel("in hand:"));
-			rooms.add(new JLabel("in hand:"));
-			weapons.add(new JLabel("in hand:"));
-			
-			for(Card c: hand) {
-				card = new JTextField(c.getCardName(), 20);
-				if(c.getType()==CardType.PERSON) {
-					personCt++;
-					people.add(card);
-				}
-				if(c.getType()==CardType.ROOM) {
-					rooms.add(card);
-					roomCt++;
-				}
-				if(c.getType()==CardType.WEAPON) {
-					weaponCt++;
-					weapons.add(card);
-				}
-			}
-			if(personCt == 0) {
-				people.add(new JTextField("None", 20));
-			}
-			if(roomCt == 0) {
-				rooms.add(new JTextField("None", 20));
-			}
-			if(weaponCt ==0) {
-				weapons.add(new JTextField("None", 20));
-			}
-			people.add(new JLabel("in seen:"));
-			rooms.add(new JLabel("in seen:"));
-			weapons.add(new JLabel("in seen:"));
-			people.add(new JTextField("None", 20));
-			rooms.add(new JTextField("None", 20));
-			weapons.add(new JTextField("None", 20));
-			
-		}else {
-			JTextField card;
-			people.removeAll();
-			rooms.removeAll();
-			weapons.removeAll();
-			people.add(new JLabel("in hand:"));
-			rooms.add(new JLabel("in hand:"));
-			weapons.add(new JLabel("in hand:"));
-			
-			for(Card c: hand) {
-				card = new JTextField(c.getCardName(), 20);
-				if(c.getType()==CardType.PERSON) {
-					personCt++;
-					people.add(card);
-				}
-				if(c.getType()==CardType.ROOM) {
-					roomCt++;
-					rooms.add(card);
-				}
-				if(c.getType()==CardType.WEAPON) {
-					weaponCt++;
-					weapons.add(card);
-				}
-			}
-			if(personCt == 0) {
-				people.add(new JTextField("None", 20));
-			}
-			if(roomCt == 0) {
-				rooms.add(new JTextField("None", 20));
-			}
-			if(weaponCt ==0) {
-				weapons.add(new JTextField("None", 20));
-			}
-			personCt =0;
-			roomCt =0;
-			weaponCt=0;
-			people.add(new JLabel("in seen:"));
-			rooms.add(new JLabel("in seen:"));
-			weapons.add(new JLabel("in seen:"));
-			for(Card c: seen) {
-				card = new JTextField(c.getCardName(), 20);
-				if(c.getType()==CardType.PERSON) {
-					personCt++;
-					people.add(card);
-				}
-				if(c.getType()==CardType.ROOM) {
-					roomCt++;
-					rooms.add(card);
-				}
-				if(c.getType()==CardType.WEAPON) {
-					weaponCt++;
-					weapons.add(card);
-				}
-			}
-			if(personCt == 0) {
-				people.add(new JTextField("None", 20));
-			}
-			if(roomCt == 0) {
-				rooms.add(new JTextField("None", 20));
-			}
-			if(weaponCt ==0) {
-				weapons.add(new JTextField("None", 20));
+			if(c.getType()==CardType.WEAPON) {
+				weaponCt++;
+				weapons.add(card);
 			}
 		}
+		if(personCt == 0) {
+			people.add(new JTextField("None", 20));
+		}
+		if(roomCt == 0) {
+			rooms.add(new JTextField("None", 20));
+		}
+		if(weaponCt ==0) {
+			weapons.add(new JTextField("None", 20));
+		}
+		people.add(new JLabel("in seen:"));
+		rooms.add(new JLabel("in seen:"));
+		weapons.add(new JLabel("in seen:"));
+		people.add(new JTextField("None", 20));
+		rooms.add(new JTextField("None", 20));
+		weapons.add(new JTextField("None", 20));
 		
+	}
+	public void bothLists() {
+		int personCt=0;
+		int roomCt =0;
+		int weaponCt =0;
+		JTextField card;
+		people.removeAll();
+		rooms.removeAll();
+		weapons.removeAll();
+		people.add(new JLabel("in hand:"));
+		rooms.add(new JLabel("in hand:"));
+		weapons.add(new JLabel("in hand:"));
+		
+		for(Card c: hand) {
+			card = new JTextField(c.getCardName(), 20);
+			if(c.getType()==CardType.PERSON) {
+				personCt++;
+				people.add(card);
+			}
+			if(c.getType()==CardType.ROOM) {
+				roomCt++;
+				rooms.add(card);
+			}
+			if(c.getType()==CardType.WEAPON) {
+				weaponCt++;
+				weapons.add(card);
+			}
+		}
+		if(personCt == 0) {
+			people.add(new JTextField("None", 20));
+		}
+		if(roomCt == 0) {
+			rooms.add(new JTextField("None", 20));
+		}
+		if(weaponCt ==0) {
+			weapons.add(new JTextField("None", 20));
+		}
+		personCt =0;
+		roomCt =0;
+		weaponCt=0;
+		people.add(new JLabel("in seen:"));
+		rooms.add(new JLabel("in seen:"));
+		weapons.add(new JLabel("in seen:"));
+		for(Card c: seen) {
+			card = new JTextField(c.getCardName(), 20);
+			if(c.getType()==CardType.PERSON) {
+				personCt++;
+				people.add(card);
+			}
+			if(c.getType()==CardType.ROOM) {
+				roomCt++;
+				rooms.add(card);
+			}
+			if(c.getType()==CardType.WEAPON) {
+				weaponCt++;
+				weapons.add(card);
+			}
+		}
+		if(personCt == 0) {
+			people.add(new JTextField("None", 20));
+		}
+		if(roomCt == 0) {
+			rooms.add(new JTextField("None", 20));
+		}
+		if(weaponCt ==0) {
+			weapons.add(new JTextField("None", 20));
+		}
+	}
 
+	public void updateCards() {
+		setLists();
+		if(hand.size()<1 && seen.size()<1) {
+			setNone();
+		}else if(hand.size()<1 && seen.size()>=1) {
+			onlySeen();
+		}else if(hand.size()>=1 && seen.size()<1) {
+			onlyHand();
+		}else {
+			bothLists();
+		}
 	}
 	public static void main(String[] args) {
 		// Board is singleton, get the only instance
