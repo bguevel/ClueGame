@@ -236,7 +236,7 @@ public class Board{
 								grid[r][c].addAdj(grid[r][c-1]);
 							}
 						}
-						if(r+1<this.numRows) {
+						if(r+1<Board.numRows) {
 							if(grid[r+1][c].getInitial()=='W') {
 								grid[r][c].addAdj(grid[r+1][c]);
 							}

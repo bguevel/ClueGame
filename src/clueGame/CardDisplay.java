@@ -1,3 +1,5 @@
+//Makes the right panel with the cards list
+
 package clueGame;
 
 import java.awt.BorderLayout;

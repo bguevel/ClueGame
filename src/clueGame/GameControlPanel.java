@@ -1,3 +1,5 @@
+//Makes the panel at the bottom that controls the flow of the game
+
 package clueGame;
 
 import java.awt.BorderLayout;
