@@ -15,14 +15,10 @@ import javax.swing.JPanel;
 public class BoardPanel extends JPanel{
 	private int cellHeight;
 	private int cellWidth;
-	private boolean targetsDraw =false;
 	private Board board;
-	private Set<BoardCell> targets;
 	public void setTargetsDraw() {
-		targetsDraw=true;
 	}
 	public void setTargets(Set<BoardCell> targs) {
-		targets=targs;
 	}
 	public BoardPanel(Board board) {
 		this.board =board;
@@ -31,22 +27,16 @@ public class BoardPanel extends JPanel{
 	private class PlayerSelection implements MouseListener{
 
 		public void mouseClicked(MouseEvent e) {
-			System.out.println(e.getX()/cellWidth);
-			System.out.println(e.getY()/cellHeight);
 			for(BoardCell c: board.getTargets()) {
-				System.out.println("row :" +  c.getRow());
-				System.out.println();
 				if(e.getX()/cellWidth == c.getColumn() && e.getY()/cellHeight == c.getRow()) {
-					System.out.println("made it here");
 					board.getPlayerList().get(board.getTurn()%6).updatePosition(c.getRow(), c.getColumn());
 					repaint();
 					board.setMove(true);
 					return;
 				}
 			}
-			JOptionPane.showMessageDialog(null, "You can't go there");
 			// if it gets through the for loop then an invalid target was selected
-			
+			JOptionPane.showMessageDialog(null, "You can't go there");
 		}
 
 
@@ -104,7 +94,6 @@ public class BoardPanel extends JPanel{
 		for(Player player: board.getPlayerList()) {
 			player.draw(cellWidth, cellHeight, g);
 		}
-		targetsDraw = false;
 	}
 	public void setCellHeight() {
 		this.cellHeight = this.getHeight()/24;
