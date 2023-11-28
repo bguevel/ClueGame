@@ -1,3 +1,9 @@
+commit f99eaf5244dc743fd851733f41bcbfff4159b572
+Author: bguevel <bguevel@mines.edu>
+Date:   Tue Nov 21 16:41:29 2023 -0700
+
+    clarified what is happening when a mouse is clicked with comments.
+
 commit 2d9b98c2d15c893975c69679cef1edca0451f702
 Author: bguevel <bguevel@mines.edu>
 Date:   Tue Nov 21 16:39:00 2023 -0700

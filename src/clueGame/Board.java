@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -11,7 +12,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Vector;
 
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 public class Board{
@@ -35,6 +39,7 @@ public class Board{
 	private CardDisplay crdDisplay = new CardDisplay(theInstance);
 	private static ClueGame game;
 	private boolean madeMove = true;
+	private boolean suggestion;
 	public void clearSeen() {
 		for(Player p:this.getPlayerList()) {
 			p.clearSeen();
@@ -65,6 +70,9 @@ public class Board{
 			System.out.println("Setup/Layout Failed");
 		}
 	}
+	public ClueGame getGame() {
+		return this.game;
+	}
 	public static void main(String[] args) {
 		Board board = Board.getInstance();
 		board.setConfigFiles("data/ClueLayout.csv", "data/ClueSetup.txt");
@@ -78,7 +86,12 @@ public class Board{
 	public void setMove(boolean b) {
 		this.madeMove=b;
 	}
+	public void setCreateSuggestion(boolean b) {
+		System.out.println("yeah");
+		this.suggestion=b;
+	}
 	public void nextPlayer() {
+		this.setCreateSuggestion(false);
 		if(!this.madeMove) {
 			JOptionPane.showMessageDialog(null, "Please move");
 			// print out error that they haven't preformed move (maybe a splash screen displaying the error)
@@ -109,9 +122,18 @@ public class Board{
 			// need to check that player's turn is over
 			
 			
+			
 		}else {
 			BoardCell target = this.getPlayerList().get(turn%6).selectTargets(getTargets()); // gets a valid target for the AI
 			this.getPlayerList().get(turn%6).updatePosition(target.getRow(), target.getColumn()); // updates the position of the AI in the board
+			if(this.getRoom(target).getCenterCell()==target) { // if the target is a room we want to create a suggestion
+				for(Card c: this.getDeck()) { // get the room card that the computer is in
+					if(c.getCardName().equals(this.getRoom(target).getName())) { // create and handle the suggestion
+						this.getPlayerList().get(turn%6).updateSeen(handleSuggestion(this.getPlayerList().get(turn%6).createSuggestion(c), this.getPlayerList().get(turn%6).getName()));
+						break;
+					}
+				}
+			}
 		}
 		game.repaintEverything();
 		
@@ -422,11 +444,32 @@ public class Board{
 	}
 	
 	public Card handleSuggestion(Solution suggestion, String player) {
+		
+		int row = this.getPlayer(player).getRow();
+		int column = this.getPlayer(player).getColumn();
+		System.out.println(this.getPlayer(player).getColumn());
+		for(Player p: this.getPlayerList()) { // moves the player that is the card to the room of the suggestion
+			if(p.getName().equals(suggestion.getPerson().getCardName())) {
+				p.updatePosition(row, column);
+				game.repaintEverything();
+			}
+		}
 		for(Player p:this.players) {
 			if(p.disproveSuggestion(suggestion)!=null) {
+				if(player.equals("Prof Strong")) {
+					JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName() +" With: " + p.disproveSuggestion(suggestion).getCardName());
+					// update guess panel
+				}else {
+					JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName());
+					// update guess panel
+				}
+				// check if player is human or not
+				// display correct splash screen
 				return p.disproveSuggestion(suggestion);
 			}
 		}
+		JOptionPane.showMessageDialog(null, "Not Disproven");
+		// guess panel
 		return null;
 	}
 	

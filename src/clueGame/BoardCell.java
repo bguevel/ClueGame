@@ -42,6 +42,7 @@ public class BoardCell{
 				g.drawRect(xOffset, yOffset, cellWidth, cellHeight);
 				return;
 			}
+			// you can command z until you see this disappear
 			if(door == true) {
 				switch(doorDirection) {
 				case DOWN:

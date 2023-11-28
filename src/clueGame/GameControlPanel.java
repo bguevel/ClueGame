@@ -56,6 +56,24 @@ public class GameControlPanel extends JPanel{
 			if(e.getSource()==nextB) {
 				board.nextPlayer();
 			}
+			if(e.getSource()==accusationB) {
+				if(board.getPlayerList().get(board.getTurn()%6).getIsHuman()) {
+					// display a selection screen
+					// make new solution from selections
+					/*
+					 * 
+					 * 
+					 Solution accu = new Solution();
+					if(accu.equals(board.getTheAnswer())) {
+						// display that the player has won
+						// likely need to make a gameOver boolean so that the next button cannot be pressed, either that or when splash screen closed have game end
+					}else {
+						// display that the player has lost
+					} 
+					 */
+					
+				}
+			}
 		}
 		
 	}
