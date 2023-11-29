@@ -148,8 +148,8 @@ public class GameControlPanel extends JPanel{
 
 	}
 	
-	public void setGuess(String guess) {
-		this.guessText.setText(guess);
+	public static void setGuess(String guess) {
+		GameControlPanel.guessText.setText(guess);
 	}
 	
 	public static void setGuessResult(String guessResult) {

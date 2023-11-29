@@ -60,6 +60,7 @@ public class BoardPanel extends JPanel{
         			Solution suggestd = new Solution(roomS, personS, weaponS);
                     board.getPlayerList().get(board.getTurn()%6).updateSeen(board.handleSuggestion(suggestd, board.getPlayerList().get(board.getTurn()%6).getName()));
                     suggest.dispose();
+					board.setMove(true); // allows for the player to move on to next move
 				}
 				
 			}
@@ -99,7 +100,6 @@ public class BoardPanel extends JPanel{
                         suggest.add(makeSuggestion);
                         suggest.setVisible(true);
                          
-					board.setMove(true); // allows for the player to move on to next move
 					return;
 				}
 					board.setMove(true);

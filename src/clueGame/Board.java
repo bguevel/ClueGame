@@ -93,7 +93,7 @@ public class Board{
 	public void nextPlayer() {
 		this.setCreateSuggestion(false);
 		if(!this.madeMove) {
-			JOptionPane.showMessageDialog(null, "Please move");
+			JOptionPane.showMessageDialog(null, "Please move/finish suggestion");
 			// print out error that they haven't preformed move (maybe a splash screen displaying the error)
 			return;
 		}
@@ -454,16 +454,18 @@ public class Board{
 				game.repaintEverything();
 			}
 		}
+		
+		GameControlPanel.setGuess(suggestion.getPerson().getCardName() + ", " + suggestion.getRoom().getCardName() + ", " + suggestion.getWeapon().getCardName());
+		
+		
 		for(Player p:this.players) {
 			if(p.disproveSuggestion(suggestion)!=null) {
 				if(player.equals("Prof Strong")) {
 					GameControlPanel.setGuessResult("Disproven by: " + p.getName() +" With: " + p.disproveSuggestion(suggestion).getCardName());
 					JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName() +" With: " + p.disproveSuggestion(suggestion).getCardName());
-					// update guess panel
 				}else {
 					GameControlPanel.setGuessResult("Disproven by: " + p.getName());
 					JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName());
-					// update guess panel
 				}
 				// check if player is human or not
 				// display correct splash screen
