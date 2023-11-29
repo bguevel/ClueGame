@@ -93,7 +93,7 @@ public class Board{
 	public void nextPlayer() {
 		this.setCreateSuggestion(false);
 		if(!this.madeMove) {
-			JOptionPane.showMessageDialog(null, "Please move");
+			JOptionPane.showMessageDialog(null, "Please move/finish suggestion");
 			// print out error that they haven't preformed move (maybe a splash screen displaying the error)
 			return;
 		}
