@@ -18,12 +18,10 @@ import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel{
 	private String turn = "None";
-	private String guess;
-	private String guessResult;
 	private Integer roll = 0;
 	private static JTextField turnText;
-	private JTextField guessResText;
-	private JTextField guessText;
+	private static JTextField guessResText;
+	private static JTextField guessText;
 	private JButton nextB;
 	private JButton accusationB;
 	private static JTextField rollText;
@@ -154,8 +152,8 @@ public class GameControlPanel extends JPanel{
 		this.guessText.setText(guess);
 	}
 	
-	public void setGuessResult(String guessResult) {
-		this.guessResText.setText(guessResult);
+	public static void setGuessResult(String guessResult) {
+		guessResText.setText(guessResult);
 	}
 	public static void setRoll(int roll) {
 		Integer i = roll;

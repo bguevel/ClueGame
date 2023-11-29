@@ -457,9 +457,11 @@ public class Board{
 		for(Player p:this.players) {
 			if(p.disproveSuggestion(suggestion)!=null) {
 				if(player.equals("Prof Strong")) {
+					GameControlPanel.setGuessResult("Disproven by: " + p.getName() +" With: " + p.disproveSuggestion(suggestion).getCardName());
 					JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName() +" With: " + p.disproveSuggestion(suggestion).getCardName());
 					// update guess panel
 				}else {
+					GameControlPanel.setGuessResult("Disproven by: " + p.getName());
 					JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName());
 					// update guess panel
 				}
@@ -468,8 +470,9 @@ public class Board{
 				return p.disproveSuggestion(suggestion);
 			}
 		}
-		JOptionPane.showMessageDialog(null, "Not Disproven");
 		// guess panel
+		GameControlPanel.setGuessResult("Not Disproven");
+		JOptionPane.showMessageDialog(null, "Not Disproven");
 		return null;
 	}
 	
