@@ -31,13 +31,13 @@ public class Board{
 	private static Board theInstance = new Board();
 	private static ArrayList<Card> deck = new ArrayList<Card>();
 	private ArrayList<Player> players = new ArrayList<Player>();
-	private Solution theAnswer; //Initialize this with 3 cards before dealing the rest
+	private static Solution theAnswer; //Initialize this with 3 cards before dealing the rest
 	// make a new hashset of cards for the deck and other card functionality
 	// make some array/list of players
 	private GameControlPanel cntrlPanel = new GameControlPanel(theInstance);
 	private BoardPanel boardPanel = new BoardPanel(theInstance);
 	private CardDisplay crdDisplay = new CardDisplay(theInstance);
-	private static ClueGame game;
+	static ClueGame game;
 	private boolean madeMove = true;
 	private boolean suggestion;
 	public void clearSeen() {
@@ -436,7 +436,7 @@ public class Board{
 		}
 	}
 	
-	public boolean checkAccusation(Solution accusation) {
+	public static boolean checkAccusation(Solution accusation) {
 		if((accusation.getRoom() == theAnswer.getRoom()) && (accusation.getPerson() == theAnswer.getPerson()) && (accusation.getWeapon() == theAnswer.getWeapon())) {
 			return true;
 		}
@@ -447,7 +447,6 @@ public class Board{
 		
 		int row = this.getPlayer(player).getRow();
 		int column = this.getPlayer(player).getColumn();
-		System.out.println(this.getPlayer(player).getColumn());
 		for(Player p: this.getPlayerList()) { // moves the player that is the card to the room of the suggestion
 			if(p.getName().equals(suggestion.getPerson().getCardName())) {
 				p.updatePosition(row, column);

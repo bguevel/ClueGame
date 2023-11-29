@@ -7,10 +7,14 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -57,18 +61,59 @@ public class GameControlPanel extends JPanel{
 			if(e.getSource()==accusationB) {
 				if(board.getPlayerList().get(board.getTurn()%6).getIsHuman()) {
 					// display a selection screen
-					// make new solution from selections
-					/*
-					 * 
-					 * 
-					 Solution accu = new Solution();
-					if(accu.equals(board.getTheAnswer())) {
-						// display that the player has won
-						// likely need to make a gameOver boolean so that the next button cannot be pressed, either that or when splash screen closed have game end
-					}else {
-						// display that the player has lost
-					} 
-					 */
+					JComboBox<String> players = new JComboBox<String>();
+					JComboBox<String> weapons = new JComboBox<String>();
+					JComboBox<String> rooms = new JComboBox<String>();
+					
+                    for(Player p: board.getPlayerList()) {
+                        players.addItem(p.getName());
+                    }
+                    
+                    for(Card w: Board.getDeck()) {
+                        if(w.getType() == CardType.WEAPON) {
+                            weapons.addItem(w.getCardName());
+                        }
+                    }
+                    
+                    for(Card r: Board.getDeck()) {
+                        if(r.getType() == CardType.ROOM) {
+                            rooms.addItem(r.getCardName());
+                        }
+                    }
+                    
+                    JDialog accuse = new JDialog(board.getGame());
+                    accuse.setLayout(new GridLayout(0, 1));
+                    accuse.setSize(200, 300);
+                    accuse.add(rooms);
+                    accuse.add(players);
+                    accuse.add(weapons);
+                    ButtonListener listen = new ButtonListener();
+                    JButton makeAccusation = new JButton("Make Accusation");
+                    makeAccusation.addActionListener(listen);
+                    accuse.add(makeAccusation);
+                    accuse.setVisible(true);
+                    
+                    String susRoom = rooms.getSelectedItem().toString();
+                    String susPlayer = players.getSelectedItem().toString();
+                    String susWeapon = weapons.getSelectedItem().toString();
+                    
+                    Solution accusation = new Solution();
+                    
+                    for(Card c: Board.getDeck()){
+                    	if(c.getCardName() == susRoom) {
+                    		accusation.setRoom(c);
+                    	} else if(c.getCardName() == susPlayer) {
+                    		accusation.setPerson(c);
+                    	} else if (c.getCardName() == susWeapon) {
+                    		accusation.setWeapon(c);
+                    	}
+                    }
+                    
+                    if(Board.checkAccusation(accusation)) {
+                    	JOptionPane.showMessageDialog(null, "That is correct! Good job");
+                    } else {
+                    	JOptionPane.showMessageDialog(null, "That was not correct. You lose");
+                    }
 					
 				}
 			}

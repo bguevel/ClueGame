@@ -11,6 +11,11 @@ public class Solution {
 		this.weapon = weapon;
 		this.person = person;
 	}
+	
+	public Solution() {
+		super();
+	}
+
 	@Override
     public boolean equals(Object o) {
 		Solution soln =(Solution)o;
@@ -18,6 +23,18 @@ public class Solution {
 			return true;
 		}
 		return false;
+	}
+
+	public void setRoom(Card room) {
+		this.room = room;
+	}
+
+	public void setWeapon(Card weapon) {
+		this.weapon = weapon;
+	}
+
+	public void setPerson(Card person) {
+		this.person = person;
 	}
 
 	public Card getRoom() {

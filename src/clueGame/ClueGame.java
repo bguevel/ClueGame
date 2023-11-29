@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ public class ClueGame extends JFrame{
 		cardPanel.revalidate();
 	}
 	public ClueGame(Board board) {
-		this.board=board;
+		ClueGame.board=board;
 		this.setSize(1300, 650);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Mines Clue");
@@ -47,7 +48,6 @@ public class ClueGame extends JFrame{
 		this.setVisible(true);
 		JOptionPane.showMessageDialog(this, "You are Prof Strong. Can you find the solution?");
 	}
-	
 //	 	public static void main(String []args) {
 //		ClueGame game = new ClueGame(board);
 //		

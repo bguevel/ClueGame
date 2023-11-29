@@ -90,7 +90,7 @@ public class BoardPanel extends JPanel{
                         suggest.setLayout(new GridLayout(0,1));
                         suggest.setSize(200, 300);
                         JTextField room = new JTextField();
-                        room.setText("Room: "+board.getRoom(c).getName()); //how to get name of room they are in
+                        room.setText("Room: "+ board.getRoom(c).getName()); //how to get name of room they are in
                         suggest.add(room);
                         suggest.add(players);
                         suggest.add(weapons);
