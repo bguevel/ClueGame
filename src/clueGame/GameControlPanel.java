@@ -31,12 +31,13 @@ public class GameControlPanel extends JPanel{
 	private static JTextField rollText;
 	private Board board;
 	private JPanel turnP;
+
 	public GameControlPanel(Board board) {
 		this.board=board;
 		//create jpanel 2x0
-//		JPanel outside = new JPanel();
+		//		JPanel outside = new JPanel();
 		setLayout(new GridLayout(2, 0));
-		
+
 		//create a jpanel 1x4
 		JPanel north = new JPanel();
 		north.setLayout(new GridLayout(1, 4));
@@ -48,6 +49,7 @@ public class GameControlPanel extends JPanel{
 		north.add(nextB);
 		ButtonListener button = new ButtonListener();
 		nextB.addActionListener(button);
+		accusationB.addActionListener(button);
 		add(north, BorderLayout.NORTH);
 		add(guessPanel(), BorderLayout.SOUTH);	
 	}
@@ -64,84 +66,92 @@ public class GameControlPanel extends JPanel{
 					JComboBox<String> players = new JComboBox<String>();
 					JComboBox<String> weapons = new JComboBox<String>();
 					JComboBox<String> rooms = new JComboBox<String>();
-					
-                    for(Player p: board.getPlayerList()) {
-                        players.addItem(p.getName());
-                    }
-                    
-                    for(Card w: Board.getDeck()) {
-                        if(w.getType() == CardType.WEAPON) {
-                            weapons.addItem(w.getCardName());
-                        }
-                    }
-                    
-                    for(Card r: Board.getDeck()) {
-                        if(r.getType() == CardType.ROOM) {
-                            rooms.addItem(r.getCardName());
-                        }
-                    }
-                    
-                    JDialog accuse = new JDialog(board.getGame());
-                    accuse.setLayout(new GridLayout(0, 1));
-                    accuse.setSize(200, 300);
-                    accuse.add(rooms);
-                    accuse.add(players);
-                    accuse.add(weapons);
-                    ButtonListener listen = new ButtonListener();
-                    JButton makeAccusation = new JButton("Make Accusation");
-                    makeAccusation.addActionListener(listen);
-                    accuse.add(makeAccusation);
-                    accuse.setVisible(true);
-                    
-                    String susRoom = rooms.getSelectedItem().toString();
-                    String susPlayer = players.getSelectedItem().toString();
-                    String susWeapon = weapons.getSelectedItem().toString();
-                    
-                    Solution accusation = new Solution();
-                    
-                    for(Card c: Board.getDeck()){
-                    	if(c.getCardName() == susRoom) {
-                    		accusation.setRoom(c);
-                    	} else if(c.getCardName() == susPlayer) {
-                    		accusation.setPerson(c);
-                    	} else if (c.getCardName() == susWeapon) {
-                    		accusation.setWeapon(c);
-                    	}
-                    }
-                    
-                    if(Board.checkAccusation(accusation)) {
-                    	JOptionPane.showMessageDialog(null, "That is correct! Good job");
-                    } else {
-                    	JOptionPane.showMessageDialog(null, "That was not correct. You lose");
-                    }
-					
+
+					for(Player p: board.getPlayerList()) {
+						players.addItem(p.getName());
+					}
+
+					for(Card w: Board.getDeck()) {
+						if(w.getType() == CardType.WEAPON) {
+							weapons.addItem(w.getCardName());
+						}
+					}
+
+					for(Card r: Board.getDeck()) {
+						if(r.getType() == CardType.ROOM) {
+							rooms.addItem(r.getCardName());
+						}
+					}
+
+					JDialog accuse = new JDialog(board.getGame());
+					accuse.setLayout(new GridLayout(0, 1));
+					accuse.setSize(200, 300);
+					accuse.add(rooms);
+					accuse.add(players);
+					accuse.add(weapons);
+
+					boolean done = false;
+					ButtonListener listen = new ButtonListener();
+					JButton makeAccusationn = new JButton("Accuse them");
+					makeAccusationn.addActionListener(listen);
+					accuse.add(makeAccusationn);
+					accuse.setVisible(true);
+
+					if(makeAccusationn.getModel().isPressed()) {
+						done = true;
+					}
+
+					String susRoom = rooms.getSelectedItem().toString();
+					String susPlayer = players.getSelectedItem().toString();
+					String susWeapon = weapons.getSelectedItem().toString();
+
+					Solution accusation = new Solution();
+
+					for(Card c: Board.getDeck()){
+						if(c.getCardName() == susRoom) {
+							accusation.setRoom(c);
+						} else if(c.getCardName() == susPlayer) {
+							accusation.setPerson(c);
+						} else if (c.getCardName() == susWeapon) {
+							accusation.setWeapon(c);
+						}
+					}
+
+					if(done == true) {
+						if(Board.checkAccusation(accusation)) {
+							JOptionPane.showMessageDialog(null, "That is correct! Good job");
+						} else {
+							JOptionPane.showMessageDialog(null, "That was not correct. You lose");
+						}
+						System.exit(0);
+					}
 				}
 			}
 		}
-		
+
 	}
 	public JPanel guessPanel(){
 		//jpanel 0x2
 		JPanel overall = new JPanel();
 		overall.setLayout(new GridLayout(0, 2));
-		
+
 		//jpanel 1x0 for guess
 		JPanel guessP = new JPanel();
 		guessP.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
 		guessText = new JTextField();
 		guessP.add(guessText);
-		
+
 		//jpanel 1x0
 		JPanel guessResP = new JPanel();
 		guessResP.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		guessResText = new JTextField();
 		guessResP.add(guessResText);
-		
+
 		overall.add(guessP);
 		overall.add(guessResP);
 		return overall;
 	}
-	
+
 	public JPanel turnPanel() {
 		this.turnP = new JPanel();
 		JLabel turnL = new JLabel("Whose turn?");
@@ -150,7 +160,7 @@ public class GameControlPanel extends JPanel{
 		this.turnP.add(turnText);
 		return this.turnP;
 	}
-	
+
 	public JPanel rollPanel() {
 		JPanel rollP = new JPanel();
 		JLabel rollL = new JLabel("Roll:");
@@ -159,9 +169,9 @@ public class GameControlPanel extends JPanel{
 		rollP.add(rollText);
 		return rollP;
 	}
-	
+
 	public void setTurn(String name, String color) {
-//		this.turn = turn.getName();
+		//		this.turn = turn.getName();
 		this.turnText.removeAll();
 		this.turnText.setText(name);
 		switch (color) {
@@ -192,20 +202,20 @@ public class GameControlPanel extends JPanel{
 		}
 
 	}
-	
+
 	public static void setGuess(String guess) {
 		GameControlPanel.guessText.setText(guess);
 	}
-	
+
 	public static void setGuessResult(String guessResult) {
 		guessResText.setText(guessResult);
 	}
 	public static void setRoll(int roll) {
 		Integer i = roll;
 		rollText.setText(i.toString());
-		
+
 	}
-	
+
 	public static void main(String[] args) {
 		//GameControlPanel panel = new GameControlPanel(Board b);
 		JFrame frame = new JFrame();
@@ -220,5 +230,5 @@ public class GameControlPanel extends JPanel{
 		//panel.setGuessResult("So you have nothing?");
 	}
 
-	
+
 }

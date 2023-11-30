@@ -87,7 +87,6 @@ public class Board{
 		this.madeMove=b;
 	}
 	public void setCreateSuggestion(boolean b) {
-		System.out.println("yeah");
 		this.suggestion=b;
 	}
 	public void nextPlayer() {
@@ -476,6 +475,7 @@ public class Board{
 		JOptionPane.showMessageDialog(null, "Not Disproven");
 		return null;
 	}
+	
 	
 	//the files are set here with a method, not in a constructor
 	public void setConfigFiles(String string, String string2) {
