@@ -90,6 +90,13 @@ public class Board{
 		this.suggestion=b;
 	}
 	public void nextPlayer() {
+		if(turn != -1) {
+			if(this.getPlayerList().get(turn%6).getOut()) {
+				turn = turn + 1;
+				return;
+			}
+		}
+
 		this.setCreateSuggestion(false);
 		if(!this.madeMove) {
 			JOptionPane.showMessageDialog(null, "Please move/finish suggestion");
@@ -101,16 +108,16 @@ public class Board{
 				Board.getCell(r, c).setHighlight(false);
 			}
 		}
-		
+
 		//player index
 		turn=turn+1;
 		String name = this.getPlayerList().get(turn%6).getName();
 		String color = this.getPlayerList().get(turn%6).getColor();
-		
+
 		game.setTurn(name, color); // updates the turn panel
 		Random roll = new Random();
 		int rollD = roll.nextInt(6)+1;
-		
+
 		game.setRoll(rollD); // updates the roll panel
 		calcTargets(Board.getCell(this.getPlayerList().get(turn%6).getRow(), this.getPlayerList().get(turn%6).getColumn()), rollD);
 		if(this.getPlayerList().get(turn%6).getIsHuman()) {
@@ -119,10 +126,11 @@ public class Board{
 			}
 			this.madeMove=false;
 			// need to check that player's turn is over
-			
-			
-			
+
+
+
 		}else {
+			this.getPlayerList().get(turn%6).makeAccusation();
 			BoardCell target = this.getPlayerList().get(turn%6).selectTargets(getTargets()); // gets a valid target for the AI
 			this.getPlayerList().get(turn%6).updatePosition(target.getRow(), target.getColumn()); // updates the position of the AI in the board
 			if(this.getRoom(target).getCenterCell()==target) { // if the target is a room we want to create a suggestion
@@ -135,7 +143,7 @@ public class Board{
 			}
 		}
 		game.repaintEverything();
-		
+
 	}
 
 	//sets up the HashMap for the rooms using the setup files
@@ -192,7 +200,7 @@ public class Board{
 					deck.add(new Card(arr[1], CardType.WEAPON));
 					continue; // so that we move on to a new interation of the loop
 				}
-				
+
 			}
 			if(!(arr[0].equals("Space"))){
 				deck.add(new Card(arr[1], CardType.ROOM)); // add room card to the deck not spaces
@@ -208,9 +216,9 @@ public class Board{
 			this.dealCards();
 		}
 	}
-	
+
 	public void dealCards() {
-	
+
 		Collections.shuffle(deck); // this line shuffles the deck
 		Card[] soln = new Card[3]; // array of size 3 for the solution cards
 		for(Card c:deck) {
@@ -242,72 +250,72 @@ public class Board{
 	private void getAdjs() {
 		for(int r=0; r<Board.numRows; r++) {
 			for(int c=0; c<Board.numColumns; c++) {
-					if(grid[r][c].isDoorway()) {
-						if(c+1<Board.numColumns) { // the following 4 outter if statements make sure that other walkway tiles that are adj are in bounds
-							if(grid[r][c+1].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r][c+1]);
-							}
-						}
-						if(c-1>=0) {
-							if(grid[r][c-1].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r][c-1]);
-							}
-						}
-						if(r+1<Board.numRows) {
-							if(grid[r+1][c].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r+1][c]);
-							}
-						}
-						if(r-1>=0) {
-							if(grid[r-1][c].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r-1][c]);
-							}
-						}
-						if(grid[r][c].getDoorDirection() == DoorDirection.UP) { //logic for doors
-							grid[r][c].addAdj(Board.getRoom(grid[r-1][c]).getCenterCell());
-							Board.getRoom(grid[r-1][c]).getCenterCell().addAdj(grid[r][c]);
-						}else if(grid[r][c].getDoorDirection() == DoorDirection.RIGHT) {
-							grid[r][c].addAdj(Board.getRoom(grid[r][c+1]).getCenterCell());
-							Board.getRoom(grid[r][c+1]).getCenterCell().addAdj(grid[r][c]);
-						}else if(grid[r][c].getDoorDirection() == DoorDirection.LEFT) {
-							grid[r][c].addAdj(Board.getRoom(grid[r][c-1]).getCenterCell());
-							Board.getRoom(grid[r][c-1]).getCenterCell().addAdj(grid[r][c]);
-						}else if(grid[r][c].getDoorDirection() == DoorDirection.DOWN) {
-							grid[r][c].addAdj(Board.getRoom(grid[r+1][c]).getCenterCell());
-							Board.getRoom(grid[r+1][c]).getCenterCell().addAdj(grid[r][c]);
+				if(grid[r][c].isDoorway()) {
+					if(c+1<Board.numColumns) { // the following 4 outter if statements make sure that other walkway tiles that are adj are in bounds
+						if(grid[r][c+1].getInitial()=='W') {
+							grid[r][c].addAdj(grid[r][c+1]);
 						}
 					}
-					if(Board.roomMap.containsKey(grid[r][c].getSecretPassage())) { //basically I am setting two room centers to be in eachother's adj list
-						this.getRoom(grid[r][c].getInitial()).getCenterCell().addAdj(this.getRoom(grid[r][c].getSecretPassage()).getCenterCell());
-						this.getRoom(grid[r][c].getSecretPassage()).getCenterCell().addAdj(Board.getRoom(grid[r][c]).getCenterCell());
-					}
-					if(grid[r][c].getInitial() == 'W' && !grid[r][c].isDoorway()) { //logic for dealing with regular walkways same logic for doors
-						if(c+1<Board.numColumns) {
-							if(grid[r][c+1].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r][c+1]);
-							}
-						}
-						if(c-1>=0) {
-							if(grid[r][c-1].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r][c-1]);
-							}
-						}
-						if(r+1<Board.numRows) {
-							if(grid[r+1][c].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r+1][c]);
-							}
-						}
-						if(r-1>=0) {
-							if(grid[r-1][c].getInitial()=='W') {
-								grid[r][c].addAdj(grid[r-1][c]);
-							}
+					if(c-1>=0) {
+						if(grid[r][c-1].getInitial()=='W') {
+							grid[r][c].addAdj(grid[r][c-1]);
 						}
 					}
+					if(r+1<Board.numRows) {
+						if(grid[r+1][c].getInitial()=='W') {
+							grid[r][c].addAdj(grid[r+1][c]);
+						}
+					}
+					if(r-1>=0) {
+						if(grid[r-1][c].getInitial()=='W') {
+							grid[r][c].addAdj(grid[r-1][c]);
+						}
+					}
+					if(grid[r][c].getDoorDirection() == DoorDirection.UP) { //logic for doors
+						grid[r][c].addAdj(Board.getRoom(grid[r-1][c]).getCenterCell());
+						Board.getRoom(grid[r-1][c]).getCenterCell().addAdj(grid[r][c]);
+					}else if(grid[r][c].getDoorDirection() == DoorDirection.RIGHT) {
+						grid[r][c].addAdj(Board.getRoom(grid[r][c+1]).getCenterCell());
+						Board.getRoom(grid[r][c+1]).getCenterCell().addAdj(grid[r][c]);
+					}else if(grid[r][c].getDoorDirection() == DoorDirection.LEFT) {
+						grid[r][c].addAdj(Board.getRoom(grid[r][c-1]).getCenterCell());
+						Board.getRoom(grid[r][c-1]).getCenterCell().addAdj(grid[r][c]);
+					}else if(grid[r][c].getDoorDirection() == DoorDirection.DOWN) {
+						grid[r][c].addAdj(Board.getRoom(grid[r+1][c]).getCenterCell());
+						Board.getRoom(grid[r+1][c]).getCenterCell().addAdj(grid[r][c]);
+					}
+				}
+				if(Board.roomMap.containsKey(grid[r][c].getSecretPassage())) { //basically I am setting two room centers to be in eachother's adj list
+					this.getRoom(grid[r][c].getInitial()).getCenterCell().addAdj(this.getRoom(grid[r][c].getSecretPassage()).getCenterCell());
+					this.getRoom(grid[r][c].getSecretPassage()).getCenterCell().addAdj(Board.getRoom(grid[r][c]).getCenterCell());
+				}
+				if(grid[r][c].getInitial() == 'W' && !grid[r][c].isDoorway()) { //logic for dealing with regular walkways same logic for doors
+					if(c+1<Board.numColumns) {
+						if(grid[r][c+1].getInitial()=='W') {
+							grid[r][c].addAdj(grid[r][c+1]);
+						}
+					}
+					if(c-1>=0) {
+						if(grid[r][c-1].getInitial()=='W') {
+							grid[r][c].addAdj(grid[r][c-1]);
+						}
+					}
+					if(r+1<Board.numRows) {
+						if(grid[r+1][c].getInitial()=='W') {
+							grid[r][c].addAdj(grid[r+1][c]);
+						}
+					}
+					if(r-1>=0) {
+						if(grid[r-1][c].getInitial()=='W') {
+							grid[r][c].addAdj(grid[r-1][c]);
+						}
+					}
+				}
 
 			}
 		}
 	}
-	
+
 	private ArrayList<String> loadBoard() throws BadConfigFormatException{
 		Scanner reader = null;
 		ArrayList<String> fileLines = new ArrayList<String>();
@@ -328,18 +336,18 @@ public class Board{
 			fileLine = reader.nextLine();
 			fileLines.add(fileLine); // adding each string line to an arraylist of strings
 			splitFileLine = fileLine.split(","); // splitting the string into rows
-			
+
 			if(rows==0) { // doing this so we have an initial value to compare the rest of the columns to
 				prevCol = splitFileLine.length;
 				rows++;
 				continue;
 			}
-			
+
 			columns = splitFileLine.length; // getting columns a value one ahead of prevcol
 			if(prevCol != columns) { // if the columns aren't equal config format error
 				throw new BadConfigFormatException("Bad format config file");
 			}
-			
+
 			prevCol = columns; // keeps prevcol trailing behind
 			columns=0;
 			rows++; // upadtes row by row
@@ -350,7 +358,7 @@ public class Board{
 		Board.grid = new BoardCell[Board.numRows][Board.numColumns];
 		return fileLines;
 	}
-	
+
 	private void makeGrid(ArrayList<String> fileLines) throws BadConfigFormatException {
 		String fileLine = null;
 		String[] splitFileLine;
@@ -359,7 +367,7 @@ public class Board{
 			fileLine = fileLines.get(r);
 			splitFileLine = fileLine.split(","); // splits the string along the commas
 			for(int c=0; c<numColumns; c++) {
-					// the character that is stored in that column number 
+				// the character that is stored in that column number 
 				grid[r][c] = new BoardCell(r, c, splitFileLine[c].charAt(0));
 				tempCell = grid[r][c];
 				if(splitFileLine[c].length()>1) {
@@ -397,17 +405,17 @@ public class Board{
 			}
 		}
 	}
-	
+
 	public void loadLayoutConfig() throws BadConfigFormatException {
 		//variables that will be needed multiple times
 		ArrayList<String> fileLines = new ArrayList<String>();
 		fileLines = this.loadBoard();
 		this.makeGrid(fileLines);
 		this.getAdjs();
-		
+
 	}
-	
-	
+
+
 	public void calcTargets(BoardCell strtCell, int pathLen) { // need to instantiate the arraylists
 		visited = new HashSet<BoardCell>();
 		targets = new HashSet<BoardCell>();
@@ -416,7 +424,7 @@ public class Board{
 		visited.add(strtCell);
 		findAllTargets(strtCell, pathLen);
 	}
-	
+
 	public void findAllTargets(BoardCell strtCell, int pathLen){ // also from previous test files
 		for(BoardCell cell:strtCell.getAdjList()) {
 			if(visited.contains(cell) || cell.getOccupation() && !cell.isRoomCenter()) {
@@ -424,26 +432,26 @@ public class Board{
 			}
 			visited.add(cell);
 			if(pathLen == 1 || cell.isRoomCenter()) { //changed this to room center instead of room. Should this be isroom or isroomcenter? if a tile is a room center should i also make it know its a room?
-				
+
 				targets.add(cell);
-				
+
 			}else {
 				findAllTargets(cell, pathLen-1);
 			}
 			visited.remove(cell);
-			
+
 		}
 	}
-	
+
 	public static boolean checkAccusation(Solution accusation) {
 		if((accusation.getRoom() == theAnswer.getRoom()) && (accusation.getPerson() == theAnswer.getPerson()) && (accusation.getWeapon() == theAnswer.getWeapon())) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public Card handleSuggestion(Solution suggestion, String player) {
-		
+
 		int row = this.getPlayer(player).getRow();
 		int column = this.getPlayer(player).getColumn();
 		for(Player p: this.getPlayerList()) { // moves the player that is the card to the room of the suggestion
@@ -452,18 +460,22 @@ public class Board{
 				game.repaintEverything();
 			}
 		}
-		
+
 		GameControlPanel.setGuess(suggestion.getPerson().getCardName() + ", " + suggestion.getRoom().getCardName() + ", " + suggestion.getWeapon().getCardName());
-		
-		
+
+
 		for(Player p:this.players) {
+			if(p.getName().equals(player)) {
+				continue;
+			}
+
 			if(p.disproveSuggestion(suggestion)!=null) {
 				if(player.equals("Prof Strong")) {
 					GameControlPanel.setGuessResult("Disproven by: " + p.getName() +" With: " + p.disproveSuggestion(suggestion).getCardName());
-					JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName() +" With: " + p.disproveSuggestion(suggestion).getCardName());
+					//JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName() +" With: " + p.disproveSuggestion(suggestion).getCardName());
 				}else {
 					GameControlPanel.setGuessResult("Disproven by: " + p.getName());
-					JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName());
+					//JOptionPane.showMessageDialog(null, "Disproven by: " + p.getName());
 				}
 				// check if player is human or not
 				// display correct splash screen
@@ -475,14 +487,14 @@ public class Board{
 		JOptionPane.showMessageDialog(null, "Not Disproven");
 		return null;
 	}
-	
-	
+
+
 	//the files are set here with a method, not in a constructor
 	public void setConfigFiles(String string, String string2) {
 		this.layoutConfigFile = string;
 		this.setUpConfigFile = string2;
 	}
-	
+
 	public Boolean containsPlayer(String name) {
 		for(int i=0; i<6; i++) {
 			if(this.players.get(i).getName().equals(name)) {
@@ -544,7 +556,7 @@ public class Board{
 	public static ArrayList<Card> getDeck() {
 		return deck;
 	}
-	
+
 	public ArrayList<Player> getPlayerList(){
 		return players;
 	}
@@ -552,7 +564,7 @@ public class Board{
 	public Solution getTheAnswer() {
 		return theAnswer;
 	}
-	
+
 	public void setTheAnswer(Card room, Card person, Card weapon) {
 		Solution answer = new Solution(room, person, weapon);
 		this.theAnswer = answer;
@@ -560,14 +572,14 @@ public class Board{
 
 	public void clearDeck() {
 		deck.clear();
-		
+
 	}
 
 	public void clearHands() {
 		for(Player p: players) {
 			p.clearHand();
 		}
-		
+
 	}
 	public static int getRow() {
 		return numRows;

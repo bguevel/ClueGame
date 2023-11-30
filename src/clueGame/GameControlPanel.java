@@ -31,6 +31,12 @@ public class GameControlPanel extends JPanel{
 	private static JTextField rollText;
 	private Board board;
 	private JPanel turnP;
+	private JButton makeAccusationn;
+	private JComboBox<String> players;
+	private JComboBox<String> weapons;
+	private JComboBox<String> rooms;
+	private JDialog accuse;
+
 
 	public GameControlPanel(Board board) {
 		this.board=board;
@@ -53,8 +59,43 @@ public class GameControlPanel extends JPanel{
 		add(north, BorderLayout.NORTH);
 		add(guessPanel(), BorderLayout.SOUTH);	
 	}
-	private class ButtonListener implements ActionListener{
 
+	private class AccuseButton implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == makeAccusationn) {
+				accuse.dispose();
+				String susRoom = rooms.getSelectedItem().toString();
+				String susPlayer = players.getSelectedItem().toString();
+				String susWeapon = weapons.getSelectedItem().toString();
+
+				Solution accusation = new Solution();
+
+				for(Card c: Board.getDeck()){
+					if(c.getCardName() == susRoom) {
+						accusation.setRoom(c);
+					} else if(c.getCardName() == susPlayer) {
+						accusation.setPerson(c);
+					} else if (c.getCardName() == susWeapon) {
+						accusation.setWeapon(c);
+					}
+				}
+
+				if(Board.checkAccusation(accusation)) {
+					JOptionPane.showMessageDialog(null, "That is correct! Good job");
+				} else {
+					JOptionPane.showMessageDialog(null, "That was not correct. You lose");
+				}
+				System.exit(0);
+
+			}
+
+		}
+
+	}
+
+	private class ButtonListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==nextB) {
@@ -63,9 +104,9 @@ public class GameControlPanel extends JPanel{
 			if(e.getSource()==accusationB) {
 				if(board.getPlayerList().get(board.getTurn()%6).getIsHuman()) {
 					// display a selection screen
-					JComboBox<String> players = new JComboBox<String>();
-					JComboBox<String> weapons = new JComboBox<String>();
-					JComboBox<String> rooms = new JComboBox<String>();
+					players = new JComboBox<String>();
+					weapons = new JComboBox<String>();
+					rooms = new JComboBox<String>();
 
 					for(Player p: board.getPlayerList()) {
 						players.addItem(p.getName());
@@ -83,23 +124,22 @@ public class GameControlPanel extends JPanel{
 						}
 					}
 
-					JDialog accuse = new JDialog(board.getGame());
+					boolean done = false;
+					accuse = new JDialog(board.getGame());
 					accuse.setLayout(new GridLayout(0, 1));
 					accuse.setSize(200, 300);
 					accuse.add(rooms);
 					accuse.add(players);
 					accuse.add(weapons);
 
-					boolean done = false;
-					ButtonListener listen = new ButtonListener();
-					JButton makeAccusationn = new JButton("Accuse them");
+
+					AccuseButton listen = new AccuseButton();
+					makeAccusationn = new JButton("Accuse them");
 					makeAccusationn.addActionListener(listen);
 					accuse.add(makeAccusationn);
 					accuse.setVisible(true);
 
-					if(makeAccusationn.getModel().isPressed()) {
-						done = true;
-					}
+					//when button pressed, done = true, accuse.dispose();
 
 					String susRoom = rooms.getSelectedItem().toString();
 					String susPlayer = players.getSelectedItem().toString();

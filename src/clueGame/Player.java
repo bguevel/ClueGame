@@ -15,6 +15,16 @@ public abstract class Player {
 	protected ArrayList<Card> hand;
 	private boolean isHuman;
 	protected ArrayList<Card> seen ;
+	private boolean out;
+	
+	
+	
+	public boolean getOut() {
+		return out;
+	}
+	public void setOut(boolean out) {
+		this.out = out;
+	}
 	public void clearSeen() {
 		this.seen.clear();
 	}
@@ -162,5 +172,6 @@ public abstract class Player {
 		g.fillOval(cellWidth * column, cellHeight * row, cellWidth, cellHeight);
 		
 	}
+	protected abstract void makeAccusation();
 
 }

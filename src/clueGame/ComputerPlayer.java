@@ -6,12 +6,52 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.BooleanSupplier;
 
+import javax.swing.JOptionPane;
+
 public class ComputerPlayer extends Player{
 
 	public ComputerPlayer(String name, String c, int row, int column, boolean isHuman) {
 		super(name, c, row, column, isHuman);
 	}
 
+	public void makeAccusation() {
+		boolean check;
+		Solution guess = new Solution();
+		int count=0;
+		if(seen.size() == Board.getDeck().size() - 3) {
+			for(Card c: Board.getDeck()) {
+				check = false;
+				for(Card s: seen) {
+					if(c == s) {
+						check = true;
+						continue;
+					}
+				}
+				if(check == false) {
+					count++;
+					if(c.getType() == CardType.ROOM) {
+						guess.setRoom(c);
+					} else if(c.getType() == CardType.PERSON) {
+						guess.setPerson(c);
+					} else if(c.getType() == CardType.WEAPON){
+						guess.setWeapon(c);
+					}
+				}
+				if(count==3) {
+					break;
+				}
+			}
+			
+			if(Board.checkAccusation(guess)) {
+				JOptionPane.showMessageDialog(null, "The computer wins. You lose");
+				System.exit(0);
+			} else {
+				JOptionPane.showMessageDialog(null, "That was not correct. " + this.getName() + " is out.");
+				this.setOut(true);
+			}
+		}
+	}
+	
 	@Override
 	public Solution createSuggestion(Card room) { // not sure if we should be giving the function Room objs or Card objs?
 		// if the input needs to be a Room then we could do for(Card c:Board.getDeck()){  if(room.getName() == c.getCardName){ Card Room = c; break;}}

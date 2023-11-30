@@ -26,4 +26,10 @@ public class HumanPlayer extends Player {
 		
 	}
 
+	@Override
+	protected void makeAccusation() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
