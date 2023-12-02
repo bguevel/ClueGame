@@ -16,9 +16,14 @@ public abstract class Player {
 	private boolean isHuman;
 	protected ArrayList<Card> seen ;
 	private boolean out;
+	public boolean pulled;
 	
-	
-	
+	public boolean wasPulled() {
+		return pulled;
+	}
+	public void setPulled(boolean pulled) {
+		this.pulled = pulled;
+	}
 	public boolean getOut() {
 		return out;
 	}

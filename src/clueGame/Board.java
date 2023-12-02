@@ -120,17 +120,19 @@ public class Board{
 
 		game.setRoll(rollD); // updates the roll panel
 		calcTargets(Board.getCell(this.getPlayerList().get(turn%6).getRow(), this.getPlayerList().get(turn%6).getColumn()), rollD);
+		this.getPlayerList().get(turn%6).setPulled(false);
 		if(this.getPlayerList().get(turn%6).getIsHuman()) {
 			for(BoardCell c:getTargets()) {
 				c.setHighlight(true);
 			}
 			this.madeMove=false;
 			// need to check that player's turn is over
-
+			
 
 
 		}else {
 			this.getPlayerList().get(turn%6).makeAccusation();
+
 			BoardCell target = this.getPlayerList().get(turn%6).selectTargets(getTargets()); // gets a valid target for the AI
 			this.getPlayerList().get(turn%6).updatePosition(target.getRow(), target.getColumn()); // updates the position of the AI in the board
 			if(this.getRoom(target).getCenterCell()==target) { // if the target is a room we want to create a suggestion
@@ -441,6 +443,11 @@ public class Board{
 			visited.remove(cell);
 
 		}
+		if(grid[this.getPlayerList().get(turn%6).getRow()][this.getPlayerList().get(turn%6).getColumn()].isRoomCenter()) {
+			if(this.getPlayerList().get(turn%6).wasPulled()) {
+				targets.add(grid[this.getPlayerList().get(turn%6).getRow()][this.getPlayerList().get(turn%6).getColumn()]);
+			}
+		}
 	}
 
 	public static boolean checkAccusation(Solution accusation) {
@@ -450,13 +457,13 @@ public class Board{
 		return false;
 	}
 
-	public Card handleSuggestion(Solution suggestion, String player) {
-
+	public Card handleSuggestion(Solution suggestion, String player) {		 
 		int row = this.getPlayer(player).getRow();
 		int column = this.getPlayer(player).getColumn();
 		for(Player p: this.getPlayerList()) { // moves the player that is the card to the room of the suggestion
 			if(p.getName().equals(suggestion.getPerson().getCardName())) {
 				p.updatePosition(row, column);
+				p.setPulled(true);
 				game.repaintEverything();
 			}
 		}
