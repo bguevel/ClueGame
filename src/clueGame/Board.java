@@ -121,6 +121,7 @@ public class Board{
 		game.setRoll(rollD); // updates the roll panel
 		calcTargets(Board.getCell(this.getPlayerList().get(turn%6).getRow(), this.getPlayerList().get(turn%6).getColumn()), rollD);
 		this.getPlayerList().get(turn%6).setPulled(false);
+		this.getPlayerList().get(turn%6).setSuggested(false);
 		if(this.getPlayerList().get(turn%6).getIsHuman()) {
 			for(BoardCell c:getTargets()) {
 				c.setHighlight(true);
@@ -460,6 +461,7 @@ public class Board{
 	public Card handleSuggestion(Solution suggestion, String player) {		 
 		int row = this.getPlayer(player).getRow();
 		int column = this.getPlayer(player).getColumn();
+		this.getPlayer(player).setSuggested(true);
 		for(Player p: this.getPlayerList()) { // moves the player that is the card to the room of the suggestion
 			if(p.getName().equals(suggestion.getPerson().getCardName())) {
 				p.updatePosition(row, column);
@@ -491,7 +493,6 @@ public class Board{
 		}
 		// guess panel
 		GameControlPanel.setGuessResult("Not Disproven");
-		JOptionPane.showMessageDialog(null, "Not Disproven");
 		return null;
 	}
 

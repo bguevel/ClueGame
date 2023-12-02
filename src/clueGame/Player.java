@@ -17,7 +17,14 @@ public abstract class Player {
 	protected ArrayList<Card> seen ;
 	private boolean out;
 	public boolean pulled;
+	public boolean suggested;
 	
+	public boolean getSuggested() {
+		return suggested;
+	}
+	public void setSuggested(boolean suggested) {
+		this.suggested = suggested;
+	}
 	public boolean wasPulled() {
 		return pulled;
 	}
